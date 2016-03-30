@@ -1,0 +1,2 @@
+jQuery(document).ready(function(){jQuery('#movetop').click(function(){jQuery('body,html').animate({scrollTop:0},500);});});
+jQuery(document).ready(function(){jQuery('code').each(function(i,block){hljs.highlightBlock(block);});});
