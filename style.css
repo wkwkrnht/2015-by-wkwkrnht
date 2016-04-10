@@ -89,7 +89,7 @@ input[type="checkbox"],input[type="radio"]{padding:0;}
 /*header&footer&cardstyle*/
 #bread{color:#ddd;}
 #bread .sp{color:#333;margin:0 .5em;}
-.page-header{border-left:15px solid #ffcc00;background-color:#fff;box-shadow:0 3px 2px 0 #999;}
+.page-header{border-left:15px solid #ffcc00;background-color:#fff;box-shadow:0 1px 6px rgba(0,0,0,.12);}
 .page-title{font-size:33px;}
 .entry-header{background-color:#f7f7f7;text-align:center;margin-bottom:15px;}
 .card-list{border-radius:8px;}
@@ -117,18 +117,16 @@ iframe[src*="cdn.embedly.com"]{background-color:#ebeef7;box-shadow:0 2px 2px 0 #
 .prev.page-numbers::before{content:"＜";}
 .next.page-numbers::before{content:"＞";}
 .prev.page-numbers,.next.page-numbers{color:#fff;background-color:#ffcc00;}
-.page-links a,.page-links>span{border:1px solid #eaeaea;font-size:20px;font-size:2rem;width:3em;height:3em;line-height:3;margin:0 0.3333em 0.3333em 0;text-align:center;display:inline-block;}
 .page-links a{color:#fff;border-color:#ffcc00;background-color:#ffcc00;}
-.page-links{margin-bottom:1.3333em;clear:both;}
 /*記事下&関連記事*/
-#slide{max-width:100%;overflow:hidden;}
-#slide .content{flex-direction:row;-webkit-flex-direction:row;justify-content:flex-start;-webkit-justify-content:flex-start;display:flex;display:-webkit-flex;}
+#flex{max-width:100%;overflow:hidden;}
+#flex .content{flex-direction:row;-webkit-flex-direction:row;justify-content:flex-start;-webkit-justify-content:flex-start;display:flex;display:-webkit-flex;}
 .related{max-width:150px;max-height:300px;border-radius:8px;margin:15px 8px 10px 0;background-color:#fff;box-shadow:0 2px 5px 0 #999;}
 .related .thumb{background-color:#ffcc00;max-height:150px;}
 .related .title{color:#333;font-size:18px;padding-top:20px;max-height:150px;text-align:center;}
 /*ボタン*/
 .tweet::before,.fblike::before,.g1::before,.pocket::before,.tumblr::before,.linkedin::before,.pushnotice::before{color:#fff;font-size:40px;font-family:"FontAwesome";position:absolute;top:3%;}
-.button{width:60px;height:60px;border-radius:50%;margin:5px;box-shadow:0 2px 5px 0 #999;float:left;position:relative;}
+.button{width:60px;height:60px;border-radius:50%;margin:5px;float:left;position:relative;box-shadow:0 1px 6px rgba(0,0,0,.12);}
 .tweet::before{content:"\f099";left:16%;}
 .tweet{background-color:#00b8ff;}
 .fblike::before{content:"\f164";left:16%;}
@@ -146,7 +144,7 @@ iframe[src*="cdn.embedly.com"]{background-color:#ebeef7;box-shadow:0 2px 2px 0 #
 .embedly{background-color:#1d78af;}
 .pushnotice::before{content:"\f0f3";left:16%;}
 .pushnotice{background-color:#ffc700;}
-#movetop{color:#fff;background-color:#ffcc00;box-shadow:0 2px 5px 0 #999;font-size:26px;font-weight:1200;border-radius:50%;line-height:70px;width:70px;height:70px;right:10px;bottom:20px;display:block;cursor:pointer;text-decoration:none;text-align:center;position:fixed;}
+#movetop{color:#fff;background-color:#ffcc00;box-shadow:0 1px 6px rgba(0,0,0,.12);font-size:26px;font-weight:1200;border-radius:50%;line-height:70px;width:70px;height:70px;right:10px;bottom:20px;display:block;cursor:pointer;text-decoration:none;text-align:center;position:fixed;}
 /*admin-nav*/
 #admin-navigation{display:block;margin:0 20% 5%;}
 a #admin-navigation{padding:0 2.5em;}
@@ -179,7 +177,7 @@ a #admin-navigation{padding:0 2.5em;}
 .social-navigation a[href*="tumblr.com"]::before{content:"\f173";color:#2c4762;}
 .social-navigation a[href*="twitter.com"]::before{content:"\f099";color:#00b8ff;}
 .social-navigation a[href*="twilog.org"]::before{content:"\f099";color:#00b8ff;}
-.social-navigation a[href*="twilog.org"]::after{content:"\f022";font-family:"FontAwesome";font-size:16px;position:relative;right:0;bottom:0;}
+.social-navigation a[href*="twilog.org"]::after{content:"\f022";font-family:"FontAwesome";font-size:16px;position:relative;left:1em;bottom:0;}
 .social-navigation a[href*="twipf.jp"]::before{content:"\f099";color:#00b8ff;}
 .social-navigation a[href*="twipf.jp"]::after{content:"\f007";font-family:"FontAwesome";font-size:16px;position:relative;right:0;bottom:0;}
 .social-navigation a[href*="vimeo.com"]::before{content:"\f27d";}
@@ -211,11 +209,11 @@ a #admin-navigation{padding:0 2.5em;}
   }
   /*for PC*/
   @media screen and (min-width:55em){
-    #sidebar{width:28vw;z-index:2;}
-    body::before{width:28vw;z-index:2;box-shadow:0 0 5px 0 #999;}
+    #sidebar{width:26vw;z-index:2;}
+    body::before{width:26vw;z-index:2;box-shadow:0 1px 6px rgba(0,0,0,.12);}
 	.entry-title{font-size:33px;margin:32px 0;}
     .card-meta{font-size:18px;}
     /*http://wkwkrnht.wp.xdomain.jp/wp-content/themes/2015-for-wkwkrnht*/
   }
   /*without phone*/
-  @media screen and (min-width:46.25em){.post,.nav-links{box-shadow:0 4px 4px 0 #999;}}
+  @media screen and (min-width:46.25em){.post,.nav-links{box-shadow:0 1px 6px rgba(0,0,0,.12);}}
