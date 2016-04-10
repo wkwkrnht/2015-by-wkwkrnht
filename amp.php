@@ -82,10 +82,11 @@
 	<script custom-element="amp-instagram" src="https://cdn.ampproject.org/v0/amp-instagram-0.1.js" async></script>
 	<style amp-custom>
 		body{font-style:Avenir,"Open Sans","Helvetica Neue",Helvetica,Arial,Verdana,Roboto,"游ゴシック","Yu Gothic","游ゴシック体","YuGothic","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","Meiryo UI","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic",sans-serif;line-height:1.5;}
-		.siteinfo{width:100vw;height:15vh;background-color:#ffcc00;box-shadow:0 2px 2px 0 #999;text-align:center;top:0;left:0;position:fixed}.site-title{font-size:26px;}
-		article{box-shadow:0 3px 3px 0 #999;}header{background-color:#ebeef7;box-shadow:0 0 5px 0 #999;text-align:center;margin:5px 0;}.bread{color:#ddd;}.bread .sp{color:#333;margin:0 .5em;}span .meta{padding:2px;}section{width:86vw;margin:0 7vw;}
+		.siteinfo{width:100vw;height:18vh;background-color:#ffcc00;box-shadow:0 2px 2px 0 #999;text-align:center;z-index:10;position:fixed;top:0;left:0;margin-top:0;}.site-title{font-size:26px;color:white;text-decoration:none;}
+		article{padding:20vh 3vw 5vh 3vw;box-shadow:0 1px 6px rgba(0,0,0,.12);}header{background-color:#ebeef7;text-align:center;margin:5px 0;}.bread{color:#ddd;}.bread .sp{color:#333;margin:0 .5em;}span .meta{padding:2px;}
 		table{border-collapse:separate;border-spacing:1px;line-height:1.5;border-top:1px solid #ccc;}th{width:150px;padding:10px;font-weight:bold;vertical-align:top;border-bottom:1px solid #ccc;background:#efefef;text-align:center;}td{width:350px;padding:10px;vertical-align:top;border-bottom:1px solid #ccc;text-align:left;}
-		amp-iframe,amp-img,h2,h3,h4{text-align:center;}h2,h3,h4{min-height:45px;}h3,h4{background-color:#fff;}h2 section{color:#fff;background:#ffcc00;}h3 section{border-left:10px solid #ffcc00;}h4 section{border-bottom:8px solid #ffcc00;}
+		amp-iframe,amp-img,h2,h3,h4{text-align:center;}h2,h3,h4{min-height:45px;}h3,h4{background-color:#fff;}article>h2{color:#fff;background:#ffcc00;}h3{border-left:10px solid #ffcc00;}h4{border-bottom:8px solid #ffcc00;}
+		#slide{max-width:100%;overflow:hidden;}#slide .content{flex-direction:row;-webkit-flex-direction:row;justify-content:flex-start;-webkit-justify-content:flex-start;display:flex;display:-webkit-flex;}.related{max-width:150px;max-height:300px;border-radius:8px;margin:15px 8px 10px 0;background-color:#fff;box-shadow:0 2px 5px 0 #999;}.related .thumb{background-color:#ffcc00;max-height:150px;}.related .title{color:#333;font-size:18px;padding-top:20px;max-height:150px;text-align:center;}
 	</style>
 </head>
 <body>
@@ -105,17 +106,24 @@
 			<div class="meta"><?php amp_entry_meta();?></div>
 		</header>
 		<section>
-			<?php if(empty($post->post_password)):echo apply_filters('the_content',$post->post_content);endif;?>
 			<?php $content=apply_filters('the_content',get_the_content());$content=str_replace(']]>',']]&gt;',$content);$pattern='/<img/i';preg_match($pattern,$content,$matches);$append=$matches[0];$append='<amp-img layout="responsive"';$result=preg_replace($pattern,$append,$content);echo $result;?>
-			<?php $pattern='/<iframe/i';$append='<amp-iframe layout="responsive"';$content=preg_replace($pattern,$append,$content);?>
+			<?php $pattern='/<iframe/i';$append='<amp-iframe width="80px" height="100px" layout="responsive"';$content=preg_replace($pattern,$append,$content);?>
 			<?php $pattern='/<p>https:\/\/twitter.com\/.*\/status\/(.*).*<\/p>/i';$append='<p><amp-twitter width=592 height=472 layout="responsive" data-tweetid="$1"></amp-twitter></p>';$content=preg_replace($pattern,$append,$content);$pattern='/<blockquote class="twitter-tweet".*>.*<a href="https:\/\/twitter.com\/.*\/status\/(.*).*<\/blockquote>.*<script async src="\/\/platform.twitter.com\/widgets.js" charset="utf-8"><\/script>/i';$append='<p><amp-twitter width=592 height=472 layout="responsive" data-tweetid="$1"></amp-twitter></p>';$content=preg_replace($pattern,$append,$content);?>
 			<?php $pattern='/<div class=\'embed-container\'><iframe width=\'100%\' src=\'https:\/\/vine.co\/v\/(.*)\/embed\/simple\'.*<\/div>/i';$append='<div class=\'embed-container\'><amp-vine data-vineid="$1" width="592" height="592" layout="responsive"></amp-vine></div>';$content=preg_replace($pattern,$append,$content);?>
 			<?php $pattern='/<div class=\'embed-container\'><iframe src=\'\/\/instagram.com\/p\/(.*)\/embed\/\'.*<\/iframe><\/div>/i';$append='<div class=\'embed-container\'><amp-instagram layout="responsive" data-shortcode="$1" width="592" height="716" ></amp-instagram></div>';$content=preg_replace($pattern,$append,$content);?>
 			<?php $pattern='/<div class="youtube">.*https:\/\/youtu.be\/(.*).*<\/div>/i';$append='<div class="youtube"><amp-youtube layout="responsive" data-videoid="$1" width="592" height="363"></amp-youtube></div>';$content=preg_replace($pattern,$append,$content);$pattern='/<div class="youtube">.*<iframe width="853" height="480" src="https:\/\/www.youtube.com\/embed\/(.*)" frameborder="0" allowfullscreen><\/iframe>.*<\/div>/i';$append='<div class="youtube"><amp-youtube layout="responsive" data-videoid="$1" width="592" height="363"></amp-youtube></div>';$content=preg_replace($pattern,$append,$content);?>
 		</section>
-		<footer>
-			SNSボタン
-			ランダム記事
+		<footer id="slide">
+			<div class="content">
+				<?php $args=array('numberposts'=>3,'orderby'=>'rand','post_status'=>'publish','offset'=>1);
+				$rand_posts=get_posts($args);foreach($rand_posts as $post):?>
+					<a href="<?php the_permalink()?>" title="<?php the_title_attribute();?>"><div class="related">
+						<?php if(has_post_thumbnail()):echo get_the_post_thumbnail($post->ID,'related',array('class'=>'thumb'));else:echo'<img src="http://wkwkrnht.wp.xdomain.jp/wp-content/themes/2015-for-wkwkrnht/img/no-img.png" class="thumb" alt="no_thumbnail"/>';endif;
+						the_title('<div class="title">','</div>');?>
+					</div></a>
+				<?php endforeach;?>
+			</div>
+			<?php wp_reset_postdata();?>
 		</footer>
 	</article>
 	<amp-pixel src="//ssl.google-analytics.com/collect?v=1&amp;tid=<?php echo get_option('Google_Analytics');?>&amp;t=pageview&amp;cid=$RANDOM&amp;dt=$TITLE&amp;dl=$CANONICAL_URL&amp;z=$RANDOM"></amp-pixel>
