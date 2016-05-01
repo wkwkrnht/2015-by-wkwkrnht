@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<link rel="canonical" href="<?php echo get_permalink();?>" />
+	<title><?php wp_title();?></title>
 	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 	<meta name="google-site-verification" content="<?php echo get_option('Google_Webmaster');?>">
 	<meta name="msvalidate.01" content="<?php echo get_option('Bing_Webmaster');?>" />
@@ -37,38 +38,15 @@
 	<script async src="https://cdn.ampproject.org/v0.js"></script>
 	<script type="application/ld+json">
 		{
-			"@context": "http://schema.org",
-			"@type": "NewsArticle",
-			"mainEntityOfPage":{
-				"@type":"WebPage",
-				"@id":"<?php the_permalink();?>"
-				},
-			"headline": "<?php the_title();?>",
-			"image": {
-				"@type": "ImageObject",
-				"url": "<?php
-				$image_id=get_post_thumbnail_id();
-				$image_url=wp_get_attachment_image_src($image_id,true);
-				echo $image_url[0];?>",
-				"height": 800,
-				"width": 800
-				},
-			"datePublished": "<?php the_time('Y/m/d')?>",
-			"dateModified": "<?php the_modified_date('Y/m/d')?>",
-			"author": {
-				"@type": "Person",
-				"name": "<?php the_author_meta('display_name');?>"
-				},
-			"publisher": {
-				"@type": "Organization",
-				"name": "<?php bloginfo('name');?>",
-				"logo": {
-					"@type": "ImageObject",
-					"url": "<?php bloginfo('template_url');?>/img/logo.png",
-					"width": 130,
-					"height": 53
-					}
-				},
+			"@context":"http://schema.org",
+			"@type":"NewsArticle",
+			"mainEntityOfPage":{"@type":"WebPage","@id":"<?php the_permalink();?>"},
+			"headline":"<?php the_title();?>",
+			"image":{"@type":"ImageObject","url":"<?php $image_url=wp_get_attachment_image_src(get_post_thumbnail_id(),true);echo $image_url[0];?>","height":800,"width":800},
+			"datePublished":"<?php the_time('Y/m/d');?>",
+			"dateModified":"<?php the_modified_date('Y/m/d');?>",
+			"author":{"@type":"Person","name":"<?php the_author_meta('display_name');?>"},
+			"publisher":{"@type":"Organization","name":"<?php bloginfo('name');?>","logo":{"@type": "ImageObject","url": "<?php echo esc_url(get_template_directory_uri());?>/img/logo.png","width":130,"height":53}},
 			"description": "<?php echo mb_substr(strip_tags($post->post_content),0,60);?>…"
 		}
 	</script>
@@ -78,47 +56,50 @@
 	<script async custom-element="amp-facebook" src="https://cdn.ampproject.org/v0/amp-facebook-0.1.js"></script>
 	<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
 	<script async custom-element="amp-vine" src="https://cdn.ampproject.org/v0/amp-vine-0.1.js"></script>
-	<script custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js" async></script>
-	<script custom-element="amp-instagram" src="https://cdn.ampproject.org/v0/amp-instagram-0.1.js" async></script>
+	<script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>
+	<script async custom-element="amp-instagram" src="https://cdn.ampproject.org/v0/amp-instagram-0.1.js"></script>
 	<style amp-custom>
 		body{font-style:Avenir,"Open Sans","Helvetica Neue",Helvetica,Arial,Verdana,Roboto,"游ゴシック","Yu Gothic","游ゴシック体","YuGothic","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","Meiryo UI","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic",sans-serif;line-height:1.5;}
 		.siteinfo{width:100vw;height:18vh;background-color:#ffcc00;box-shadow:0 2px 2px 0 #999;text-align:center;z-index:10;position:fixed;top:0;left:0;margin-top:0;}.site-title{font-size:26px;color:white;text-decoration:none;}
-		article{padding:20vh 3vw 5vh 3vw;box-shadow:0 1px 6px rgba(0,0,0,.12);}header{background-color:#ebeef7;text-align:center;margin:5px 0;}.bread{color:#ddd;}.bread .sp{color:#333;margin:0 .5em;}span .meta{padding:2px;}
+		article{padding:20vh 3vw 5vh 3vw;box-shadow:0 1px 6px rgba(0,0,0,.12);}header{background-color:#ebeef7;text-align:center;margin:5px 0;}.bread{color:#ddd;}.bread .sp{color:#333;margin:0 .5em;}span .meta{padding:2px;}section>amp-img{max-width:50%;max-height:50%;text-align:center;}
 		table{border-collapse:separate;border-spacing:1px;line-height:1.5;border-top:1px solid #ccc;}th{width:150px;padding:10px;font-weight:bold;vertical-align:top;border-bottom:1px solid #ccc;background:#efefef;text-align:center;}td{width:350px;padding:10px;vertical-align:top;border-bottom:1px solid #ccc;text-align:left;}
-		amp-iframe,amp-img,h2,h3,h4{text-align:center;}h2,h3,h4{min-height:45px;}h3,h4{background-color:#fff;}article>h2{color:#fff;background:#ffcc00;}h3{border-left:10px solid #ffcc00;}h4{border-bottom:8px solid #ffcc00;}
-		#slide{max-width:100%;overflow:hidden;}#slide .content{flex-direction:row;-webkit-flex-direction:row;justify-content:flex-start;-webkit-justify-content:flex-start;display:flex;display:-webkit-flex;}.related{max-width:150px;max-height:300px;border-radius:8px;margin:15px 8px 10px 0;background-color:#fff;box-shadow:0 2px 5px 0 #999;}.related .thumb{background-color:#ffcc00;max-height:150px;}.related .title{color:#333;font-size:18px;padding-top:20px;max-height:150px;text-align:center;}
+		amp-iframe,h2,h3,h4{text-align:center;}h2,h3,h4{min-height:45px;}h3,h4{background-color:#fff;}article>h2{color:#fff;background-color:#ffcc00;}h3{border-left:10px solid #ffcc00;}h4{border-bottom:8px solid #ffcc00;}
+		#flex{max-width:100%;overflow:hidden;}#flex .content{flex-direction:row;-webkit-flex-direction:row;justify-content:flex-start;-webkit-justify-content:flex-start;display:flex;display:-webkit-flex;}.related{max-width:150px;max-height:300px;border-radius:8px;margin:15px 8px 10px 0;background-color:#fff;box-shadow:0 2px 5px 0 #999;}.related .thumb{background-color:#ffcc00;max-height:150px;}.related .title{color:#333;font-size:18px;padding-top:20px;max-height:150px;text-align:center;}
 	</style>
 </head>
 <body>
-	<h1 class="siteinfo">
-		<a href="<?php bloginfo('URL');?>" class="site-title"><?php bloginfo('name');?></a>
-	</h1>
+	<h1 class="siteinfo"><a href="<?php bloginfo('URL');?>" class="site-title"><?php bloginfo('name');?></a></h1>
 	<article>
 		<header>
-			<?php amp_post_thumbnail();?>
-			<div itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="" class="bread"><?php if(!is_home()&&!is_front_page()):
-				$cat = is_single() ? get_the_category():array(get_category($cat));
-				if($cat&&!is_wp_error($cat)){$par=get_category($cat[0]->parent);
-				echo'<a href="'.home_url().'" itemprop="url"><span itemprop="title">Home</span></a><span class="sp">/</span>';
+			<?php echo preg_replace(array('/<img/i','/\/>/'),array('<amp-img layout="responsive"','></amp-img>'),get_the_post_thumbnail());?>
+			<div itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="" class="bread"><?php if(!is_home()&&!is_front_page()):$cat=is_single()?get_the_category():array(get_category($cat));
+				if($cat&&!is_wp_error($cat)){$par=get_category($cat[0]->parent);echo'<a href="'.home_url().'" itemprop="url"><span itemprop="title">Home</span></a><span class="sp">/</span>';
 				while($par&&!is_wp_error($par)&&$par->term_id != 0){$echo='<a href="'.get_category_link($par->term_id).'" itemprop="url"><span itemprop="title">'.$par->name.'</span></a><span class="sp">/</span>'.$echo;$par=get_category($par->parent);}
-				echo $echo.'<a href="'.get_category_link($cat[0]->term_id).'" itemprop="url"><span itemprop="title">'.$cat[0]->name.'</span></a>';}endif;?></div>
-			<?php the_title(sprintf('<h2 class="entry-title">',esc_url(get_permalink())),'</h2>');?>
+				echo $echo.'<a href="'.get_category_link($cat[0]->term_id).'" itemprop="url"><span itemprop="title">'.$cat[0]->name.'</span></a>';}endif;?>
+			</div>
+			<h2 class="entry-title"><?php the_title();?></h2>
 			<div class="meta"><?php amp_entry_meta();?></div>
 		</header>
 		<section>
-			<?php $content=apply_filters('the_content',get_the_content());$content=str_replace(']]>',']]&gt;',$content);$pattern='/<img/i';preg_match($pattern,$content,$matches);$append=$matches[0];$append='<amp-img layout="responsive"';$result=preg_replace($pattern,$append,$content);echo $result;?>
-			<?php $pattern='/<iframe/i';$append='<amp-iframe width="80px" height="100px" layout="responsive"';$content=preg_replace($pattern,$append,$content);?>
-			<?php $pattern='/<p>https:\/\/twitter.com\/.*\/status\/(.*).*<\/p>/i';$append='<p><amp-twitter width=592 height=472 layout="responsive" data-tweetid="$1"></amp-twitter></p>';$content=preg_replace($pattern,$append,$content);$pattern='/<blockquote class="twitter-tweet".*>.*<a href="https:\/\/twitter.com\/.*\/status\/(.*).*<\/blockquote>.*<script async src="\/\/platform.twitter.com\/widgets.js" charset="utf-8"><\/script>/i';$append='<p><amp-twitter width=592 height=472 layout="responsive" data-tweetid="$1"></amp-twitter></p>';$content=preg_replace($pattern,$append,$content);?>
-			<?php $pattern='/<div class=\'embed-container\'><iframe width=\'100%\' src=\'https:\/\/vine.co\/v\/(.*)\/embed\/simple\'.*<\/div>/i';$append='<div class=\'embed-container\'><amp-vine data-vineid="$1" width="592" height="592" layout="responsive"></amp-vine></div>';$content=preg_replace($pattern,$append,$content);?>
-			<?php $pattern='/<div class=\'embed-container\'><iframe src=\'\/\/instagram.com\/p\/(.*)\/embed\/\'.*<\/iframe><\/div>/i';$append='<div class=\'embed-container\'><amp-instagram layout="responsive" data-shortcode="$1" width="592" height="716" ></amp-instagram></div>';$content=preg_replace($pattern,$append,$content);?>
-			<?php $pattern='/<div class="youtube">.*https:\/\/youtu.be\/(.*).*<\/div>/i';$append='<div class="youtube"><amp-youtube layout="responsive" data-videoid="$1" width="592" height="363"></amp-youtube></div>';$content=preg_replace($pattern,$append,$content);$pattern='/<div class="youtube">.*<iframe width="853" height="480" src="https:\/\/www.youtube.com\/embed\/(.*)" frameborder="0" allowfullscreen><\/iframe>.*<\/div>/i';$append='<div class="youtube"><amp-youtube layout="responsive" data-videoid="$1" width="592" height="363"></amp-youtube></div>';$content=preg_replace($pattern,$append,$content);?>
+			<?php $pattern=array('/https:\/\/twitter.com\/.*\/status\/(.*).*/i',
+				'/<blockquote class="twitter-tweet".*>.*<a href="https:\/\/twitter.com\/.*\/status\/(.*).*<\/blockquote>.*<script async src="\/\/platform.twitter.com\/widgets.js" charset="utf-8"><\/script>/i',
+				'/<div class=\'embed-container\'><iframe width=\'100%\' src=\'https:\/\/vine.co\/v\/(.*)\/embed\/simple\'.*<\/div>/i',
+				'/<div class=\'embed-container\'><iframe src=\'\/\/instagram.com\/p\/(.*)\/embed\/\'.*<\/iframe><\/div>/i',
+				'/<div class="youtube">.*https:\/\/youtu.be\/(.*).*<\/div>/i','/<div class="youtube">.*<iframe width="853" height="480" src="https:\/\/www.youtube.com\/embed\/(.*)" frameborder="0" allowfullscreen><\/iframe>.*<\/div>/i',
+				'/<iframe/i','/<img/i','/\/>/','/\[scshot url=(.*?)\]/','/\[myqrcode url=(.*?) size=(.*?)\]/','/\[embedly url=(.*?)\]/','/\[hatenaBlogcard url=(.*?)\]/');
+				$append=array('<amp-twitter width="800" height="600" layout="responsive" data-tweetid="$1"></amp-twitter>','<amp-twitter width="800" height="600" layout="responsive" data-tweetid="$1"></amp-twitter>',
+				'<div class=\'embed-container\'><amp-vine data-vineid="$1" width="592" height="592" layout="responsive"></amp-vine></div>',
+				'<div class=\'embed-container\'><amp-instagram layout="responsive" data-shortcode="$1" width="592" height="716" ></amp-instagram></div>',
+				'<div class="youtube"><amp-youtube layout="responsive" data-videoid="$1" width="592" height="363"></amp-youtube></div>','<div class="youtube"><amp-youtube layout="responsive" data-videoid="$1" width="592" height="363"></amp-youtube></div>',
+				'<amp-iframe layout="responsive"','<amp-img layout="responsive"','></amp-img>','<a href="$1">$1</a>','<a href="$1">$1</a>','<a href="$1">$1</a>','<a href="$1">$1</a>');
+				echo preg_replace($pattern,$append,get_the_content());?>
 		</section>
-		<footer id="slide">
+		<footer id="flex">
 			<div class="content">
-				<?php $args=array('numberposts'=>3,'orderby'=>'rand','post_status'=>'publish','offset'=>1);
-				$rand_posts=get_posts($args);foreach($rand_posts as $post):?>
-					<a href="<?php the_permalink()?>" title="<?php the_title_attribute();?>"><div class="related">
-						<?php if(has_post_thumbnail()):echo get_the_post_thumbnail($post->ID,'related',array('class'=>'thumb'));else:echo'<img src="http://wkwkrnht.wp.xdomain.jp/wp-content/themes/2015-for-wkwkrnht/img/no-img.png" class="thumb" alt="no_thumbnail"/>';endif;
+				<?php $args=array('numberposts'=>3,'orderby'=>'rand','post_status'=>'publish','offset'=>1);$rand_posts=get_posts($args);
+				foreach($rand_posts as $post):?>
+					<a href="<?php the_permalink();?>?amp=1" title="<?php the_title_attribute();?>"><div class="related">
+						<?php if(has_post_thumbnail()):echo preg_replace(array('/<img/i','/\/>/'),array('<amp-img','></amp-img>'),get_the_post_thumbnail($post->ID,'related',array('class'=>'thumb')));else:echo'<amp-img src="' . esc_url(home_url()) . '/wp-content/themes/2015-for-wkwkrnht/img/no-img.png" class="thumb" alt="no_thumbnail" height="150px" width="150px"></amp-img>';endif;
 						the_title('<div class="title">','</div>');?>
 					</div></a>
 				<?php endforeach;?>

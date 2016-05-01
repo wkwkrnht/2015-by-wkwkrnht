@@ -6,18 +6,19 @@
 			<p><?php the_author_meta(description,$author);?></p>
 		<h2>連絡先</h2>
 			<?php $user_data=get_userdata($author);
-				if($user_data->Addres){echo"<span>" . $user_data->Addres . "</span>";};
-				if($user_data->TEL){echo"<span>" . $user_data->TEL . "</span>";};
-				if($user_data->FAX){echo"<span>" . $user_data->FAX . "</span>";};
-				if($user_data->user_email){echo"<span>" . $user_data->->user_email . "</span>";};?>
+				if($user_data->Addres){echo'<span>' . $user_data->Addres . '</span>';};
+				if($user_data->TEL){echo'<span>' . $user_data->TEL . '</span>';};
+				if($user_data->FAX){echo'<span>' . $user_data->FAX . '</span>';};
+				if($user_data->user_email){echo'<span>' . $user_data->user_email . '</span>';};?>
 	</header>
-	<aside>
+	<aside class="account_list">
 		<h2>アカウント一覧</h2>
 			<h3 class="section-name">SNS</h3>
 			<p><?php $user_data=get_userdata($author);
 				if($user_data->LINE){echo $user_data->LINE . "<br />";};
-				if($user_data->twitter){echo $user_data->twitter . "<br />";};
+				if($user_data->twitter){echo'<a href="http://twitter.com/' . $user_data->twitter . '/" target="_blank">@' . $user_data->twitter . '</a><br />';};
 				if($user_data->facebook){echo $user_data->facebook . "<br />";};
+				if($user_data->Googleplus){echo $user_data->Googleplus . "<br />";};
 				if($user_data->Linkedin){echo $user_data->Linkedin . "<br />";};
 				if($user_data->mixi){echo $user_data->mixi . "<br />";};
 				if($user_data->Instagram){echo $user_data->Instagram . "<br />";};
@@ -26,30 +27,30 @@
 				if($user_data->Swarm){echo $user_data->Swarm . "<br />";};
 				if($user_data->Pocket){echo $user_data->Pocket . "<br />";};
 				if($user_data->hatebu){echo $user_data->hatebu . "<br />";};
-				if($user_data->YO!){echo $user_data->YO! . "<br />";};?></p>
+				if($user_data->YO){echo $user_data->YO . "<br />";};?></p>
 			<h3 class="section-name">Blog</h3>
 			<p><?php $user_data=get_userdata($author);
-				if($user_data->user_url){echo $user_data->user_url . "<br />";};
-				if($user_data->wordpress.com){echo $user_data->wordpress.com . "<br />";};
-				if($user_data->Blogger){echo $user_data->Blogger . "<br />";};
-				if($user_data->ameba){echo $user_data->ameba . "<br />";};
-				if($user_data->fc2){echo $user_data->fc2 . "<br />";};
-				if($user_data->livedoor){echo $user_data->livedoor . "<br />";};
-				if($user_data->hatenablog){echo $user_data->hatenablog . "<br />";};
-				if($user_data->hatenadiary){echo $user_data->hatenadiary . "<br />";};
-				if($user_data->Tumblr){echo $user_data->Tumblr . "<br />";};
-				if($user_data->note){echo $user_data->note . "<br />";};
-				if($user_data->Medium){echo $user_data->Medium . "<br />";};?></p>
+				if($user_data->user_url){echo'<a href="' . $user_data->user_url . '/" target="_blank">' . $user_data->user_url . '</a><br />';};
+				if($user_data->wordpress.com){echo'<a href="' . $user_data->wordpress.com . '/" target="_blank">' . $user_data->wordpress.com . '</a><br />';};
+				if($user_data->Blogger){echo'<a href="' . $user_data->Blogger . '/" target="_blank">' . $user_data->Blogger . '</a><br />';};
+				if($user_data->ameba){echo'<a href="' . $user_data->ameba . '/" target="_blank">' . $user_data->ameba . '</a><br />';};
+				if($user_data->fc2){echo'<a href="' . $user_data->fc2 . '/" target="_blank">' . $user_data->fc2 . '</a><br />';};
+				if($user_data->livedoor){echo'<a href="' . $user_data->livedoor . '/" target="_blank">' . $user_data->livedoor . '</a><br />';};
+				if($user_data->hatenablog){echo'<a href="' . $user_data->hatenablog . '/" target="_blank">' . $user_data->hatenablog . '</a><br />';};
+				if($user_data->hatenadiary){echo'<a href="' . $user_data->hatenadiary . '/" target="_blank">' . $user_data->hatenadiary . '</a><br />';};
+				if($user_data->Tumblr){echo'<a href="' . $user_data->Tumblr . '/" target="_blank">' . $user_data->Tumblr . '</a><br />';};
+				if($user_data->note){echo'<a href="' . $user_data->note . '/" target="_blank">' . $user_data->note . '</a><br />';};
+				if($user_data->Medium){echo'<a href="' . $user_data->Medium . '/" target="_blank">' . $user_data->Medium . '</a><br />';};?></p>
 			<h3 class="section-name">Shop</h3>
 			<p><?php $user_data=get_userdata($author);
-				if($user_data->Amazonlist){echo $user_data->Amazonlist . "<br />";};
-				if($user_data->Yahooactio){echo $user_data->Yahooactio . "<br />";};
+				if($user_data->Amazonlist){echo'<a href="' . $user_data->Amazonlist . '/" target="_blank">Amazonでの寄付はこちらから<a><br />';};
+				if($user_data->Yahooaction){echo $user_data->Yahooaction . "<br />";};
 				if($user_data->Rakutenaction){echo $user_data->Rakutenaction . "<br />";};
 				if($user_data->Rakuma){echo $user_data->Rakuma . "<br />";};
 				if($user_data->Merukari){echo $user_data->Merukari . "<br />";};?></p>
 			<h3 class="section-name">DEV</h3>
 			<p><?php $user_data=get_userdata($author);
-				if($user_data->Github){echo $user_data->Github . "<br />";};
+				if($user_data->Github){echo'<a href="http://twitter.com/' . $user_data->Github . '/" target="_blank">' . $user_data->Github . '</a><br />';};
 				if($user_data->Bitbucket){echo $user_data->Bitbucket . "<br />";};
 				if($user_data->Codepen){echo $user_data->Codepen . "<br />";};
 				if($user_data->JSbuddle){echo $user_data->JSbuddle . "<br />";};
@@ -86,8 +87,8 @@
 				if($user_data->Pxiv){echo $user_data->Pxiv . "<br />";};
 				if($user_data->Slideshare){echo $user_data->Slideshare . "<br />";};?></p>
 	</aside>
-	<section>
-		<h2><?php echo $curauth->nickname;?>の投稿:</h2>
+	<section class="author_article">
+		<h2><?php echo $curauth->nickname;?>の投稿</h2>
 		<ul>
 		<?php if(have_posts()):while(have_posts()):the_post();?>
 			<li>
@@ -95,7 +96,7 @@
 				<?php the_time('Y年n月j日');?>(カテゴリー:<?php the_category('&');?>)
 			</li>
 		<?php endwhile;else:?>
-			<p><?php _e('この作成者の投稿はありません。');?></p>
+			<p><?php _e('この作成者の投稿はまだありません。');?></p>
 		<?php endif;?>
 		</ul>
 	</section>
