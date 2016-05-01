@@ -195,9 +195,6 @@ add_action( 'wp_head', 'twentyfifteen_javascript_detection', 0 );
 function twentyfifteen_scripts(){
 	// Add custom fonts, used in the main stylesheet.
 	wp_enqueue_style('twentyfifteen-fonts',twentyfifteen_fonts_url(),array(),null);
-	// Load our main stylesheet.
-	wp_enqueue_style('twentyfifteen-style',get_stylesheet_uri());
-
 	// Load the Internet Explorer specific stylesheet.
 	wp_enqueue_style( 'twentyfifteen-ie', get_template_directory_uri() . '/css/ie.css', array( 'twentyfifteen-style' ), '20141010' );
 	wp_style_add_data( 'twentyfifteen-ie', 'conditional', 'lt IE 9' );
