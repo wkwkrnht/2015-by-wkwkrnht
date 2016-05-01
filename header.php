@@ -57,7 +57,7 @@
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)}(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 		ga('create',<?php echo get_option('Google_Analytics');?>,'auto');ga('send','pageview');
 	</script>
-	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo home_url();?>/wp-content/themes/2015-for-wkwkrnht/css/style.css">
 	<!--[if lt IE 9]>
 	<script src="<?php echo esc_url(get_template_directory_uri());?>/js/html5.js"></script>
 	<![endif]-->
