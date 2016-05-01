@@ -1,3 +1,4 @@
+<style>#bread{color:#ddd;}#bread .sp{color:#333;margin:0 .5em;}</style>
 <div itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="" id="bread"><?php if(!is_home()&&!is_front_page()):
   $cat = is_single() ? get_the_category():array(get_category($cat));
   if($cat && !is_wp_error($cat)){$par = get_category($cat[0]->parent);
