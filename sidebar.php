@@ -18,8 +18,8 @@
 			<?php wp_nav_menu(array('menu_class'=>'nav-menu','theme_location'=>'primary',));?>
 		</nav>
 	<?php endif;?>
-	<?php if(is_active_sidebar('sidebar-1')):?>
-		<div id="widget-area" class="widget-area" role="complementary"><?php dynamic_sidebar('sidebar-1');?></div>
+	<?php if(is_active_sidebar('sidebar')):?>
+		<div id="widget-area" class="widget-area" role="complementary"><?php dynamic_sidebar('sidebar');?></div>
 	<?php endif;?>
 	<footer id="site-footer">
 		<div class="copyright" role="contentinfo">&copy;<?php echo get_first_post_year() . '&nbsp;';bloginfo('name');?></div>

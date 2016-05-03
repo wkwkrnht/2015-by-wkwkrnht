@@ -18,4 +18,6 @@
 		<script type="text/javascript">jQuery(document).ready(function(){jQuery('code').each(function(i,block){hljs.highlightBlock(block);});});</script>
 	</section>
 	<?php get_sidebar('8');?>
+	<div id="movetop">∧</div>
+	<script>jQuery('#movetop').click(function(){jQuery('body,html').animate({scrollTop:0},500);});</script>
 </article>
