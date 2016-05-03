@@ -227,7 +227,6 @@ function twentyfifteen_post_nav_background(){if(!is_single()){return;}
 			.post-navigation .nav-next a::before{background-color:rgba(0,0,0,0.4);}
 		';
 	}
-
 	wp_add_inline_style('twentyfifteen-style',$css);
 }
 add_action('wp_enqueue_scripts','twentyfifteen_post_nav_background');
