@@ -7,12 +7,30 @@
 		echo'<link rel="author" href="http://plus.google.com/' . the_author_meta("Googleplus") . '">';
 		echo'<link rel="alternate" type="application/json+oembed" href="' . home_url() . '/wp-json/oembed/1.0/embed?url=' . get_permalink() . '" />';
 		echo'<link rel="alternate" type="text/xml+oembed" href="' . home_url() . '/wp-json/oembed/1.0/embed?url=' . get_permalink() . ';format=xml" />';
-		echo'<link rel="prerender" href="' . home_url() . '">'
-	else:>
-		echo'<link rel="prerender" href="' . get_permalink() . '">'
+		echo'<link rel="prerender" href="' . home_url() . '">';
+	else:
+		echo'<link rel="prerender" href="' . get_permalink() . '">';
 	endif;?>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo('pingback_url');?>">
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+	<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+	<link rel="dns-prefetch" href="//www.google-analytics.com">
+	<link rel="dns-prefetch" href="//twitter.com">
+	<link rel="dns-prefetch" href="//www.facebook.com">
+	<link rel="dns-prefetch" href="//line.me">
+	<link rel="dns-prefetch" href="//plus.google.com">
+	<link rel="dns-prefetch" href="//www.linkedin.com">
+	<link rel="dns-prefetch" href="//b.hatena.ne.jp">
+	<link rel="dns-prefetch" href="//getpocket.com">
+	<link rel="dns-prefetch" href="//pinterest.com">
+	<link rel="dns-prefetch" href="//www.tumblr.com">
+	<link rel="dns-prefetch" href="//cdn.embedly.com">
+	<link rel="dns-prefetch" href="//<?php echo get_option('Disqus_ID');?>.disqus.com">
+	<link rel="dns-prefetch" href="//s.wordpress.com">
+	<link rel="dns-prefetch" href="//chart.googleapis.com">
+	<link rel="dns-prefetch" href="//hatenablog.com">
 	<meta charset="<?php bloginfo('charset');?>">
 	<meta name="viewport" content="width=device-width">
 	<meta name="google-site-verification" content="<?php echo get_option('Google_Webmaster');?>">

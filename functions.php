@@ -159,7 +159,7 @@ endif;
 function twentyfifteen_javascript_detection(){
 	echo "<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>\n";
 }
-add_action( 'wp_head', 'twentyfifteen_javascript_detection', 0 );
+add_action('wp_head','twentyfifteen_javascript_detection',0);
 
 /**
  * Enqueue scripts and styles.
@@ -422,7 +422,7 @@ class related_posts extends WP_Widget{
 add_action('widgets_init',function(){register_widget('related_posts');});
 class disqus_widget extends WP_Widget{
     function __construct(){parent::__construct('disqus_widget','Disqus',array('description'=>'Disqus',));}
-    public function widget($args,$instance){echo $args['before_widget'];?><div id="disqus_thread"></div><script>(function(){var d=document,s=d.createElement('script');s.src='//<?php echo get_option('Disqus_ID')?>.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript><a href="https://disqus.com/?ref_noscript" rel="nofollow">Please enable JavaScript to view the comments powered by Disqus.</a></noscript><?php echo $args['after_widget'];}
+    public function widget($args,$instance){echo $args['before_widget'];?><div id="disqus_thread"></div><script>(function(){var d=document,s=d.createElement('script');s.src='//<?php echo get_option('Disqus_ID');?>.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript><a href="https://disqus.com/?ref_noscript" rel="nofollow">Please enable JavaScript to view the comments powered by Disqus.</a></noscript><?php echo $args['after_widget'];}
     public function form($instance){$title=!empty($instance['title']) ? $instance['title']:__( '','text_domain');?>
 		<p>
 		<label for="<?php echo $this->get_field_id('title');?>"><?php _e('タイトル:');?></label> 
@@ -455,7 +455,7 @@ function get_meta_keyword_from_category(){return single_cat_title('',false) . ',
 function get_mtime($format){$mtime=get_the_modified_time('Ymd');$ptime=get_the_time('Ymd');if($ptime > $mtime){return get_the_time($format);}elseif($ptime === $mtime){return null;}else{return get_the_modified_time($format);}}
 //管理者向けウィジェット
 function appbox_parameters_dashboard_widget(){
-    echo'パラメータは半角スペースの後に入力<br />フォーマット→simple OR compact<br />スクショ→screenshots(-only)<br />旧価格→フォーマット合わせて入力<br />';
+    echo'パラメータは半角スペースの後に入力<br />フォーマット→simple OR compact<br>スクショ→screenshots(-only)<br>旧価格→フォーマット合わせて入力<br>';
 }
 function add_dashboard_widgets(){
 	wp_add_dashboard_widget('appbox_dashboard_widget','appBoxのパラメータ','appbox_parameters_dashboard_widget');
