@@ -19,5 +19,5 @@
 	</section>
 	<?php get_sidebar('8');?>
 	<div id="movetop">∧</div>
-	<script>jQuery('#movetop').click(function(){jQuery('body,html').animate({scrollTop:0},500);});</script>
+	<?php if(!comments_open()):echo?><script>jQuery('#movetop').click(function(){jQuery('body,html').animate({scrollTop:0},500);});</script><?php ;endif;?>
 </article>

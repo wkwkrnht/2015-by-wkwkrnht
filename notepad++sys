@@ -67,7 +67,6 @@
             <File name="parts\authorbio.php" />
             <File name="parts\bread.php" />
             <File name="parts\comments.php" />
-            <File name="parts\editor-style.css" />
             <File name="parts\related.php" />
             <File name="parts\sharebutton.php" />
         </Folder>
