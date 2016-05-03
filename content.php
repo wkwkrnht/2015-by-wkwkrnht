@@ -17,7 +17,7 @@
 				'separator'  =>'<span class="screen-reader-text">,</span>',));?>
 		<script type="text/javascript">jQuery(document).ready(function(){jQuery('code').each(function(i,block){hljs.highlightBlock(block);});});</script>
 	</section>
-	<?php get_sidebar('8');?>
+	<?php get_sidebar('entry-footer');?>
 	<div id="movetop">∧</div>
 	<?php if(!comments_open()):echo"<script>jQuery('#movetop').click(function(){jQuery('body,html').animate({scrollTop:0},500);});</script>";endif;?>
 </article>

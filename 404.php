@@ -4,11 +4,14 @@
 			<section class="error-404 not-found">
 				<header class="page-header">
 					<h1 class="page-title"><?php _e('Oops! That page can&rsquo;t be found.','twentyfifteen');?></h1>
-					<p><?php _e('It looks like nothing was found at this location. Maybe try a search?','twentyfifteen');?></p>
-					<?php get_search_form();?>
+					<p>(404 Erorr)</p>
 				</header>
 				<div class="page-content">
-					<h2>カテゴリとタグから検索</h2>
+					<h2>検索を試してみませんか？</h2>
+					<p><?php _e('It looks like nothing was found at this location. Maybe try a search?','twentyfifteen');?></p>
+					<h3>キーワードから</h3>
+					<?php get_search_form();?>
+					<h3>カテゴリとタグから</h3>
 					<?php //wp_tag_cloud('taxonomy'=>array('post_tag','category'),);?>
 				</div>
 			</section>
