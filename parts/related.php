@@ -1,3 +1,4 @@
+<style>.related{max-width:150px;max-height:350px;border-radius:8px;margin:20px 8px 20px 0;background-color:#fff;box-shadow:0 1px 6px rgba(0,0,0,.12);}.related .thumb{background-color:#ffcc00;width:150px;height:150px;}.related .title{color:#333;font-size:18px;padding-top:20px;max-height:150px;text-align:center;}</style>
 <div id="flex">
 	<?php $categories=get_the_category($post->ID);$category_ID=array();
 	foreach($categories as $category):array_push($category_ID,$category->cat_ID);endforeach;
