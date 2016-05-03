@@ -360,6 +360,10 @@ input[type="checkbox"],input[type="radio"] {padding:0;}
 
 .search-form input[type="submit"],.widget .search-form input[type="submit"]{padding:0;}
 
+#flex{max-width:100%;overflow-y:scroll;}
+#flex .content{flex-direction:row;-webkit-flex-direction:row;justify-content:flex-start;-webkit-justify-content:flex-start;display:flex;display:-webkit-flex;}
+.button{width:65px;height:65px;border-radius:50%;margin:8px 12px;box-shadow:0 1px 6px rgba(0,0,0,.12);float:left;position:relative;}
+
 /**
  * 5.0 - Icon Font
  */
@@ -3773,9 +3777,6 @@ p > embed,p > iframe,p > object,p > video{margin-bottom:0;}
 	.site-footer{margin-top:7.6923%;padding:3.84615% 0;}
 	.widecolumn{margin:7.6923% 0 0;padding:0;}
 }
-/*共通クラス*/
-#flex{max-width:100%;overflow-y:scroll;}
-#flex .content{flex-direction:row;-webkit-flex-direction:row;justify-content:flex-start;-webkit-justify-content:flex-start;display:flex;display:-webkit-flex;}
 /*header&footer&cardstyle*/
 .page-header{border-left:15px solid #ffcc00;background-color:#fff;box-shadow:0 6px 3px #999;}
 .page-title{font-size:33px;}
@@ -3792,5 +3793,4 @@ p > embed,p > iframe,p > object,p > video{margin-bottom:0;}
 .question::before{content:"\f059";}
 .information,.question{background-color:#f4f3eb;padding:20px 20px 20px 72px;border-radius:4px;position:relative;display:block;margin:1em auto;}
 /*ボタン*/
-.button{width:65px;height:65px;border-radius:50%;margin:8px 12px;box-shadow:0 1px 6px rgba(0,0,0,.12);float:left;position:relative;}
-#movetop{color:#fff;background-color:#ffcc00;box-shadow:0 1px 6px rgba(0,0,0,.12);font-size:26px;font-weight:1200;border-radius:50%;line-height:70px;width:70px;height:70px;margin:15px auto;display:block;cursor:pointer;text-decoration:none;text-align:center;}
+#movetop{color:#fff;background-color:#ffcc00;box-shadow:0 1px 6px rgba(0,0,0,.12);font-size:26px;font-weight:1200;border-radius:50%;line-height:70px;width:70px;height:70px;margin:1em auto;display:block;cursor:pointer;text-decoration:none;text-align:center;}

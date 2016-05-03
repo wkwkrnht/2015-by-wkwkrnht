@@ -3,10 +3,13 @@
 <head>
 	<?php if(get_post_meta($post->ID,"noindex",true)){echo'<meta name="robots" content="noindex,nofollow" />';};?>
 	<?php if(is_singular()):
-	echo'<link rel="amphtml" href=" . get_permalink() . ?amp=1">';
-	echo'<link rel="" href="http://plus.google.com/' . the_author_meta("Googleplus") . '">';
-	echo'<link rel="alternate" type="application/json+oembed" href="' . home_url() . '/wp-json/oembed/1.0/embed?url=' . get_permalink() . '" />';
-	echo'<link rel="alternate" type="text/xml+oembed" href="' . home_url() . '/wp-json/oembed/1.0/embed?url=' . get_permalink() . ';format=xml" />';
+		echo'<link rel="amphtml" href=" . get_permalink() . ?amp=1">';
+		echo'<link rel="author" href="http://plus.google.com/' . the_author_meta("Googleplus") . '">';
+		echo'<link rel="alternate" type="application/json+oembed" href="' . home_url() . '/wp-json/oembed/1.0/embed?url=' . get_permalink() . '" />';
+		echo'<link rel="alternate" type="text/xml+oembed" href="' . home_url() . '/wp-json/oembed/1.0/embed?url=' . get_permalink() . ';format=xml" />';
+		echo'<link rel="prerender" href="' . home_url() . '">'
+	else:>
+		echo'<link rel="prerender" href="' . get_permalink() . '">'
 	endif;?>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo('pingback_url');?>">
