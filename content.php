@@ -19,3 +19,5 @@
 	</section>
 	<?php get_sidebar('8');?>
 </article>
+<div id="movetop">∧</div>
+<script>document.getElementById("movetop").click(function(){jQuery("body,html").animate({scrollTop:0},500);});</script>

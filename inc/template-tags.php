@@ -109,3 +109,5 @@ function twentyfifteen_excerpt_more( $more ) {
 }
 add_filter( 'excerpt_more', 'twentyfifteen_excerpt_more' );
 endif;
+
+
