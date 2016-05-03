@@ -64,7 +64,6 @@
             <File name="languages\twentyfifteen.pot" />
         </Folder>
         <Folder name="parts">
-            <File name="parts\adminnav.php" />
             <File name="parts\authorbio.php" />
             <File name="parts\bread.php" />
             <File name="parts\comments.php" />
