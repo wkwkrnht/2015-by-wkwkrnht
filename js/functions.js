@@ -5,8 +5,8 @@
  * Contains handlers for navigation and widget area.
  */
 
-( function( $ ) {
-	var $body, $window, $sidebar, adminbarOffset, top = false,
+(function($){
+	var $body,$window,$sidebar,adminbarOffset,top=false,
 	    bottom = false, windowWidth, windowHeight, lastWindowPos = 0,
 	    topOffset = 0, bodyHeight, sidebarHeight, resizeTimer,
 	    secondary, button;

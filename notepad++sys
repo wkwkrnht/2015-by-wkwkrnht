@@ -42,16 +42,6 @@
             <File name="css\ie.css" />
             <File name="css\ie7.css" />
         </Folder>
-        <Folder name="genericons">
-            <File name="genericons\COPYING.txt" />
-            <File name="genericons\genericons.css" />
-            <File name="genericons\Genericons.eot" />
-            <File name="genericons\Genericons.svg" />
-            <File name="genericons\Genericons.ttf" />
-            <File name="genericons\Genericons.woff" />
-            <File name="genericons\LICENSE.txt" />
-            <File name="genericons\README.md" />
-        </Folder>
         <Folder name="img">
             <File name="img\line.svg" />
             <File name="img\no-img.png" />
@@ -79,10 +69,8 @@
             <File name="parts\bread.php" />
             <File name="parts\comments.php" />
             <File name="parts\editor-style.css" />
-            <File name="parts\followbutton.php" />
             <File name="parts\related.php" />
             <File name="parts\sharebutton.php" />
-            <File name="parts\snsbutton.php" />
         </Folder>
         <File name=".gitattributes" />
         <File name=".gitignore" />

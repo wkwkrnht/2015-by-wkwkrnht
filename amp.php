@@ -78,7 +78,7 @@
 				echo $echo.'<a href="'.get_category_link($cat[0]->term_id).'" itemprop="url"><span itemprop="title">'.$cat[0]->name.'</span></a>';}endif;?>
 			</div>
 			<h2 class="entry-title"><?php the_title();?></h2>
-			<div class="meta"><?php amp_entry_meta();?></div>
+			<div class="meta"><?php twentyfifteen_entry_meta();?></div>
 		</header>
 		<section>
 			<?php $pattern=array('/https:\/\/twitter.com\/.*\/status\/(.*).*/i',

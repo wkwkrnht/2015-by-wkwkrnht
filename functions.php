@@ -23,8 +23,8 @@ function twentyfifteen_setup(){
 	 * If you're building a theme based on twentyfifteen, use a find and replace
 	 * to change 'twentyfifteen' to the name of your theme in all the template files
 	 */
-	load_theme_textdomain( 'twentyfifteen', get_template_directory() . '/languages' );
-	add_theme_support( 'automatic-feed-links' );// Add default posts and comments RSS feed links to head.
+	load_theme_textdomain('twentyfifteen',get_template_directory() . '/languages');
+	add_theme_support('automatic-feed-links');// Add default posts and comments RSS feed links to head.
 
 	/*
 	 * Let WordPress manage the document title.
@@ -32,71 +32,54 @@ function twentyfifteen_setup(){
 	 * hard-coded <title> tag in the document head, and expect WordPress to
 	 * provide it for us.
 	 */
-	add_theme_support( 'title-tag' );
+	add_theme_support('title-tag');
 
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.
-	 *
+	 * Enable support for custom logo.
 	 * See: https://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
-	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size( 825, 510, true );
+	add_theme_support('custom-logo',array('height'=>248,'width'=>248,'flex-height'=>true,));
+	add_theme_support('post-thumbnails');
+	set_post_thumbnail_size(825,510,true);
+	add_image_size('related',150,150,true);
 
 	// This theme uses wp_nav_menu() in two locations.
-	register_nav_menus( array(
-		'primary' => __( 'Primary Menu',      'twentyfifteen' ),
-		'social'  => __( 'Social Links Menu', 'twentyfifteen' ),
-	) );
+	register_nav_menus(array('primary'=>__('Primary Menu','twentyfifteen'),'social'=>__('Social Links Menu','twentyfifteen'),));
 
 	/*
 	 * Switch default core markup for search form, comment form, and comments
 	 * to output valid HTML5.
+	 * Enable support for Post Formats.
 	 */
 	add_theme_support('html5',array('search-form','comment-form','comment-list','gallery','caption'));
-
-	/*
-	 * Enable support for Post Formats.
-	 *
-	 * See: https://codex.wordpress.org/Post_Formats
-	 */
-	add_theme_support( 'post-formats', array(
-		'aside', 'image', 'video', 'quote', 'link', 'gallery', 'status', 'audio', 'chat'
-	) );
-
-	/*
-	 * Enable support for custom logo.
-	 *
-	 * @since Twenty Fifteen 1.5
-	 */
-	add_theme_support('custom-logo',array('height'=>248,'width'=>248,'flex-height'=>true,));
+	add_theme_support('post-formats',array('aside','image','video','quote','link','gallery','status','audio','chat'));
 
 	$color_scheme  = twentyfifteen_get_color_scheme();
 	$default_color = trim( $color_scheme[0], '#' );
 
 	// Setup the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'twentyfifteen_custom_background_args', array(
+	add_theme_support('custom-background',apply_filters('twentyfifteen_custom_background_args',array(
 		'default-color'      => $default_color,
 		'default-attachment' => 'fixed',
-	) ) );
+	)));
 
 	/*
 	 * This theme styles the visual editor to resemble the theme style,
 	 * specifically font, colors, icons, and column width.
 	 */
-	add_editor_style( array( 'css/editor-style.css', 'genericons/genericons.css', twentyfifteen_fonts_url() ) );
+	add_editor_style(array('css/editor-style.css',twentyfifteen_fonts_url()));
 
 	// Indicate widget sidebars can use selective refresh in the Customizer.
-	add_theme_support( 'customize-selective-refresh-widgets' );
+	add_theme_support('customize-selective-refresh-widgets');
 }
 endif; // twentyfifteen_setup
-add_action( 'after_setup_theme', 'twentyfifteen_setup' );
+add_action('after_setup_theme','twentyfifteen_setup');
 
 /**
  * Register widget area.
  *
- * @since Twenty Fifteen 1.0
- *
- * @link https://codex.wordpress.org/Function_Reference/register_sidebar
+ * @since 2015-by-wkwkrnht 1.0
  */
 function twentyfifteen_widgets_init(){
 	register_sidebar(array(
@@ -109,7 +92,9 @@ function twentyfifteen_widgets_init(){
 		'after_title'   => '</h2>',
 	));
 }
-add_action( 'widgets_init', 'twentyfifteen_widgets_init' );
+add_action('widgets_init','twentyfifteen_widgets_init');
+function entry_footer_sidebar(){register_sidebar(array('name'=>'エントリーフッター','id'=>'8','before_widget'=>'<div>','after_widget'=>'</div>','before_title'=>'','after_title'=>'',));}
+add_action('widgets_init','entry_footer_sidebar');
 
 if(!function_exists('twentyfifteen_fonts_url')):
 /**
@@ -128,17 +113,13 @@ function twentyfifteen_fonts_url() {
 	 * Translators: If there are characters in your language that are not supported
 	 * by Noto Sans, translate this to 'off'. Do not translate into your own language.
 	 */
-	if ( 'off' !== _x( 'on', 'Noto Sans font: on or off', 'twentyfifteen' ) ) {
-		$fonts[] = 'Noto Sans:400italic,700italic,400,700';
-	}
+	if('off'!==_x('on','Noto Sans font: on or off','twentyfifteen')){$fonts[]='Noto Sans:400italic,700italic,400,700';}
 
 	/*
 	 * Translators: If there are characters in your language that are not supported
 	 * by Noto Serif, translate this to 'off'. Do not translate into your own language.
 	 */
-	if ( 'off' !== _x( 'on', 'Noto Serif font: on or off', 'twentyfifteen' ) ) {
-		$fonts[] = 'Noto Serif:400italic,700italic,400,700';
-	}
+	if('off'!==_x('on','Noto Serif font: on or off','twentyfifteen')){$fonts[]='Noto Serif:400italic,700italic,400,700';}
 
 	/*
 	 * Translators: If there are characters in your language that are not supported
@@ -154,22 +135,9 @@ function twentyfifteen_fonts_url() {
 	 */
 	$subset = _x( 'no-subset', 'Add new subset (greek, cyrillic, devanagari, vietnamese)', 'twentyfifteen' );
 
-	if ( 'cyrillic' == $subset ) {
-		$subsets .= ',cyrillic,cyrillic-ext';
-	} elseif ( 'greek' == $subset ) {
-		$subsets .= ',greek,greek-ext';
-	} elseif ( 'devanagari' == $subset ) {
-		$subsets .= ',devanagari';
-	} elseif ( 'vietnamese' == $subset ) {
-		$subsets .= ',vietnamese';
-	}
+	if('cyrillic'==$subset):$subsets .= ',cyrillic,cyrillic-ext';elseif('greek'==$subset):$subsets .= ',greek,greek-ext';elseif('devanagari'==$subset):$subsets .= ',devanagari';elseif('vietnamese'==$subset):$subsets .= ',vietnamese';endif;
 
-	if ( $fonts ) {
-		$fonts_url = add_query_arg( array(
-			'family' => urlencode( implode( '|', $fonts ) ),
-			'subset' => urlencode( $subsets ),
-		), 'https://fonts.googleapis.com/css' );
-	}
+	if($fonts){$fonts_url=add_query_arg(array('family'=>urlencode(implode('|',$fonts)),'subset'=>urlencode($subsets),),'https://fonts.googleapis.com/css');}
 
 	return $fonts_url;
 }
@@ -229,6 +197,7 @@ add_action('login_head',function(){remove_action('login_head','wp_shake_js',12);
 add_filter('embed_thumbnail_image_size',function(){return'thmb150';});
 add_filter('style_loader_src','remove_ver_script',9999);
 add_filter('script_loader_src','remove_ver_script',9999);
+
 /**
  * Add featured image as background image to post navigation elements.
  *
@@ -236,38 +205,32 @@ add_filter('script_loader_src','remove_ver_script',9999);
  *
  * @see wp_add_inline_style()
  */
-function twentyfifteen_post_nav_background(){
-	if(!is_single()){return;}
-
+function twentyfifteen_post_nav_background(){if(!is_single()){return;}
 	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
 	$next     = get_adjacent_post( false, '', false );
 	$css      = '';
 
-	if ( is_attachment() && 'attachment' == $previous->post_type ) {
-		return;
-	}
-
-	if ( $previous &&  has_post_thumbnail( $previous->ID ) ) {
+	if(is_attachment()&&'attachment'==$previous->post_type){return;}
+	if($previous&&has_post_thumbnail($previous->ID)){
 		$prevthumb = wp_get_attachment_image_src( get_post_thumbnail_id( $previous->ID ), 'post-thumbnail' );
 		$css .= '
-			.post-navigation .nav-previous { background-image: url(' . esc_url( $prevthumb[0] ) . '); }
-			.post-navigation .nav-previous .post-title, .post-navigation .nav-previous a:hover .post-title, .post-navigation .nav-previous .meta-nav { color: #fff; }
-			.post-navigation .nav-previous a:before { background-color: rgba(0, 0, 0, 0.4); }
+			.post-navigation .nav-previous{background-image:url(' . esc_url( $prevthumb[0] ) . ');}
+			.post-navigation .nav-previous .post-title,.post-navigation .nav-previous a:hover .post-title,.post-navigation .nav-previous .meta-nav{color:#fff;}
+			.post-navigation .nav-previous a::before{background-color:rgba(0,0,0,0.4);}
 		';
 	}
-
-	if ( $next && has_post_thumbnail( $next->ID ) ) {
+	if($next && has_post_thumbnail( $next->ID ) ) {
 		$nextthumb = wp_get_attachment_image_src( get_post_thumbnail_id( $next->ID ), 'post-thumbnail' );
 		$css .= '
-			.post-navigation .nav-next { background-image: url(' . esc_url( $nextthumb[0] ) . '); border-top: 0; }
-			.post-navigation .nav-next .post-title, .post-navigation .nav-next a:hover .post-title, .post-navigation .nav-next .meta-nav { color: #fff; }
-			.post-navigation .nav-next a:before { background-color: rgba(0, 0, 0, 0.4); }
+			.post-navigation .nav-next{background-image:url(' . esc_url( $nextthumb[0] ) . ');border-top:0;}
+			.post-navigation .nav-next .post-title,.post-navigation .nav-next a:hover .post-title,.post-navigation .nav-next .meta-nav{color:#fff;}
+			.post-navigation .nav-next a::before{background-color:rgba(0,0,0,0.4);}
 		';
 	}
 
-	wp_add_inline_style( 'twentyfifteen-style', $css );
+	wp_add_inline_style('twentyfifteen-style',$css);
 }
-add_action( 'wp_enqueue_scripts', 'twentyfifteen_post_nav_background' );
+add_action('wp_enqueue_scripts','twentyfifteen_post_nav_background');
 
 /**
  * Display descriptions in main navigation.
@@ -280,14 +243,11 @@ add_action( 'wp_enqueue_scripts', 'twentyfifteen_post_nav_background' );
  * @param array   $args        wp_nav_menu() arguments.
  * @return string Menu item with possible description.
  */
-function twentyfifteen_nav_description( $item_output, $item, $depth, $args ) {
-	if ( 'primary' == $args->theme_location && $item->description ) {
-		$item_output = str_replace( $args->link_after . '</a>', '<div class="menu-item-description">' . $item->description . '</div>' . $args->link_after . '</a>', $item_output );
-	}
-
+function twentyfifteen_nav_description($item_output,$item,$depth,$args){
+	if('primary'==$args->theme_location&&$item->description ){$item_output=str_replace( $args->link_after . '</a>','<div class="menu-item-description">' . $item->description . '</div>' . $args->link_after . '</a>',$item_output);}
 	return $item_output;
 }
-add_filter( 'walker_nav_menu_start_el', 'twentyfifteen_nav_description', 10, 4 );
+add_filter('walker_nav_menu_start_el','twentyfifteen_nav_description',10,4);
 
 /**
  * Add a `screen-reader-text` class to the search form's submit button.
@@ -298,7 +258,7 @@ add_filter( 'walker_nav_menu_start_el', 'twentyfifteen_nav_description', 10, 4 )
  * @return string Modified search form HTML.
  */
 function twentyfifteen_search_form_modify($html){return str_replace('class="search-submit"','class="search-submit screen-reader-text"',$html);}
-add_filter( 'get_search_form', 'twentyfifteen_search_form_modify' );
+add_filter('get_search_form','twentyfifteen_search_form_modify');
 
 /**
  * Implement the Custom Header feature.
@@ -309,7 +269,14 @@ add_filter( 'get_search_form', 'twentyfifteen_search_form_modify' );
 require get_template_directory() . '/inc/custom-header.php';
 require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/customizer.php';
-//メタとサムネ(標準とAMP)&コピーライト
+
+//カスタムロゴ&
+if(!function_exists('twentyfifteen_the_custom_logo')):function twentyfifteen_the_custom_logo(){if(function_exists('the_custom_logo')){the_custom_logo();}}endif;
+function twentyfifteen_category_transient_flusher(){delete_transient('twentyfifteen_categories');}
+add_action('edit_category','twentyfifteen_category_transient_flusher');
+add_action('save_post','twentyfifteen_category_transient_flusher');
+
+//メタとサムネ&コピーライト
 function twentyfifteen_entry_meta(){if(is_sticky()&&is_home()&&!is_paged()):printf('<span class="sticky-post">%s</span>',__('Featured','twentyfifteen'));endif;//投稿を先頭に固定
   //投稿日|更新日|投稿者|カテゴリー|タグ|画像サイズ(横 x 縦)表示|コメントをどうぞ|コメント数(順同)
   if(in_array(get_post_type(),array('post','attachment'))){
@@ -328,14 +295,8 @@ function twentyfifteen_entry_meta(){if(is_sticky()&&is_home()&&!is_paged()):prin
   if(!is_single()&&!post_password_required()&&(comments_open()||get_comments_number())){echo'<span class="comments-link">';comments_popup_link(__('Leave a comment','twentyfifteen'),__('1 Comment','twentyfifteen' ),__('% Comments','twentyfifteen'));echo'</span>';}
 }
 if(!function_exists('twentyfifteen_post_thumbnail')):function twentyfifteen_post_thumbnail(){if(post_password_required()||is_attachment()||!has_post_thumbnail()){return;}if(is_singular()):?><div class="post-thumbnail"><?php the_post_thumbnail();?></div><?php else:?><a class="post-thumbnail" href="<?php the_permalink();?>" aria-hidden="true"><?php the_post_thumbnail('post-thumbnail',array('alt'=>get_the_title()));?></a><?php endif;}endif;
-function amp_entry_meta(){if(in_array(get_post_type(),array('post','attachment'))){$time_string='<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
-	if(get_the_time('U')!==get_the_modified_time('U')){$time_string='<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';}
-	$time_string=sprintf($time_string,esc_attr(get_the_date('c')),get_the_date(),esc_attr(get_the_modified_date('c')),get_the_modified_date());
-	printf('<span>%1$s<a href="%2$s" rel="bookmark">%3$s</a></span>',_x('Posted on','Used before publish date.','twentyfifteen'),esc_url(get_permalink()),$time_string);
-	echo('<span>（');echo human_time_diff(get_the_time('U'),current_time('timestamp'));echo('前）</span>');}}
 function get_first_post_year(){$year=null;query_posts('posts_per_page=1&order=ASC');if(have_posts()):while(have_posts()):the_post();$year=intval(get_the_time('Y'));endwhile;endif;wp_reset_query();return $year;}
 //サムネサイズ追加&Alt属性がないIMGタグにalt=""を追加する&サムネ自動設定
-add_image_size('related',150,150,true);
 add_filter('the_content',function($content){return preg_replace('/<img((?![^>]*alt=)[^>]*)>/i','<img alt=""${1}>',$content);});
 require_once(ABSPATH . '/wp-admin/includes/image.php');
 function fetch_thumbnail_image($matches,$key,$post_content,$post_id){
@@ -395,9 +356,7 @@ add_filter('comment_text','twtreplace');
 add_filter('the_title','wps_highlight_results');
 add_filter('the_content','wps_highlight_results');
 add_action('after_setup_theme','ruby_setup');
-//entry-footerウィジェットエリア化&独自ウィジェットの追加(SNSボタン|Disqus|関連記事|テキストウイジェット(PCのみ表示))&カレンダー短縮
-function entry_footer_sidebar(){register_sidebar(array('name'=>'エントリーフッター','id'=>'8','before_widget'=>'<div>','after_widget'=>'</div>','before_title'=>'','after_title'=>'',));}
-add_action('widgets_init','entry_footer_sidebar');
+//独自ウィジェットの追加(SNSボタン|Disqus|関連記事|テキストウイジェット(PCのみ表示))&カレンダー短縮
 class PcTextWidgetItem extends WP_Widget{
   function PcTextWidgetItem(){parent::WP_Widget(false,$name='Text widget（for PC）');}
   function widget($args,$instance){extract($args);$title=apply_filters('widget_title_pc_text',$instance['title_pc_text']);$text=apply_filters('widget_text_pc_text',$instance['text_pc_text']);if(!wp_is_mobile()):echo('<div id="pc-text-widget" class="widget pc_text">');if($title){echo '<h4>'.$title.'</h4>';}echo('<div class="text-pc">');echo $text;echo'</div></div>';endif;}
@@ -505,6 +464,8 @@ function appthemes_add_quicktags(){
 		QTags.addButton('qt-h3','h3','<h3>','</h3>');
 		QTags.addButton('qt-h4','h4','<h4>','</h4>');
 		QTags.addButton('qt-marker','マーカー','<span class="marker">','</span>');
+		QTags.addButton('qt-information','情報','<div class="information">','</div>');
+		QTags.addButton('qt-question','疑問','<div class="question">','</div>');
 		QTags.addButton('qt-scshot','スクショ','[scshot url=',']');
 		QTags.addButton('qt-myqrcode','QRコード','[myqrcode url=',']');
 		QTags.addButton('qt-embedly','embedly','[embedly url=',']');
