@@ -7,8 +7,9 @@
 	<link rel="pingback" href="<?php bloginfo('pingback_url');?>">
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
-	<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+	<link rel="dns-prefetch" href="//ajax.googleapis.com">
 	<link rel="dns-prefetch" href="//www.google-analytics.com">
+	<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
 	<?php if(is_singular()):
 		echo'<link rel="author" href="http://plus.google.com/' . the_author_meta("Googleplus") . '">';
 		echo'<link rel="alternate" type="application/json+oembed" href="' . home_url() . '/wp-json/oembed/1.0/embed?url=' . get_permalink() . '" />';
@@ -72,7 +73,9 @@
 	<meta name="twitter:creator" content="@<?php if(is_single()){echo the_author_meta('twitter');}else{echo get_option('Twitter_URL');};?>">
 	<meta name="twitter:site" content="@<?php echo get_option('Twitter_URL');?>">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<script type="text/javascript">
+	<script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/2/jquery.min.js'></script>
+	<script>
+		window.jQuery||document.write('<script src="<?php echo includes_url();?>js/jquery/jquery.js"><\/script>');
 		function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)}(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 		ga('create',<?php echo get_option('Google_Analytics');?>,'auto');ga('send','pageview');
