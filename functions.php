@@ -272,9 +272,9 @@ add_filter('get_search_form','twentyfifteen_search_form_modify');
  * Customizer additions.
  * @since Twenty Fifteen 1.0
  */
-require get_template_directory() . '/inc/custom-header.php';
-require get_template_directory() . '/inc/template-tags.php';
-require get_template_directory() . '/inc/customizer.php';
+include(get_template_directory() . '/inc/custom-header.php');
+include(get_template_directory() . '/inc/template-tags.php');
+include(get_template_directory() . '/inc/customizer.php');
 
 //カスタムロゴ&
 if(!function_exists('twentyfifteen_the_custom_logo')):function twentyfifteen_the_custom_logo(){if(function_exists('the_custom_logo')){the_custom_logo();}}endif;
@@ -383,7 +383,7 @@ class PcTextWidgetItem extends WP_Widget{
 add_action('widgets_init',create_function('','return register_widget("PcTextWidgetItem");'));
 class author_bio extends WP_Widget{
     function __construct(){parent::__construct('author_bio','著者プロフィール',array('description'=>'著者プロフィール',));}
-    public function widget($args,$instance){echo $args['before_widget'];get_template_part('parts/authorbio');echo $args['after_widget'];}
+    public function widget($args,$instance){echo $args['before_widget'];include(get_template_directory() . '/parts/authorbio.php');echo $args['after_widget'];}
     public function form($instance){$title=!empty($instance['title']) ? $instance['title']:__( '','text_domain');?>
 		<p>
 		<label for="<?php echo $this->get_field_id('title');?>"><?php _e('タイトル:');?></label> 
@@ -396,7 +396,7 @@ class author_bio extends WP_Widget{
 add_action('widgets_init',function(){register_widget('author_bio');});
 class sns_sharebutton extends WP_Widget{
     function __construct(){parent::__construct('sns_sharebutton','SNSシェアボタン',array('description'=>'SNSシェアボタン',));}
-    public function widget($args,$instance){echo $args['before_widget'];get_template_part('parts/sharebutton');echo $args['after_widget'];}
+    public function widget($args,$instance){echo $args['before_widget'];include(get_template_directory() . '/parts/sharebutton.php');echo $args['after_widget'];}
     public function form($instance){$title=!empty($instance['title']) ? $instance['title']:__( '','text_domain');?>
 		<p>
 		<label for="<?php echo $this->get_field_id('title');?>"><?php _e('タイトル:');?></label> 
@@ -409,7 +409,7 @@ class sns_sharebutton extends WP_Widget{
 add_action('widgets_init',function(){register_widget('sns_sharebutton');});
 class related_posts extends WP_Widget{
     function __construct(){parent::__construct('related_posts','関連記事',array('description'=>'関連記事',));}
-    public function widget($args,$instance){echo $args['before_widget'];get_template_part('parts/related');echo $args['after_widget'];}
+    public function widget($args,$instance){echo $args['before_widget'];include(get_template_directory() . '/parts/related.php');echo $args['after_widget'];}
     public function form($instance){$title=!empty($instance['title']) ? $instance['title']:__( '','text_domain');?>
 		<p>
 		<label for="<?php echo $this->get_field_id('title');?>"><?php _e('タイトル:');?></label> 
@@ -481,7 +481,9 @@ function appthemes_add_quicktags(){
 add_action('admin_print_footer_scripts','appthemes_add_quicktags');
 //カスタマイザー弄り&投稿記事一覧にアイキャッチ画像を表示
 function customize_admin_add_column($column_name,$post_id){if('thumbnail'==$column_name){$thum=get_the_post_thumbnail($post_id,array(100,100));}if(isset($thum)&&$thum){echo $thum;}}
+function set_mime_types($mimes){$mimes['svg']='image/svg+xml';return $mimes;}
 add_filter('manage_posts_columns',function($columns){$columns['thumbnail']=__('Thumbnail');return $columns;});
+add_filter('upload_mimes','set_mime_types');
 add_action('manage_posts_custom_column','customize_admin_add_column',10,2);
 add_action('customize_register','theme_customize');
 function theme_customize($wp_customize){

@@ -12,6 +12,6 @@
 			<?php edit_post_link(__('Edit','twentyfifteen'),'<span class="edit-link">','</span>');?>
 		</footer>
 	<?php else:?>
-		<?php edit_post_link(__('Edit','twentyfifteen'),'<footer class="entry-footer"><span class="edit-link">','</span></footer><!-- .entry-footer -->' ); ?>
+		<?php edit_post_link(__('Edit','twentyfifteen'),'<footer class="entry-footer"><span class="edit-link">','</span></footer>' ); ?>
 	<?php endif;?>
 </article>

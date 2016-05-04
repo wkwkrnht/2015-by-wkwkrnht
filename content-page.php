@@ -1,5 +1,6 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
+		<?php include(get_template_directory() . '/parts/bread.php');?>
 		<?php twentyfifteen_post_thumbnail();
 		the_title('<h1 class="entry-title">','</h1>');?>
 		<div class="meta"><?php twentyfifteen_entry_meta();?></div>

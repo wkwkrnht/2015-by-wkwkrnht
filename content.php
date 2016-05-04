@@ -1,7 +1,7 @@
 <article id="post-<?php the_ID();?>" <?php post_class();?>>
 	<header class="entry-header">
 		<?php twentyfifteen_post_thumbnail();
-		get_template_part('parts/bread');
+		include(get_template_directory() . '/parts/bread.php');
 		if(is_single()){the_title('<h1 class="entry-title">','</h1>');}else{the_title(sprintf('<h1 class="entry-title"><a href="%s" rel="bookmark">',esc_url(get_permalink())),'</a></h1>');};?>
 		<div class="meta"><?php twentyfifteen_entry_meta();?></div>
 	</header>

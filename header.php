@@ -2,35 +2,33 @@
 <html <?php language_attributes();?> class="no-js">
 <head>
 	<?php if(get_post_meta($post->ID,"noindex",true)){echo'<meta name="robots" content="noindex,nofollow" />';};?>
-	<?php if(is_singular()):
-		echo'<link rel="amphtml" href=" . get_permalink() . ?amp=1">';
-		echo'<link rel="author" href="http://plus.google.com/' . the_author_meta("Googleplus") . '">';
-		echo'<link rel="alternate" type="application/json+oembed" href="' . home_url() . '/wp-json/oembed/1.0/embed?url=' . get_permalink() . '" />';
-		echo'<link rel="alternate" type="text/xml+oembed" href="' . home_url() . '/wp-json/oembed/1.0/embed?url=' . get_permalink() . ';format=xml" />';
-		echo'<link rel="prerender" href="' . home_url() . '">';
-	else:
-		echo'<link rel="prerender" href="' . get_permalink() . '">';
-	endif;?>
+	<?php if(is_singular()):echo'<link rel="amphtml" href=" . get_permalink() . ?amp=1">';endif;?>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo('pingback_url');?>">
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
 	<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
 	<link rel="dns-prefetch" href="//www.google-analytics.com">
-	<link rel="dns-prefetch" href="//twitter.com">
-	<link rel="dns-prefetch" href="//www.facebook.com">
-	<link rel="dns-prefetch" href="//line.me">
-	<link rel="dns-prefetch" href="//plus.google.com">
-	<link rel="dns-prefetch" href="//www.linkedin.com">
-	<link rel="dns-prefetch" href="//b.hatena.ne.jp">
-	<link rel="dns-prefetch" href="//getpocket.com">
-	<link rel="dns-prefetch" href="//pinterest.com">
-	<link rel="dns-prefetch" href="//www.tumblr.com">
-	<link rel="dns-prefetch" href="//cdn.embedly.com">
-	<link rel="dns-prefetch" href="//<?php echo get_option('Disqus_ID');?>.disqus.com">
-	<link rel="dns-prefetch" href="//s.wordpress.com">
-	<link rel="dns-prefetch" href="//chart.googleapis.com">
-	<link rel="dns-prefetch" href="//hatenablog.com">
+	<?php if(is_singular()):
+		echo'<link rel="author" href="http://plus.google.com/' . the_author_meta("Googleplus") . '">';
+		echo'<link rel="alternate" type="application/json+oembed" href="' . home_url() . '/wp-json/oembed/1.0/embed?url=' . get_permalink() . '" />';
+		echo'<link rel="alternate" type="text/xml+oembed" href="' . home_url() . '/wp-json/oembed/1.0/embed?url=' . get_permalink() . ';format=xml" />';
+		echo'<link rel="prerender" href="' . home_url() . '">';
+		echo'<link rel="dns-prefetch" href="//b.hatena.ne.jp">';
+		echo'<link rel="dns-prefetch" href="//getpocket.com">';
+		echo'<link rel="dns-prefetch" href="//' . get_option("Disqus_ID") . '.disqus.com">';
+		echo'<link rel="dns-prefetch" href="//twitter.com">';
+		echo'<link rel="dns-prefetch" href="//www.facebook.com">';
+		echo'<link rel="dns-prefetch" href="//line.me">';
+		echo'<link rel="dns-prefetch" href="//plus.google.com">';
+		echo'<link rel="dns-prefetch" href="//www.linkedin.com">';
+		echo'<link rel="dns-prefetch" href="//pinterest.com">';
+		echo'<link rel="dns-prefetch" href="//www.tumblr.com">';
+		echo'<link rel="dns-prefetch" href="//cdn.embedly.com">';
+		echo'<link rel="dns-prefetch" href="//hatenablog.com">';
+	else:
+		echo'<link rel="prerender" href="' . get_permalink() . '">';
+	endif;?>
 	<meta charset="<?php bloginfo('charset');?>">
 	<meta name="viewport" content="width=device-width">
 	<meta name="google-site-verification" content="<?php echo get_option('Google_Webmaster');?>">

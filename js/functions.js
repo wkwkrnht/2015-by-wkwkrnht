@@ -11,7 +11,7 @@
 	    topOffset = 0, bodyHeight, sidebarHeight, resizeTimer,
 	    secondary, button;
 
-	function initMainNavigation( container ) {
+	function initMainNavigation(container){
 		// Add dropdown toggle that display child menu items.
 		container.find( '.menu-item-has-children > a' ).after( '<button class="dropdown-toggle" aria-expanded="false">' + screenReaderText.expand + '</button>' );
 
@@ -49,9 +49,7 @@
 	// Enable menu toggle for small screens.
 	( function() {
 		var menu, widgets, social;
-		if ( ! secondary.length || ! button.length ) {
-			return;
-		}
+		if(!secondary.length||!button.length){return;}
 
 		// Hide button if there are no widgets and the menus are missing or empty.
 		menu    = secondary.find( '.nav-menu' );
@@ -95,21 +93,12 @@
 	}
 
 	// Sidebar scrolling.
-	function resize() {
-		windowWidth = $window.width();
+	function resize(){windowWidth=$window.width();if(955>windowWidth){top=bottom=false;$sidebar.removeAttr('style');}}
 
-		if ( 955 > windowWidth ) {
-			top = bottom = false;
-			$sidebar.removeAttr( 'style' );
-		}
-	}
-
-	function scroll() {
+	function scroll(){
 		var windowPos = $window.scrollTop();
 
-		if ( 955 > windowWidth ) {
-			return;
-		}
+		if(955>windowWidth ){return;}
 
 		sidebarHeight = $sidebar.height();
 		windowHeight  = $window.height();
@@ -147,17 +136,12 @@
 		lastWindowPos = windowPos;
 	}
 
-	function resizeAndScroll() {
-		resize();
-		scroll();
-	}
-
+	function resizeAndScroll(){resize();scroll();}
 	$( document ).ready( function() {
 		$body          = $( document.body );
 		$window        = $( window );
 		$sidebar       = $( '#sidebar' ).first();
 		adminbarOffset = $body.is( '.admin-bar' ) ? $( '#wpadminbar' ).height() : 0;
-
 		$window
 			.on( 'scroll.twentyfifteen', scroll )
 			.on( 'load.twentyfifteen', onResizeARIA )
@@ -167,12 +151,7 @@
 				onResizeARIA();
 			} );
 		$sidebar.on( 'click.twentyfifteen keydown.twentyfifteen', 'button', resizeAndScroll );
-
 		resizeAndScroll();
-
-		for ( var i = 1; i < 6; i++ ) {
-			setTimeout( resizeAndScroll, 100 * i );
-		}
-	} );
-
-} )( jQuery );
+		for(var i=1;i<6;i++){setTimeout(resizeAndScroll,100 * i);}
+	});
+})(jQuery);
