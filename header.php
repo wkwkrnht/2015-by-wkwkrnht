@@ -73,9 +73,9 @@
 	<meta name="twitter:creator" content="@<?php if(is_single()){echo the_author_meta('twitter');}else{echo get_option('Twitter_URL');};?>">
 	<meta name="twitter:site" content="@<?php echo get_option('Twitter_URL');?>">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/2/jquery.min.js'></script>
 	<script>
-		window.jQuery||document.write('<script src="<?php echo includes_url();?>js/jquery/jquery.js"><\/script>');
+		(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);
+		(function(){var ua=navigator.userAgent.toLowerCase();if((ua.indexOf('webkit')>-1||ua.indexOf('opera')>-1||ua.indexOf('msie')>-1)&&document.getElementById&&window.addEventListener){window.addEventListener('hashchange',function(){var element=document.getElementById(location.hash.substring(1));if(element){if(!/^(?:a|select|input|button|textarea)$/i.test(element.nodeName)){element.tabIndex=-1;}element.focus();}},false);}})();
 		function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)}(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 		ga('create',<?php echo get_option('Google_Analytics');?>,'auto');ga('send','pageview');

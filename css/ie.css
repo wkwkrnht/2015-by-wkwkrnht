@@ -3,43 +3,11 @@ Theme Name: Twenty Fifteen
 Description: Global Styles for older IE versions (previous to IE9).
 */
 
-body,
-button,
-input,
-select,
-textarea {
-	font-size: 19px;
-	line-height: 1.6842;
-}
-
-button,
-input {
-	line-height: normal;
-}
-
-p,
-address,
-pre,
-hr,
-ul,
-ol,
-dl,
-dd,
-table {
-	margin-bottom: 1.6842em;
-}
-
-ul,
-ol {
-	margin-left: 0;
-}
-
-li > ul,
-li > ol,
-blockquote > ul,
-blockquote > ol {
-	margin-left: 1.3333em;
-}
+body,button,input,select,textarea,blockquote cite,blockquote small{font-size:19px;line-height:1.6842;}
+button,input{line-height:normal;}
+p,address,pre,hr,ul,ol,dl,dd,table{margin-bottom: 1.6842em;}
+ul,ol,blockquote > blockquote{margin-left:0;}
+li > ul,li > ol,blockquote > ul,blockquote > ol{margin-left:1.3333em;}
 
 blockquote {
 	border-color: inherit;
@@ -51,24 +19,8 @@ blockquote {
 	margin-left: -1.0909em;
 	padding-left: 0.9091em;
 }
-
-blockquote > blockquote {
-	margin-left: 0;
-}
-
-blockquote p {
-	margin-bottom: 1.8182em;
-}
-
-blockquote cite,
-blockquote small {
-	font-size: 19px;
-	line-height: 1.6842;
-}
-
-pre {
-	line-height: 1.2632;
-}
+blockquote p{margin-bottom:1.8182em;}
+pre{line-height:1.2632;}
 
 .entry-content img,
 .entry-summary img,

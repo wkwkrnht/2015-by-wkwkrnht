@@ -58,7 +58,6 @@
             <File name="js\functions.js" />
             <File name="js\html5.js" />
             <File name="js\keyboard-image-navigation.js" />
-            <File name="js\skip-link-focus-fix.js" />
         </Folder>
         <Folder name="languages">
             <File name="languages\twentyfifteen.pot" />

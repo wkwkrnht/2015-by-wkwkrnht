@@ -18,8 +18,7 @@
 		// Toggle buttons and submenu items with active children menu items.
 		container.find( '.current-menu-ancestor > button' ).addClass( 'toggle-on' );
 		container.find( '.current-menu-ancestor > .sub-menu' ).addClass( 'toggled-on' );
-
-		container.find( '.dropdown-toggle' ).click( function( e ) {
+		container.find( '.dropdown-toggle' ).click( function(e){
 			var _this = $( this );
 			e.preventDefault();
 			_this.toggleClass( 'toggle-on' );
@@ -80,17 +79,7 @@
 	 * the default ARIA attributes for the menu toggle if it's visible.
 	 * @since Twenty Fifteen 1.1
 	 */
-	function onResizeARIA() {
-		if ( 955 > $window.width() ) {
-			button.attr( 'aria-expanded', 'false' );
-			secondary.attr( 'aria-expanded', 'false' );
-			button.attr( 'aria-controls', 'secondary' );
-		} else {
-			button.removeAttr( 'aria-expanded' );
-			secondary.removeAttr( 'aria-expanded' );
-			button.removeAttr( 'aria-controls' );
-		}
-	}
+	function onResizeARIA(){if(955>$window.width()){button.attr('aria-expanded','false');secondary.attr('aria-expanded','false');button.attr('aria-controls','secondary');}else{button.removeAttr('aria-expanded');secondary.removeAttr('aria-expanded');button.removeAttr('aria-controls');}}
 
 	// Sidebar scrolling.
 	function resize(){windowWidth=$window.width();if(955>windowWidth){top=bottom=false;$sidebar.removeAttr('style');}}
