@@ -90,7 +90,7 @@
         <File name="rtl.css" />
         <File name="screenshot.png" />
         <File name="search.php" />
-        <File name="entry-footer.php" />
+        <File name="sidebar-entry-footer.php" />
         <File name="sidebar.php" />
         <File name="single.php" />
         <File name="style.css" />

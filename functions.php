@@ -81,7 +81,7 @@ function twentyfifteen_widgets_init(){
 		'name'         =>__('entry-footer','twentyfifteen'),
 		'id'           =>'entry-footer',
 		'description'  =>__('Add widgets here to appear in your sidebar.','twentyfifteen'),
-		'before_widget'=>'<div id="%1$s" class="widget %2$s">',
+		'before_widget'=>'<div>',
 		'after_widget' =>'</div>',
 		'before_title' =>'<h3 class="widget-title">',
 		'after_title'  =>'</h3>',
@@ -123,14 +123,15 @@ function wkwkrnht_embed_analytics(){ ?>
 	ga('create',<?php echo get_option('Google_Analytics');?>,'auto');ga('send','pageview');
 </script>
 <?php }
-remove_action('wp_head','wp_generator');
-remove_action('wp_head','print_emoji_detection_script',7);
-remove_action('wp_print_styles','print_emoji_styles');
 add_action('embed_head','wkwkrnht_embed_analytics');
 add_action('login_head',function(){remove_action('login_head','wp_shake_js',12);});
 add_filter('embed_thumbnail_image_size',function(){return'thmb150';});
 add_filter('style_loader_src','remove_ver_script',9999);
 add_filter('script_loader_src','remove_ver_script',9999);
+remove_action('wp_head','jetpack_og_tags');
+remove_action('wp_head','wp_generator');
+remove_action('wp_head','print_emoji_detection_script',7);
+remove_action('wp_print_styles','print_emoji_styles');
 
 /**
  * Add featured image as background image to post navigation elements.
@@ -395,7 +396,14 @@ function add_dashboard_widgets(){
 	wp_add_dashboard_widget('appbox_dashboard_widget','appBoxのパラメータ','appbox_parameters_dashboard_widget');
 }
 add_action('wp_dashboard_setup','add_dashboard_widgets');
-//クイックタグ追加
+//カテゴリーフィルター&クイックタグ追加
+add_action('admin_head-post-new.php','post_filter_categories');
+add_action('admin_head-post.php','post_filter_categories');
+function post_filter_categories(){ ?>
+<script type="text/javascript">
+	jQuery(function($){function catFilter(header,list){var form =$('<form>').attr({'class':'filterform','action':'#'}).css({'position':'absolute','top':'38px'}),input=$('<input>').attr({'class':'filterinput','type':'text','placeholder':'カテゴリー検索'});$(form).append(input).appendTo(header);$(header).css({'padding-top':'42px'});$(input).change(function(){var filter=$(this).val();if(filter){$(list).find('label:not(:contains('+filter+'))').parent().hide();$(list).find('label:contains('+filter+')').parent().show();}else{$(list).find('li').show();}return false;}).keyup(function(){$(this).change();});}$(function(){catFilter($('#category-all'),$('#categorychecklist'));});});
+</script>
+<?php }
 function appthemes_add_quicktags(){
     if(wp_script_is('quicktags')){ ?>
     <script type="text/javascript">
@@ -415,13 +423,14 @@ function appthemes_add_quicktags(){
     </script>
 <?php }}
 add_action('admin_print_footer_scripts','appthemes_add_quicktags');
-//カスタマイザー弄り&投稿記事一覧にアイキャッチ画像を表示
-function customize_admin_add_column($column_name,$post_id){if('thumbnail'==$column_name){$thum=get_the_post_thumbnail($post_id,array(100,100));}if(isset($thum)&&$thum){echo $thum;}}
-function set_mime_types($mimes){$mimes['svg']='image/svg+xml';return $mimes;}
-add_filter('manage_posts_columns',function($columns){$columns['thumbnail']=__('Thumbnail');return $columns;});
+//カスタマイザー弄り&投稿記事一覧に諸々表示
+function add_posts_columns($columns){$columns['thumbnail']='サムネイル';$columns['postid']='ID';$columns['slug']='スラッグ';$columns['count']='文字数';echo '<style type="text/css">.fixed .column-thumbnail{width:120px;}.fixed .column-postid{width:2%;}.fixed .column-slug, .fixed .column-count{width:5%;}</style>';return $columns;}
+function add_posts_columns_row($column_name,$post_id){if('thumbnail'==$column_name){$thumb=get_the_post_thumbnail($post_id,array(100,100),'thumbnail');echo($thumb)?$thumb:'－';}elseif('postid'===$column_name){echo $post_id;}elseif('slug'===$column_name){$slug=get_post($post_id)->post_name;echo $slug;}elseif('count'===$column_name){$count=mb_strlen(strip_tags(get_post_field('post_content',$post_id)));echo $count;}}
+add_filter('manage_posts_columns','add_posts_columns');
 add_filter('upload_mimes','set_mime_types');
-add_action('manage_posts_custom_column','customize_admin_add_column',10,2);
+add_action('manage_posts_custom_column','add_posts_columns_row',10,2);
 add_action('customize_register','theme_customize');
+function set_mime_types($mimes){$mimes['svg']='image/svg+xml';return $mimes;}
 function theme_customize($wp_customize){
     $wp_customize->add_section('sns_section',array('title'=>'独自設定','description'=>'このテーマの独自設定','priority'=>1,));
 	$wp_customize->add_setting('Adminnav_Dsp',array('type'=>'theme_mod',));
@@ -458,10 +467,7 @@ function how_referrer_setting(){return get_theme_mod('referrer_setting','value1'
 function get_the_logo_image_url(){return esc_url(get_theme_mod('ms_icon'));}
 function excerpt_count(){ ?>
 <script>
-	(function($){
-		var count=100;
-		$('#postexcerpt .hndle span').after('<span style=\"padding-left:1em; color:#888; font-size:12px;\">現在の文字数： <span id=\"excerpt-count\"></span> / '+ count +'</span>');
-		$('#excerpt-count').text($('#excerpt').val().length);
+	(function($){var count=100;$('#postexcerpt .hndle span').after('<span style=\"padding-left:1em; color:#888; font-size:12px;\">現在の文字数： <span id=\"excerpt-count\"></span> / '+ count +'</span>');$('#excerpt-count').text($('#excerpt').val().length);
 		$('#excerpt').keyup(function(){$('#excerpt-count').text($('#excerpt').val().length);if($(this).val().length>count){$('#excerpt-count, #postexcerpt .inside p').css('color','#f00');}else{$('#excerpt-count, #postexcerpt .inside p').css('color','#888');}});
 		$('#postexcerpt .inside p').html('※ここに入力した内容は一覧画面で <strong>"'+ count +'文字"</strong> までは表示されますが、それ以降は省略表示されます。').css('color', '#888');
 	}(jQuery));

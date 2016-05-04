@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html <?php language_attributes();?> class="no-js">
 <head>
-	<?php if(get_post_meta($post->ID,"noindex",true)){echo'<meta name="robots" content="noindex,nofollow" />';};?>
 	<?php if(is_singular()):echo'<link rel="amphtml" href=" . get_permalink() . ?amp=1">';endif;?>
+	<meta charset="<?php bloginfo('charset');?>">
+	<meta name="viewport" content="width=device-width">
+	<meta name="HandheldFriendly" content="true">
+	<meta name="viewport" content="width=device-width">
+	<meta name="referrer" content="<?php echo get_option('referrer_setting');?>" />
+	<meta name="google-site-verification" content="<?php echo get_option('Google_Webmaster');?>">
+	<meta name="msvalidate.01" content="<?php echo get_option('Bing_Webmaster');?>">
+	<meta name="theme-color" content="<?php echo get_option('GoogleChrome_URLbar');?>">
+	<meta name="msapplication-TileImage" content="<?php echo get_option('ms_icon');?>"/>
+	<meta name="msapplication-TileColor" content="<?php echo get_option('GoogleChrome_URLbar');?>"/>
+	<meta http-equiv="cleartype" content="on">
+	<meta name="renderer" content="webkit">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo('pingback_url');?>">
 	<link rel="fluid-icon" href="<?php echo get_option('icon');?>" title="<?php bloginfo('title');?>">
@@ -12,7 +23,8 @@
 	<link rel="dns-prefetch" href="//ajax.googleapis.com">
 	<link rel="dns-prefetch" href="//www.google-analytics.com">
 	<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-	<?php if(is_singular()):
+	<?php if(is_singular()):$category=get_the_category();$catname=$category[0]->cat_name;
+		echo'<meta name="category" content="' . $catname . '">'
 		echo'<link rel="publisher" href="http://plus.google.com/' . the_author_meta("Googleplus") . '">';
 		echo'<link rel="alternate" type="application/json+oembed" href="' . home_url() . '/wp-json/oembed/1.0/embed?url=' . get_permalink() . '" />';
 		echo'<link rel="alternate" type="text/xml+oembed" href="' . home_url() . '/wp-json/oembed/1.0/embed?url=' . get_permalink() . ';format=xml" />';
@@ -32,17 +44,6 @@
 	else:
 		echo'<link rel="prerender" href="' . get_permalink() . '">';
 	endif;?>
-	<meta charset="<?php bloginfo('charset');?>">
-	<meta name="viewport" content="width=device-width">
-	<meta name="HandheldFriendly" content="true">
-	<meta name="viewport" content="width=device-width">
-	<meta name="referrer" content="<?php echo get_option('referrer_setting');?>" />
-	<meta name="google-site-verification" content="<?php echo get_option('Google_Webmaster');?>">
-	<meta name="msvalidate.01" content="<?php echo get_option('Bing_Webmaster');?>">
-	<meta name="theme-color" content="<?php echo get_option('GoogleChrome_URLbar');?>">
-	<meta name="msapplication-TileImage" content="<?php echo get_option('ms_icon');?>"/>
-	<meta name="msapplication-TileColor" content="<?php echo get_option('GoogleChrome_URLbar');?>"/>
-	<meta http-equiv="cleartype" content="on">
 	<meta property="og:type" content="blog">
 	<?php if(is_single()){if(have_posts()):while(have_posts()):the_post();echo'<meta property="og:description" content="';mb_substr(get_the_excerpt(),0,100);echo'">';echo"\n";endwhile;endif;
 	  echo'<meta property="og:title" content="';the_title();echo'">';echo"\n";
