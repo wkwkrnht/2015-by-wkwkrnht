@@ -1,10 +1,5 @@
 <?php 
-/**
- * Set the content width based on the theme's design and stylesheet.
- * Twenty Fifteen only works in WordPress 4.1 or later.
- * @since Twenty Fifteen 1.0
- */
-if(!isset($content_width)){$content_width = 660;}
+if(!isset($content_width)){$content_width=660;}
 if(version_compare($GLOBALS['wp_version'],'4.1-alpha','<')){require get_template_directory() . '/inc/back-compat.php';}
 /** 
  * Sets up theme defaults and registers support for various WordPress features.
@@ -107,26 +102,20 @@ function twentyfifteen_fonts_url(){$fonts_url='';$fonts=array();$subsets='latin,
 }
 endif;
 
-/**
- * Enqueue scripts and styles.
- *
- * @since Twenty Fifteen 1.0
- */
 function twentyfifteen_scripts(){
-	// Add custom fonts, used in the main stylesheet.
 	wp_enqueue_style('twentyfifteen-fonts',twentyfifteen_fonts_url(),array(),null);
 	wp_enqueue_style('twentyfifteen-style',get_stylesheet_uri());
 	wp_enqueue_style('twentyfifteen-ie',get_template_directory_uri() . '/css/ie.css',array('twentyfifteen-style'),'20141010');
 	wp_style_add_data('twentyfifteen-ie','conditional','lt IE 9');
 	wp_enqueue_style('twentyfifteen-ie7',get_template_directory_uri() . '/css/ie7.css',array('twentyfifteen-style'),'20141010');
 	wp_style_add_data('twentyfifteen-ie7','conditional','lt IE 8');
-	if(is_singular()&&comments_open()&&get_option('thread_comments')){wp_enqueue_script('comment-reply');}
-	if(is_singular()&&wp_attachment_is_image()){wp_enqueue_script('twentyfifteen-keyboard-image-navigation',get_template_directory_uri() . '/js/keyboard-image-navigation.js',array('jquery'),'20141010');}
+	if(is_singular()&&comments_open()&&get_option('thread_comments')):wp_enqueue_script('comment-reply');endif;
+	if(is_singular()&&wp_attachment_is_image()):wp_enqueue_script('twentyfifteen-keyboard-image-navigation',get_template_directory_uri() . '/js/keyboard-image-navigation.js',array('jquery'),'20141010');endif;
+	if(is_singular(array('post','page'))):wp_enqueue_style('wp-embed-template-ie');wp_enqueue_style('oficial_wp_embed_style',includes_url('css/wp-embed-template.min.css'));wp_enqueue_script('oficial_oembed_script',includes_url('js/wp-embed-template.min.js'),array(),'',true);endif;
 	wp_enqueue_script('twentyfifteen-script',get_template_directory_uri() . '/js/functions.js',array('jquery'),'20150330',true);
 	wp_localize_script('twentyfifteen-script','screenReaderText',array('expand'=>'<span class="screen-reader-text">' . __('expand child menu','twentyfifteen') . '</span>','collapse'=>'<span class="screen-reader-text">' . __('collapse child menu','twentyfifteen') . '</span>',));
 }
 add_action('wp_enqueue_scripts','twentyfifteen_scripts');
-//消去(/?ver=|emoji|error action)
 function remove_ver_script($src){if(strpos($src,'ver=')):$src=remove_query_arg('ver',$src);return $src;endif;}
 function wkwkrnht_embed_analytics(){ ?>
 <script type="text/javascript">

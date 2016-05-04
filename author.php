@@ -86,6 +86,7 @@
 				if($user_data->Bitcoin){echo $user_data->Bitcoin . "<br />";};
 				if($user_data->Pxiv){echo $user_data->Pxiv . "<br />";};
 				if($user_data->Slideshare){echo $user_data->Slideshare . "<br />";};?></p>
+		<div id="movetop">∧</div>
 	</aside>
 	<section class="author_article">
 		<h2><?php echo $curauth->nickname;?>の投稿</h2>
@@ -99,6 +100,8 @@
 			<p><?php _e('この作成者の投稿はまだありません。');?></p>
 		<?php endif;?>
 		</ul>
+		<div id="movetop">∧</div>
+		<script>jQuery('#movetop').click(function(){jQuery('body,html').animate({scrollTop:0},500);});</script>
 	</section>
 </div>
 <?php get_footer();?>
