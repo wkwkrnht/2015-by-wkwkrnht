@@ -1236,18 +1236,16 @@ a.post-thumbnail:hover,a.post-thumbnail:focus{opacity:0.85;}
 .tags-links::before{content:"\f02c";}
 .author::before{content:"\f007";}
 
-.byline:before {
+.byline::before {
 	content: "\f304";
 }
-.comments-link:before {
+.comments-link::before {
 	content: "\f300";
 }
-.full-size-link:before {
+.full-size-link::before {
 	content: "\f402";
 }
-.edit-link:before {
-	content:"\f411";
-}
+.edit-link::before{content:"\f040";}
 
 .tags-links a{margin:0 .4em;}
 
