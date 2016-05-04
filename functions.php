@@ -381,18 +381,18 @@ function redirect_to_only_post_searched(){if(is_search()){global $wp_query;if($w
 add_action('template_redirect','redirect_to_only_post_searched');
 //管理者向けウィジェット
 function appbox_parameters_dashboard_widget(){
-    echo'パラメータは半角スペースの後に入力<br />フォーマット→simple OR compact<br>スクショ→screenshots(-only)<br>旧価格→フォーマット合わせて入力<br>';
+    echo'パラメータは半角スペースの後に入力<br>フォーマット→simple OR compact<br>スクショ→screenshots(-only)<br>旧価格→フォーマット合わせて入力';
 }
 function add_dashboard_widgets(){
 	wp_add_dashboard_widget('appbox_dashboard_widget','appBoxのパラメータ','appbox_parameters_dashboard_widget');
 }
 add_action('wp_dashboard_setup','add_dashboard_widgets');
-//カテゴリーフィルター&クイックタグ追加
-function post_filter_categories(){ ?>
+//カテゴリーフィルター&クイックタグ追加&抜粋制限
+/*function post_filter_categories(){ ?>
 <script type="text/javascript">
 	jQuery(function($){function catFilter(header,list){var form =$('<form>').attr({'class':'filterform','action':'#'}).css({'position':'absolute','top':'38px'}),input=$('<input>').attr({'class':'filterinput','type':'text','placeholder':'カテゴリー検索'});$(form).append(input).appendTo(header);$(header).css({'padding-top':'42px'});$(input).change(function(){var filter=$(this).val();if(filter){$(list).find('label:not(:contains('+filter+'))').parent().hide();$(list).find('label:contains('+filter+')').parent().show();}else{$(list).find('li').show();}return false;}).keyup(function(){$(this).change();});}$(function(){catFilter($('#category-all'),$('#categorychecklist'));});});
 </script>
-<?php }
+<?php }*/
 function appthemes_add_quicktags(){
     if(wp_script_is('quicktags')){ ?>
     <script type="text/javascript">
@@ -411,14 +411,14 @@ function appthemes_add_quicktags(){
 		QTags.addButton('qt-hatenablogcard','はてなブログカード','[hatenaBlogcard url=',']');
     </script>
 <?php }}
-add_action('admin_head-post-new.php','post_filter_categories');
-add_action('admin_head-post.php','post_filter_categories');
+/*add_action('admin_head-post-new.php','post_filter_categories');
+add_action('admin_head-post.php','post_filter_categories');*/
 add_action('admin_print_footer_scripts','appthemes_add_quicktags');
 //カスタマイザー弄り&投稿記事一覧に諸々表示
-/*function add_posts_columns($columns){$columns['thumbnail']='サムネイル';$columns['postid']='ID';$columns['slug']='スラッグ';$columns['count']='文字数';echo '<style type="text/css">.fixed .column-thumbnail{width:120px;}.fixed .column-postid{width:2%;}.fixed .column-slug, .fixed .column-count{width:5%;}</style>';return $columns;}
+function add_posts_columns($columns){$columns['thumbnail']='サムネイル';$columns['postid']='ID';$columns['slug']='スラッグ';$columns['count']='文字数';echo '<style type="text/css">.fixed .column-thumbnail{width:120px;}.fixed .column-postid{width:2%;}.fixed .column-slug, .fixed .column-count{width:5%;}</style>';return $columns;}
 function add_posts_columns_row($column_name,$post_id){if('thumbnail'==$column_name){$thumb=get_the_post_thumbnail($post_id,array(100,100),'thumbnail');echo($thumb)?$thumb:'－';}elseif('postid'===$column_name){echo $post_id;}elseif('slug'===$column_name){$slug=get_post($post_id)->post_name;echo $slug;}elseif('count'===$column_name){$count=mb_strlen(strip_tags(get_post_field('post_content',$post_id)));echo $count;}}
 add_filter('manage_posts_columns','add_posts_columns');
-add_action('manage_posts_custom_column','add_posts_columns_row',10,2);*/
+add_action('manage_posts_custom_column','add_posts_columns_row',10,2);
 function set_mime_types($mimes){$mimes['svg']='image/svg+xml';return $mimes;}
 add_filter('upload_mimes','set_mime_types');
 add_action('customize_register','theme_customize');
