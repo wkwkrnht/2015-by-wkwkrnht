@@ -288,11 +288,15 @@ add_action('future_to_publish','auto_post_thumbnail_image');
 function ruby_setup(){global $allowedposttags;foreach(array('ruby','rp','rt') as $tag )if(!isset($allowedposttags[$tag]))$allowedposttags[$tag]=array();}
 function wps_highlight_results($text){if(is_search()){$sr=get_query_var('s');$keys=explode(" ",$sr);$text=preg_replace('/('.implode('|',$keys) .')/iu','<span class="marker">'.$sr.'</span>',$text);}return $text;}
 function twtreplace($content){$twtreplace=preg_replace('/([^a-zA-Z0-9-_&])@([0-9a-zA-Z_]+)/',"$1<a href=\"http://twitter.com/$2\" target=\"_blank\" rel=\"nofollow\">@$2</a>",$content);return $twtreplace;}
+function style_into_article($atts){extract(shortcode_atts(array('style'=>'',),$atts));return'<pre class="wpcss" style="display:none;"><code>' . $style . '</code></pre>';}
+function html_encode($args=array(),$content=''){return htmlspecialchars($content,ENT_QUOTES,'UTF-8');}
 function api_sc_shot($attributes){extract(shortcode_atts(array('url'=>'',),$attributes));$imageUrl=sc_shot($url);if($imageUrl==''){return'';}else{return'<a href="' . $url . '" target="_blank"><img src="' . $imageUrl . '" alt="' . $url . '"/></a>';}}
 function sc_shot($url=''){return'http://s.wordpress.com/mshots/v1/' . urlencode(clean_url($url)) . '?w=500';}
 function url_to_qrcode($atts){extract(shortcode_atts(array('url'=>'',),$atts));return'<a href="' . $url . '" target="_blank" class="qrcode"><img src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=' . $url . '&choe=UTF-8" alt="QR Code"/></a>';}
 function url_to_embedly($atts){extract(shortcode_atts(array('url'=>'',),$atts));$content='<a class="embedly-card" href="' . $url . '"></a><script async="" charset="UTF-8" src="//cdn.embedly.com/widgets/platform.js"></script>';return $content;}
 function url_to_hatenaBlogcard($atts){extract(shortcode_atts(array('url'=>'',),$atts));$content='<iframe class="hatenablogcard" src="http://hatenablog.com/embed?url=' . $url . '" frameborder="0" scrolling="no"></iframe>';return $content;}
+add_shortcode('customcss','style_into_article');
+add_shortcode('html_encode','html_encode');
 add_shortcode('scshot','api_sc_shot');
 add_shortcode('myqrcode','url_to_qrcode');
 add_shortcode('embedly','url_to_embedly');
@@ -389,10 +393,12 @@ function my_archives_link($link_html){
     }else{if((intval($month) == 12)AND($currentYear != $year)){$linkYear='<br/>'.sprintf($yearHtml,$year);}}
     return sprintf($linkString,$linkYear,$ym[1]);}
 add_filter('get_archives_link','my_archives_link');
-//カテゴリー説明文をメタ化
+//カテゴリー説明文をメタ化&検索結果ページから直接結果へ(結果が1件の時)
 function get_meta_description_from_category(){$cate_desc=trim(strip_tags(category_description()));if($cate_desc){return $cate_desc;}$cate_desc='「' . single_cat_title('',false) . '」の記事一覧です。' . get_bloginfo('description');return $cate_desc;}
 function get_meta_keyword_from_category(){return single_cat_title('',false) . ',ブログ,記事一覧';}
 function get_mtime($format){$mtime=get_the_modified_time('Ymd');$ptime=get_the_time('Ymd');if($ptime > $mtime){return get_the_time($format);}elseif($ptime === $mtime){return null;}else{return get_the_modified_time($format);}}
+function redirect_to_only_post_searched(){if(is_search()){global $wp_query;if($wp_query->post_count===1){wp_redirect(get_permalink($wp_query->posts['0']->ID));}}}
+add_action('template_redirect','redirect_to_only_post_searched');
 //管理者向けウィジェット
 function appbox_parameters_dashboard_widget(){
     echo'パラメータは半角スペースの後に入力<br />フォーマット→simple OR compact<br>スクショ→screenshots(-only)<br>旧価格→フォーマット合わせて入力<br>';
@@ -412,6 +418,8 @@ function appthemes_add_quicktags(){
 		QTags.addButton('qt-marker','マーカー','<span class="marker">','</span>');
 		QTags.addButton('qt-information','情報','<div class="information">','</div>');
 		QTags.addButton('qt-question','疑問','<div class="question">','</div>');
+		QTags.addButton('qt-customcss','カスタムCSS','[customcss style=',']');
+		QTags.addButton('qt-htmlencode','HTMLエンコード','[html_encode]','{/html_encode]');
 		QTags.addButton('qt-scshot','スクショ','[scshot url=',']');
 		QTags.addButton('qt-myqrcode','QRコード','[myqrcode url=',']');
 		QTags.addButton('qt-embedly','embedly','[embedly url=',']');
@@ -427,9 +435,13 @@ add_filter('upload_mimes','set_mime_types');
 add_action('manage_posts_custom_column','customize_admin_add_column',10,2);
 add_action('customize_register','theme_customize');
 function theme_customize($wp_customize){
-    $wp_customize->add_section('sns_section',array('title'=>'独自設定','priority'=>1,'description'=>'セクションの詳細',));
+    $wp_customize->add_section('sns_section',array('title'=>'独自設定','description'=>'このテーマの独自設定','priority'=>1,));
 	$wp_customize->add_setting('Adminnav_Dsp',array('type'=>'theme_mod',));
     $wp_customize->add_control('Adminnav_Dsp',array('section'=>'sns_section','settings'=>'Adminnav_Dsp','label'=>'管理者向けメニューを表示する','type'=>'checkbox'));
+	$wp_customize->add_setting(ms_icon);
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize,array('settings'=>ms_icon,'section'=>sns_section,'settings'=>'ms_icon','label'=>'Windowsタイルの画像')));
+	$wp_customize->add_setting('referrer_setting',array('default'=>'value1','type'=>'theme_mod',));
+	$wp_customize->add_control('referrer_setting',array('settings'=>'referrer_setting','label'=>'メタタグのリファラーの値','section'=>'sns_section','type'=>'radio','choices'=>array('value1'=>'default','value2'=>'unsafe-url','value3'=>'origin-when-crossorigin','value4'=>'none-when-downgrade','value5'=>'none',),));
 	$wp_customize->add_setting('entryfooter_txt',array('type'=>'option',));
     $wp_customize->add_control('entryfooter_txt',array('section'=>'sns_section','settings'=>'entryfooter_txt','label'=>'エントリーフッターのタイトルを入力する','type'=>'text'));
     $wp_customize->add_setting('GoogleChrome_URLbar',array('type'=>'option',));
@@ -454,6 +466,21 @@ function theme_customize($wp_customize){
     $wp_customize->add_control('Disqus_ID',array('section'=>'sns_section','settings'=>'Disqus_ID','label'=>'DisqusのIDを入力する','type'=>'text'));
 }
 function is_adminnav_dsp(){return get_theme_mod('Adminnav_Dsp','false');}
+function how_referrer_setting(){return get_theme_mod('referrer_setting','value1');}
+function get_the_logo_image_url(){return esc_url(get_theme_mod('ms_icon'));}
+function excerpt_count(){ ?>
+<script>
+	(function($){
+		var count=100;
+		$('#postexcerpt .hndle span').after('<span style=\"padding-left:1em; color:#888; font-size:12px;\">現在の文字数： <span id=\"excerpt-count\"></span> / '+ count +'</span>');
+		$('#excerpt-count').text($('#excerpt').val().length);
+		$('#excerpt').keyup(function(){$('#excerpt-count').text($('#excerpt').val().length);if($(this).val().length>count){$('#excerpt-count, #postexcerpt .inside p').css('color','#f00');}else{$('#excerpt-count, #postexcerpt .inside p').css('color','#888');}});
+		$('#postexcerpt .inside p').html('※ここに入力した内容は一覧画面で <strong>"'+ count +'文字"</strong> までは表示されますが、それ以降は省略表示されます。').css('color', '#888');
+	}(jQuery));
+</script>
+<?php }
+add_action('admin_footer-post-new.php','excerpt_count');
+add_action('admin_footer-post.php','excerpt_count');
 //プロフィール欄追加(the_author_meta('twitter')で表示)
 function my_new_contactmethods($contactmethods){
   $contactmethods['TEL']='TEL';
