@@ -11,7 +11,6 @@ if(version_compare($GLOBALS['wp_version'],'4.1-alpha','<')){require get_template
  */
 if(!function_exists('twentyfifteen_setup')):
 function twentyfifteen_setup(){
-
 	/*
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
