@@ -169,8 +169,8 @@ add_action('wp_enqueue_scripts','twentyfifteen_post_nav_background');
 
 /**
  * Display descriptions in main navigation.
- *
- * @since Twenty Fifteen 1.0
+ * Add a `screen-reader-text` class to the search form's submit button.
+ * 
  *
  * @param string  $item_output The menu item output.
  * @param WP_Post $item        Menu item object.
@@ -183,15 +183,6 @@ function twentyfifteen_nav_description($item_output,$item,$depth,$args){
 	return $item_output;
 }
 add_filter('walker_nav_menu_start_el','twentyfifteen_nav_description',10,4);
-
-/**
- * Add a `screen-reader-text` class to the search form's submit button.
- *
- * @since Twenty Fifteen 1.0
- *
- * @param string $html Search form HTML.
- * @return string Modified search form HTML.
- */
 function twentyfifteen_search_form_modify($html){return str_replace('class="search-submit"','class="search-submit screen-reader-text"',$html);}
 add_filter('get_search_form','twentyfifteen_search_form_modify');
 
@@ -397,8 +388,6 @@ function add_dashboard_widgets(){
 }
 add_action('wp_dashboard_setup','add_dashboard_widgets');
 //カテゴリーフィルター&クイックタグ追加
-add_action('admin_head-post-new.php','post_filter_categories');
-add_action('admin_head-post.php','post_filter_categories');
 function post_filter_categories(){ ?>
 <script type="text/javascript">
 	jQuery(function($){function catFilter(header,list){var form =$('<form>').attr({'class':'filterform','action':'#'}).css({'position':'absolute','top':'38px'}),input=$('<input>').attr({'class':'filterinput','type':'text','placeholder':'カテゴリー検索'});$(form).append(input).appendTo(header);$(header).css({'padding-top':'42px'});$(input).change(function(){var filter=$(this).val();if(filter){$(list).find('label:not(:contains('+filter+'))').parent().hide();$(list).find('label:contains('+filter+')').parent().show();}else{$(list).find('li').show();}return false;}).keyup(function(){$(this).change();});}$(function(){catFilter($('#category-all'),$('#categorychecklist'));});});
@@ -422,15 +411,17 @@ function appthemes_add_quicktags(){
 		QTags.addButton('qt-hatenablogcard','はてなブログカード','[hatenaBlogcard url=',']');
     </script>
 <?php }}
+add_action('admin_head-post-new.php','post_filter_categories');
+add_action('admin_head-post.php','post_filter_categories');
 add_action('admin_print_footer_scripts','appthemes_add_quicktags');
 //カスタマイザー弄り&投稿記事一覧に諸々表示
-function add_posts_columns($columns){$columns['thumbnail']='サムネイル';$columns['postid']='ID';$columns['slug']='スラッグ';$columns['count']='文字数';echo '<style type="text/css">.fixed .column-thumbnail{width:120px;}.fixed .column-postid{width:2%;}.fixed .column-slug, .fixed .column-count{width:5%;}</style>';return $columns;}
+/*function add_posts_columns($columns){$columns['thumbnail']='サムネイル';$columns['postid']='ID';$columns['slug']='スラッグ';$columns['count']='文字数';echo '<style type="text/css">.fixed .column-thumbnail{width:120px;}.fixed .column-postid{width:2%;}.fixed .column-slug, .fixed .column-count{width:5%;}</style>';return $columns;}
 function add_posts_columns_row($column_name,$post_id){if('thumbnail'==$column_name){$thumb=get_the_post_thumbnail($post_id,array(100,100),'thumbnail');echo($thumb)?$thumb:'－';}elseif('postid'===$column_name){echo $post_id;}elseif('slug'===$column_name){$slug=get_post($post_id)->post_name;echo $slug;}elseif('count'===$column_name){$count=mb_strlen(strip_tags(get_post_field('post_content',$post_id)));echo $count;}}
 add_filter('manage_posts_columns','add_posts_columns');
-add_filter('upload_mimes','set_mime_types');
-add_action('manage_posts_custom_column','add_posts_columns_row',10,2);
-add_action('customize_register','theme_customize');
+add_action('manage_posts_custom_column','add_posts_columns_row',10,2);*/
 function set_mime_types($mimes){$mimes['svg']='image/svg+xml';return $mimes;}
+add_filter('upload_mimes','set_mime_types');
+add_action('customize_register','theme_customize');
 function theme_customize($wp_customize){
     $wp_customize->add_section('sns_section',array('title'=>'独自設定','description'=>'このテーマの独自設定','priority'=>1,));
 	$wp_customize->add_setting('Adminnav_Dsp',array('type'=>'theme_mod',));
