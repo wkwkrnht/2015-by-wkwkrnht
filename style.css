@@ -22,22 +22,20 @@ Text Domain: twentyfifteen
  * 10.0 - Header
  * 11.0 - Widgets
  * 12.0 - Content
- *    12.1 - Posts and pages
- *    12.2 - Post Formats
- *    12.3 - Comments
+ *   12.1 - Posts and pages
+ *   12.2 - Post Formats
+ *   12.3 - Comments
  * 14.0 - Media
- *    14.1 - Captions
- *    14.2 - Galleries
  * 15.0 - Multisite
  * 16.0 - Media Queries
- *    16.1 - Mobile Large
- *    16.2 - Tablet Small
- *    16.3 - Tablet Large
- *    16.4 - Desktop Small
- *    16.5 - Desktop Medium
- *    16.6 - Desktop Large
- *    16.7 - Desktop X-Large
- * 17.0 - Print
+ *   16.1 - Mobile Large
+ *   16.2 - Tablet Small
+ *   16.3 - Tablet Large
+ *   16.4 - Desktop Small
+ *   16.5 - Desktop Medium
+ *   16.6 - Desktop Large
+ *   16.7 - Desktop X-Large
+ *   16.8 - Print
  */
 
 
@@ -1061,15 +1059,15 @@ a.post-thumbnail:hover,a.post-thumbnail:focus{opacity:0.85;}
 	top: 1px;
 }
 
-.entry-footer {
-	background-color: #f7f7f7;
-	color: #707070;
-	color: rgba(51, 51, 51, 0.7);
-	font-family: "Noto Sans", sans-serif;
-	font-size: 12px;
-	font-size: 1.2rem;
-	line-height: 1.5;
-	padding: 3.8461% 7.6923%;
+.entry-footer{
+	background-color:#f7f7f7;
+	color:#707070;
+	color:rgba(51,51,51,0.7);
+	font-family:"Noto Sans",sans-serif;
+	font-size:12px;
+	font-size:1.2rem;
+	line-height:1.5;
+	padding:3.8461% 7.6923%;
 }
 .entry-footer h2{color:#fff;background-color:#ffcc00;box-shadow:0 1px 6px rgba(0,0,0,.12);height:45px;margin:15px;font-size:30px;text-align:center;}
 .entry-footer a{border-bottom:1px solid transparent;color:#707070;color:rgba(51,51,51,0.7);}
@@ -1159,11 +1157,7 @@ a.post-thumbnail:hover,a.post-thumbnail:focus{opacity:0.85;}
 
 
 
-.taxonomy-description {
-	color: #707070;
-	color: rgba(51, 51, 51, 0.7);
-	padding-top: 0.4em;
-}
+.taxonomy-description{color:#707070;color:rgba(51,51,51,0.7);padding-top:0.4em;}
 .taxonomy-description a{border-bottom:1px solid #333;}
 .taxonomy-description a:hover,.taxonomy-description a:focus{border-bottom:0;}
 
@@ -1171,7 +1165,7 @@ a.post-thumbnail:hover,a.post-thumbnail:focus{opacity:0.85;}
 
 .page-content{background-color:#fff;padding:7.6923%;}
 
-.page-links {
+.page-links{
 	clear: both;
 	font-family: "Noto Sans", sans-serif;
 	margin-bottom: 1.3333em;
@@ -1217,7 +1211,7 @@ a.post-thumbnail:hover,a.post-thumbnail:focus{opacity:0.85;}
 
 .entry-attachment{margin-bottom:1.6em;}
 
-.type-attachment .entry-title {
+.type-attachment .entry-title{
 	-webkit-hyphens: auto;
 	-moz-hyphens: auto;
 	-ms-hyphens: auto;
@@ -1449,10 +1443,6 @@ p > embed,p > iframe,p > object,p > video{margin-bottom:0;}
 .wp-playlist-item .wp-playlist-caption{border-bottom:0;padding:10px 0;}
 .wp-playlist-item .wp-playlist-item-length{top:10px;}
 
-
-/**
- * 14.1 Captions & Galleries
- */
 
 .wp-caption{margin-bottom:1.6em;max-width:100%;}
 .wp-caption img[class*="wp-image-"]{display:block;margin:0;}
@@ -1826,7 +1816,7 @@ p > embed,p > iframe,p > object,p > video{margin-bottom:0;}
 	.page-content h5,
 	.page-content h6,
 	.comment-content h5,
-	.comment-content h6 {
+	.comment-content h6{
 		font-size: 17px;
 		font-size: 1.7rem;
 		line-height: 1.2353;
@@ -1999,15 +1989,12 @@ p > embed,p > iframe,p > object,p > video{margin-bottom:0;}
 	}
 
 	.pagination .nav-links{min-height:3.3684em;}
-
 	.pagination .page-numbers{line-height:3.3684em;padding:0 0.8421em;}
-
 	.pagination .prev,.pagination .next{
 		height: 64px;
 		padding: 0;
 		width: 64px;
 	}
-
 	.pagination .prev::before,.pagination .next::before{
 		height: 64px;
 		line-height: 64px;
@@ -2020,13 +2007,8 @@ p > embed,p > iframe,p > object,p > video{margin-bottom:0;}
 	}
 
 	blockquote.alignleft,.wp-caption.alignleft,img.alignleft{margin:0.4211em 1.6842em 1.6842em 0;}
-
+	blockquote.aligncenter,.wp-caption.aligncenter,img.aligncenter{margin-top:0.4211em;margin-bottom:1.6842em;}
 	blockquote.alignright,.wp-caption.alignright,img.alignright{margin:0.4211em 0 1.6842em 1.6842em;}
-
-	blockquote.aligncenter,.wp-caption.aligncenter,img.aligncenter{
-		margin-top: 0.4211em;
-		margin-bottom: 1.6842em;
-	}
 
 	.wp-caption.alignleft,.wp-caption.alignright,.wp-caption.aligncenter{margin-bottom:1.2632em;}
 
@@ -2206,9 +2188,7 @@ p > embed,p > iframe,p > object,p > video{margin-bottom:0;}
 	}
 
 	.widecolumn .mu_alert{margin-bottom:1.6842em;}
-
 	.widecolumn p{margin:1.6842em 0;}
-
 	.widecolumn p + h2{margin-top:1.641em;}
 
 	.widecolumn #key,
@@ -3175,13 +3155,10 @@ p > embed,p > iframe,p > object,p > video{margin-bottom:0;}
 	}
 
 	.author-link::after{font-size:24px;top:0;}
-
 	.posted-on::before,.byline::before,.cat-links::before,.tags-links::before,.comments-link::before,.entry-format::before,.edit-link::before,.full-size-link::before {
 		top: 4px;
 	}
-
 	.taxonomy-description{padding-top:0.4211em;}
-
 	.page-title,.comments-title,.comment-reply-title,.post-navigation .post-title{
 		font-size: 27px;
 		font-size: 2.7rem;
@@ -3189,7 +3166,6 @@ p > embed,p > iframe,p > object,p > video{margin-bottom:0;}
 	}
 
 	.page-links{margin-bottom: 1.4736em;}
-
 	.page-links a,.page-links > span{margin:0 0.25em 0.25em 0;}
 
 	.format-aside .entry-title,
@@ -3210,31 +3186,23 @@ p > embed,p > iframe,p > object,p > video{margin-bottom:0;}
 	
 
 	.comments-title{margin-bottom: 1.4545em;}
-
 	.comment-list article,.comment-list .pingback,.comment-list .trackback {
 		padding: 1.6842em 0;
 	}
-
 	.comment-list + .comment-respond,.comment-navigation + .comment-respond {
 		padding-top: 1.6842em;
 	}
-
 	.comment-list .children > li{padding-left: 1.4737em;}
-
 	.comment-author .avatar {
 		height: 56px;
 		margin-right: 1.6842em;
 		top: 3px;
 		width: 56px;
 	}
-
 	.bypostauthor > article .fn::after,.comment-metadata .edit-link::before,.pingback .edit-link::before{
 		top: 8px;
 	}
-
-
 	.comment-list .reply a{padding: 0.4375em 0.875em;}
-
 	.comment-form,.no-comments{padding-top: 1.6842em;}
 
 	embed,iframe,object,video,.entry-attachment,
@@ -3250,14 +3218,11 @@ p > embed,p > iframe,p > object,p > video{margin-bottom:0;}
 	}
 
 	.widecolumn p{margin: 1.6842em 0;}
-
 	.widecolumn p + h2{margin-top: 1.641em;}
-
 	.widecolumn #key,.widecolumn .mu_register #blog_title,.widecolumn .mu_register #user_email,.widecolumn .mu_register #blogname,.widecolumn .mu_register #user_name {
 		font-size: 19px;
 		font-size: 1.9rem;
 	}
-
 	.widecolumn .mu_register #blog_title,.widecolumn .mu_register #user_email,.widecolumn .mu_register #user_name {
 		margin: 0 0 0.421em;
 	}
