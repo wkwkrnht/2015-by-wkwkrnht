@@ -262,6 +262,7 @@ input[type="checkbox"],input[type="radio"]{padding:0;}
 
 #flex{max-width:100%;overflow-y:scroll;}
 #flex .content{flex-direction:row;-webkit-flex-direction:row;justify-content:flex-start;-webkit-justify-content:flex-start;display:flex;display:-webkit-flex;}
+.button{width:65px;height:65px;border-radius:50%;margin:8px 12px;box-shadow:0 1px 6px rgba(0,0,0,.12);float:left;position:relative;}
 
 /**
  * 5.0 - Icon Font
@@ -373,30 +374,30 @@ input[type="checkbox"],input[type="radio"]{padding:0;}
 .social-navigation li{float:left;}
 .social-navigation a{display:block;position:relative;height:3.2em;width:3.2em;}
 .social-navigation a::before{content:"\f07b";font-size:24px;position:absolute;top:0;left:0;}
-.social-navigation a[href*="/feed"]::before,.social-navigation a[href*="/feed/"]::before{content:"\f09e";color:#ffa500;}
-.social-navigation a[href*="feedly.com"]::before{content:"\f143";transform:rotate(-15deg);color:#6cc655;}
+.social-navigation a[href*="/feed"]::before,.social-navigation a[href*="/feed/"]::before{content:"\f09e";color:#2aff00;}
+.social-navigation a[href*="feedly.com"]::before{content:"\f143";color:#2aff00;transform: rotate(-15deg);}
 .social-navigation a[href*="codepen.io"]::before{content:"\f1cb";color:#ffc700;}
 .social-navigation a[href*="digg.com"]::before{content:"\f1a6";}
 .social-navigation a[href*="dribbble.com"]::before{content:"\f17d";}
 .social-navigation a[href*="dropbox.com"]::before{content:"\f16b";color:#00b8ff;}
-.social-navigation a[href*="facebook.com"]::before{content:"\f230";color:#3b5998;}
+.social-navigation a[href*="facebook.com"]::before{content:"\f230";color:#0033ff;}
 .social-navigation a[href*="flickr.com"]::before{content:"\f16e";}
 .social-navigation a[href*="foursquare.com"]::before{content:"\f180";}
-.social-navigation a[href*="plus.google.com"]::before{content:"\f0d5";color:#dc4e41;}
+.social-navigation a[href*="plus.google.com"]::before{content:"\f0d5";color:#ff0033;}
 .social-navigation a[href*="github.com"]::before{content:"\f09b";}
-.social-navigation a[href*="instagram.com"]::before{content:"\f09b";color:#125688;}
+.social-navigation a[href*="instagram.com"]::before{content:"\f09b";}
 .social-navigation a[href*="linkedin.com"]::before{content:"\f0e1";color:#0077b5;}
 .social-navigation a[href*="mailto:"]::before{content:"\f0e0";}
-.social-navigation a[href*="pinterest.com"]::before{content:"\f231";color:#bd081c;}
+.social-navigation a[href*="pinterest.com"]::before{content:"\f231";color:#ff0033;}
 .social-navigation a[href*="getpocket.com"]::before{content:"\f265";color:#ee4056;}
 .social-navigation a[href*="polldaddy.com"]:before{content:"\f200";}
 .social-navigation a[href*="reddit.com"]::before{content:"\f1a1";}
 .social-navigation a[href*="stumbleupon.com"]::before{content:"\f1a4";}
-.social-navigation a[href*="tumblr.com"]::before{content:"\f173";color:#36465d;}
-.social-navigation a[href*="twitter.com"]::before{content:"\f099";color:#55acee;}
-.social-navigation a[href*="twilog.org"]::before{content:"\f099";color:#55acee;}
+.social-navigation a[href*="tumblr.com"]::before{content:"\f173";color:#2c4762;}
+.social-navigation a[href*="twitter.com"]::before{content:"\f099";color:#00b8ff;}
+.social-navigation a[href*="twilog.org"]::before{content:"\f099";color:#00b8ff;}
 .social-navigation a[href*="twilog.org"]::after{content:"\f022";font-family:"FontAwesome";font-size:16px;position:relative;right:1em;bottom:0;}
-.social-navigation a[href*="twipf.jp"]::before{content:"\f099";color:#55acee;}
+.social-navigation a[href*="twipf.jp"]::before{content:"\f099";color:#00b8ff;}
 .social-navigation a[href*="twipf.jp"]::after{content:"\f007";font-family:"FontAwesome";font-size:16px;position:relative;right:0;bottom:0;}
 .social-navigation a[href*="vimeo.com"]::before{content:"\f27d";}
 .social-navigation a[href*="youtube.com"]::before{content:"\f167";color:#ff0033;}
@@ -2303,8 +2304,9 @@ p > embed,p > iframe,p > object,p > video{margin-bottom:0;}
 	.entry-title{font-size:24px;margin:0 15px;}
     .copyright{color:#ffcc00;}
     .nav-links{margin-top:10px;}
-    #page-top,.share{width:50px;height:50px;}
+    #page-top,.button{width:50px;height:50px;}
 	#page-top{line-height:50px;}
+	.button{margin:5px;}
 }
 
 /**
