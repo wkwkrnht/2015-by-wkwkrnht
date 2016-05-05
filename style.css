@@ -11,10 +11,10 @@ Text Domain: twentyfifteen
 /**
  * Table of Contents
  *
- * 1.0 - Reset
- * 2.0 - Typography
- * 3.0 - Elements
- * 4.0 - Forms
+ * 1.0 - Elements
+ * 2.0 - Forms
+ * 3.0 - 
+ * 4.0 - 
  * 5.0 - Icon Font
  * 7.0 - Accessibility
  * 8.0 - Alignments
@@ -41,9 +41,7 @@ Text Domain: twentyfifteen
  */
 
 
-/**
- * 1.0 - Reset
- */
+/* 1.0 - Elements */
 
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{
 	border: 0;
@@ -62,41 +60,19 @@ html{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-
 *,*::before,*::after{-webkit-box-sizing:inherit;-moz-box-sizing:inherit;box-sizing:inherit;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 
 article,aside,details,figcaption,figure,footer,header,main,nav,section{display:block;}
-
-ol,ul{list-style:none;}
-
-table{border-collapse:separate;border-spacing:0;}
-caption,th,td{font-weight:normal;text-align:left;}
-
 fieldset{min-width:inherit;}
-
-blockquote::before,blockquote::after,q::before,q::after{content:"";}
-blockquote,q{-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;quotes:none;}
-
+del{opacity:0.8;}
 a{color:#333;text-decoration:none;}
 a:hover,a:focus{color:#707070;color:rgba(51,51,51,0.7);}
 a:focus{outline:2px solid #c1c1c1;outline:2px solid rgba(51, 51, 51, 0.3);}
 a:hover,a:active{outline:0;}
 a img{border:0;}
 
-::selection{background:#ffcc00;}
-::-moz-selection{background:#ffcc00;}
-
-
-/**
- * 2.0 Typography
- */
-
 body,button,input,select,textarea{color:#333;font-family:"Noto Serif",serif;font-size:15px;font-size:1.5rem;line-height:1.6;}
-
 h1,h2,h3,h4,h5,h6{clear:both;font-weight:700;}
-
 p{margin-bottom:1.6em;}
-
 b,strong{font-weight:700;}
-
 dfn,cite,em,i{font-style:italic;}
-
 blockquote{
 	border-left: 4px solid #707070;
 	border-left: 4px solid rgba(51, 51, 51, 0.7);
@@ -118,20 +94,13 @@ blockquote cite,blockquote small {
 	font-family: "Noto Sans", sans-serif;
 	line-height: 1.6;
 }
-
 blockquote em,blockquote i,blockquote cite{font-style:normal;}
 blockquote strong,blockquote b{font-weight:400;}
+blockquote::before,blockquote::after,q::before,q::after{content:"";}
+blockquote,q{-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;quotes:none;}
 
 address{font-style:italic;margin:0 0 1.6em;}
-
-code,kbd,tt,var,samp,pre{
-	font-family: Inconsolata, monospace;
-	-webkit-hyphens: none;
-	-moz-hyphens: none;
-	-ms-hyphens: none;
-	hyphens: none;
-}
-
+code,kbd,tt,var,samp,pre{font-family:Inconsolata,monospace;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;}
 pre{
 	background-color: transparent;
 	background-color: rgba(0, 0, 0, 0.01);
@@ -146,32 +115,18 @@ pre{
 	white-space: pre-wrap;
 	word-wrap: break-word;
 }
-
 abbr[title]{border-bottom:1px dotted #eaeaea;border-bottom:1px dotted rgba(51,51,51,0.1);cursor:help;}
-
 mark,ins{background-color:#fff9c0;text-decoration:none;}
-
-sup,sub{
-	font-size: 75%;
-	height: 0;
-	line-height: 0;
-	position: relative;
-	vertical-align: baseline;
-}
-
+sup,sub{font-size:75%;height:0;line-height:0;position:relative;vertical-align:baseline;}
 sup{bottom:1ex;}
 sub{top:.5ex;}
 small{font-size:75%;}
 big{font-size:125%;}
 
 
-/**
- * 3.0 Elements
- */
-
 hr{background-color:#eaeaea;background-color:rgba(51,51,51,0.1);border:0;height:1px;margin-bottom:1.6em;}
 
-ul,ol{margin:0 0 1.6em 1.3333em;}
+ul,ol{margin:0 0 1.6em 1.3333em;list-style:none;}
 ul{list-style:disc;}
 ol{list-style:decimal;}
 li > ul,li > ol{margin-bottom:0;}
@@ -183,63 +138,25 @@ dd{margin-bottom:1.6em;}
 
 
 table,th,td{border:1px solid #eaeaea;border:1px solid rgba(51,51,51,0.1);}
-table {
-	border-collapse: separate;
-	border-spacing: 0;
-	border-width: 1px 0 0 1px;
-	margin: 0 0 1.6em;
-	table-layout: fixed; /* Prevents HTML tables from becoming too wide */
-	width: 100%;
-}
+table{border-collapse:separate;border-spacing:0;border-width:1px 0 0 1px;margin:0 0 1.6em;table-layout:fixed;width:100%;}
 caption,th,td{font-weight:normal;text-align:left;}
 th{font-weight:700;}
 th,td{padding:.4em;border-width:0 1px 1px 0;}
 
 
-img{
-	-ms-interpolation-mode: bicubic;
-	border: 0;
-	height: auto;
-	max-width: 100%;
-	vertical-align: middle;
-}
-
+img{-ms-interpolation-mode:bicubic;border:0;height:auto;max-width:100%;vertical-align:middle;}
 figure{margin:0;}
 
-del{opacity:0.8;}
-
-.marker{background-color:rgba(255,255,0,.8);}
-.qrcode{display:inline-block;margin:3px;max-height:200px;max-width:200px;}
-.hatenablogcard{clear:both;margin:10px 0;height:155px;width:100%;max-width:700px;}
-#movetop{color:#fff;background-color:#ffcc00;box-shadow:0 1px 6px rgba(0,0,0,.12);font-size:26px;font-weight:1200;border-radius:50%;line-height:70px;width:70px;height:70px;margin:1em auto;display:block;cursor:pointer;text-decoration:none;text-align:center;}
-
 /* Placeholder text color -- selectors need to be separate to work. */
+::-webkit-input-placeholder{color:rgba(51,51,51,0.7);font-family:"Noto Sans",sans-serif;}
+:-moz-placeholder{color:rgba(51,51,51,0.7);font-family:"Noto Sans",sans-serif;}
+::-moz-placeholder{color:rgba(51,51,51,0.7);font-family:"Noto Sans",sans-serif;opacity:1;}
+:-ms-input-placeholder{color:rgba(51,51,51,0.7);font-family:"Noto Sans",sans-serif;}
 
-::-webkit-input-placeholder {
-	color: rgba(51, 51, 51, 0.7);
-	font-family: "Noto Sans", sans-serif;
-}
+::selection{background:#ffcc00;}
+::-moz-selection{background:#ffcc00;}
 
-:-moz-placeholder {
-	color: rgba(51, 51, 51, 0.7);
-	font-family: "Noto Sans", sans-serif;
-}
-
-::-moz-placeholder {
-	color: rgba(51, 51, 51, 0.7);
-	font-family: "Noto Sans", sans-serif;
-	opacity: 1; /* Since FF19 lowers the opacity of the placeholder by default */
-}
-
-:-ms-input-placeholder {
-	color: rgba(51, 51, 51, 0.7);
-	font-family: "Noto Sans", sans-serif;
-}
-
-
-/**
- * 4.0 Forms
- */
+/* 2.0 Forms */
 
 button,input,select,textarea {
 	background-color: #f7f7f7;
@@ -252,13 +169,7 @@ button,input,select,textarea {
 	vertical-align: baseline;
 }
 
-button,input {
-	-webkit-hyphens: none;
-	-moz-hyphens: none;
-	-ms-hyphens: none;
-	hyphens: none;
-	line-height: normal;
-}
+button,input{-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;line-height:normal;}
 
 input,textarea {
 	background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)); /* Removing the inner shadow on iOS inputs */
@@ -308,9 +219,7 @@ input[type="submit"]:focus {
 
 input[type="search"]{-webkit-appearance:textfield;}
 
-input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration {
-	-webkit-appearance: none;
-}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;}
 
 button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
 
@@ -704,20 +613,10 @@ input[type="checkbox"],input[type="radio"]{padding:0;}
 	top: -9999em;
 }
 
-.logged-in .site .skip-link {
-	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
-	font: bold 14px/normal "Open Sans", sans-serif;
-}
+.logged-in .site .skip-link{box-shadow:0 0 2px 2px rgba(0,0,0,0.6);font:bold 14px/normal "Open Sans",sans-serif;}
+.site .skip-link:focus{clip:auto;height:auto;left:6px;top:7px;width:auto;z-index:100000;}
 
-.site .skip-link:focus {
-	clip: auto;
-	height: auto;
-	left: 6px;
-	top: 7px;
-	width: auto;
-	z-index: 100000;
-}
-
+#movetop{color:#fff;background-color:#ffcc00;box-shadow:0 1px 6px rgba(0,0,0,.12);font-size:26px;font-weight:1200;border-radius:50%;line-height:70px;width:70px;height:70px;margin:1em auto;display:block;cursor:pointer;text-decoration:none;text-align:center;}
 
 /**
  * 8.0 Alignments
@@ -1079,6 +978,10 @@ a.post-thumbnail:hover,a.post-thumbnail:focus{opacity:0.85;}
 .entry-content h3{border-bottom:8px solid #ffcc00;background-color:rgba(215,215,215,.4);}
 .entry-content h4{border-left:10px solid #ffcc00;background-color:#fff;}
 .entry-content h2,.entry-content h3,.entry-content h4{min-height:45px;text-align:center;}
+
+.marker{background-color:rgba(255,255,0,.8);}
+.qrcode{display:inline-block;margin:3px;max-height:200px;max-width:200px;}
+.hatenablogcard{clear:both;margin:10px 0;height:155px;width:100%;max-width:700px;}
 
 .entry-content a,.entry-summary a,.page-content a,.comment-content a,.pingback .comment-body > a{color:#1122cc;border-bottom:none;}
 .entry-content a:hover,

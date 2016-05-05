@@ -1,67 +1,22 @@
 <?php 
 if(!isset($content_width)){$content_width=660;}
 if(version_compare($GLOBALS['wp_version'],'4.1-alpha','<')){require get_template_directory() . '/inc/back-compat.php';}
-/** 
- * Sets up theme defaults and registers support for various WordPress features.
- * Note that this function is hooked into the after_setup_theme hook, which
- * runs before the init hook. The init hook is too late for some features, such
- * as indicating support for post thumbnails.
- *
- * @since Twenty Fifteen 1.0
- */
 if(!function_exists('twentyfifteen_setup')):
 function twentyfifteen_setup(){
-	/*
-	 * Make theme available for translation.
-	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on twentyfifteen, use a find and replace
-	 * to change 'twentyfifteen' to the name of your theme in all the template files
-	 */
 	load_theme_textdomain('twentyfifteen',get_template_directory() . '/languages');
 	add_theme_support('automatic-feed-links');// Add default posts and comments RSS feed links to head.
-
-	/*
-	 * Let WordPress manage the document title.
-	 * By adding theme support, we declare that this theme does not use a
-	 * hard-coded <title> tag in the document head, and expect WordPress to
-	 * provide it for us.
-	 */
 	add_theme_support('title-tag');
-
-	/*
-	 * Enable support for Post Thumbnails on posts and pages.
-	 * Enable support for custom logo.
-	 * See: https://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
-	 */
 	add_theme_support('custom-logo',array('height'=>248,'width'=>248,'flex-height'=>true,));
 	add_theme_support('post-thumbnails');
 	set_post_thumbnail_size(825,510,true);
 	add_image_size('related',150,150,true);
-
-	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus(array('primary'=>__('Primary Menu','twentyfifteen'),'social'=>__('Social Links Menu','twentyfifteen'),));
-
-	/*
-	 * Switch default core markup for search form, comment form, and comments
-	 * to output valid HTML5.
-	 * Enable support for Post Formats.
-	 */
 	add_theme_support('html5',array('search-form','comment-form','comment-list','gallery','caption'));
 	add_theme_support('post-formats',array('aside','image','video','quote','link','gallery','status','audio','chat'));
-
 	$color_scheme  = twentyfifteen_get_color_scheme();
 	$default_color = trim( $color_scheme[0], '#' );
-
-	// Setup the WordPress core custom background feature.
 	add_theme_support('custom-background',apply_filters('twentyfifteen_custom_background_args',array('default-color'=>$default_color,'default-attachment'=>'fixed',)));
-
-	/*
-	 * This theme styles the visual editor to resemble the theme style,
-	 * specifically font, colors, icons, and column width.
-	 */
 	add_editor_style(array('css/editor-style.css',twentyfifteen_fonts_url()));
-
-	// Indicate widget sidebars can use selective refresh in the Customizer.
 	add_theme_support('customize-selective-refresh-widgets');
 }
 endif;
@@ -133,13 +88,6 @@ remove_action('wp_head','wp_generator');
 remove_action('wp_head','print_emoji_detection_script',7);
 remove_action('wp_print_styles','print_emoji_styles');
 
-/**
- * Add featured image as background image to post navigation elements.
- *
- * @since Twenty Fifteen 1.0
- *
- * @see wp_add_inline_style()
- */
 function twentyfifteen_post_nav_background(){if(!is_single()){return;}
 	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
 	$next     = get_adjacent_post( false, '', false );
@@ -167,31 +115,14 @@ function twentyfifteen_post_nav_background(){if(!is_single()){return;}
 }
 add_action('wp_enqueue_scripts','twentyfifteen_post_nav_background');
 
-/**
- * Display descriptions in main navigation.
- * Add a `screen-reader-text` class to the search form's submit button.
- * 
- *
- * @param string  $item_output The menu item output.
- * @param WP_Post $item        Menu item object.
- * @param int     $depth       Depth of the menu.
- * @param array   $args        wp_nav_menu() arguments.
- * @return string Menu item with possible description.
- */
 function twentyfifteen_nav_description($item_output,$item,$depth,$args){
-	if('primary'==$args->theme_location&&$item->description ){$item_output=str_replace( $args->link_after . '</a>','<div class="menu-item-description">' . $item->description . '</div>' . $args->link_after . '</a>',$item_output);}
+	if('primary'==$args->theme_location&&$item->description){$item_output=str_replace( $args->link_after . '</a>','<div class="menu-item-description">' . $item->description . '</div>' . $args->link_after . '</a>',$item_output);}
 	return $item_output;
 }
 add_filter('walker_nav_menu_start_el','twentyfifteen_nav_description',10,4);
 function twentyfifteen_search_form_modify($html){return str_replace('class="search-submit"','class="search-submit screen-reader-text"',$html);}
 add_filter('get_search_form','twentyfifteen_search_form_modify');
 
-/**
- * Implement the Custom Header feature.
- * Custom template tags for this theme.
- * Customizer additions.
- * @since Twenty Fifteen 1.0
- */
 include(get_template_directory() . '/inc/custom-header.php');
 include(get_template_directory() . '/inc/template-tags.php');
 include(get_template_directory() . '/inc/customizer.php');
@@ -388,11 +319,11 @@ function add_dashboard_widgets(){
 }
 add_action('wp_dashboard_setup','add_dashboard_widgets');
 //カテゴリーフィルター&クイックタグ追加&抜粋制限
-/*function post_filter_categories(){ ?>
+function post_filter_categories(){ ?>
 <script type="text/javascript">
 	jQuery(function($){function catFilter(header,list){var form =$('<form>').attr({'class':'filterform','action':'#'}).css({'position':'absolute','top':'38px'}),input=$('<input>').attr({'class':'filterinput','type':'text','placeholder':'カテゴリー検索'});$(form).append(input).appendTo(header);$(header).css({'padding-top':'42px'});$(input).change(function(){var filter=$(this).val();if(filter){$(list).find('label:not(:contains('+filter+'))').parent().hide();$(list).find('label:contains('+filter+')').parent().show();}else{$(list).find('li').show();}return false;}).keyup(function(){$(this).change();});}$(function(){catFilter($('#category-all'),$('#categorychecklist'));});});
 </script>
-<?php }*/
+<?php }
 function appthemes_add_quicktags(){
     if(wp_script_is('quicktags')){ ?>
     <script type="text/javascript">
@@ -411,8 +342,8 @@ function appthemes_add_quicktags(){
 		QTags.addButton('qt-hatenablogcard','はてなブログカード','[hatenaBlogcard url=',']');
     </script>
 <?php }}
-/*add_action('admin_head-post-new.php','post_filter_categories');
-add_action('admin_head-post.php','post_filter_categories');*/
+add_action('admin_head-post-new.php','post_filter_categories');
+add_action('admin_head-post.php','post_filter_categories');
 add_action('admin_print_footer_scripts','appthemes_add_quicktags');
 //カスタマイザー弄り&投稿記事一覧に諸々表示
 function add_posts_columns($columns){$columns['thumbnail']='サムネイル';$columns['postid']='ID';$columns['slug']='スラッグ';$columns['count']='文字数';echo '<style type="text/css">.fixed .column-thumbnail{width:120px;}.fixed .column-postid{width:2%;}.fixed .column-slug, .fixed .column-count{width:5%;}</style>';return $columns;}
@@ -427,7 +358,7 @@ function theme_customize($wp_customize){
 	$wp_customize->add_setting('Adminnav_Dsp',array('type'=>'theme_mod',));
     $wp_customize->add_control('Adminnav_Dsp',array('section'=>'sns_section','settings'=>'Adminnav_Dsp','label'=>'管理者向けメニューを表示する','type'=>'checkbox'));
 	$wp_customize->add_setting(ms_icon);
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize,array('settings'=>ms_icon,'section'=>sns_section,'settings'=>'ms_icon','label'=>'Windowsタイルの画像')));
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize,array('settings'=>'ms_icon','section'=>'sns_section','settings'=>'ms_icon','label'=>'Windowsタイルの画像')));
 	$wp_customize->add_setting('referrer_setting',array('default'=>'value1','type'=>'theme_mod',));
 	$wp_customize->add_control('referrer_setting',array('settings'=>'referrer_setting','label'=>'メタタグのリファラーの値','section'=>'sns_section','type'=>'radio','choices'=>array('value1'=>'default','value2'=>'unsafe-url','value3'=>'origin-when-crossorigin','value4'=>'none-when-downgrade','value5'=>'none',),));
 	$wp_customize->add_setting('entryfooter_txt',array('type'=>'option',));

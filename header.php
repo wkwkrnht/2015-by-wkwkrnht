@@ -24,7 +24,7 @@
 	<link rel="dns-prefetch" href="//www.google-analytics.com">
 	<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
 	<?php if(is_singular()):$category=get_the_category();$catname=$category[0]->cat_name;
-		echo'<meta name="category" content="' . $catname . '">'
+		echo'<meta name="category" content="' . $catname . '">';
 		echo'<link rel="publisher" href="http://plus.google.com/' . the_author_meta("Googleplus") . '">';
 		echo'<link rel="alternate" type="application/json+oembed" href="' . home_url() . '/wp-json/oembed/1.0/embed?url=' . get_permalink() . '" />';
 		echo'<link rel="alternate" type="text/xml+oembed" href="' . home_url() . '/wp-json/oembed/1.0/embed?url=' . get_permalink() . ';format=xml" />';
