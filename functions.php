@@ -21,7 +21,6 @@ function twentyfifteen_setup(){
 }
 endif;
 add_action('after_setup_theme','twentyfifteen_setup');
-
 function twentyfifteen_widgets_init(){
 	register_sidebar(array(
 		'name'         =>__('Widget Area','twentyfifteen'),
@@ -43,7 +42,6 @@ function twentyfifteen_widgets_init(){
 	));
 }
 add_action('widgets_init','twentyfifteen_widgets_init');
-
 if(!function_exists('twentyfifteen_fonts_url')):
 function twentyfifteen_fonts_url(){$fonts_url='';$fonts=array();$subsets='latin,latin-ext';
 	if('off'!==_x('on','Noto Sans font: on or off','twentyfifteen')){$fonts[]='Noto Sans:400italic,700italic,400,700';}
@@ -55,7 +53,6 @@ function twentyfifteen_fonts_url(){$fonts_url='';$fonts=array();$subsets='latin,
 	return $fonts_url;
 }
 endif;
-
 function twentyfifteen_scripts(){
 	wp_enqueue_style('twentyfifteen-fonts',twentyfifteen_fonts_url(),array(),null);
 	wp_enqueue_style('twentyfifteen-style',get_stylesheet_uri());
@@ -153,7 +150,14 @@ function twentyfifteen_entry_meta(){if(is_sticky()&&is_home()&&!is_paged()):prin
 }
 if(!function_exists('twentyfifteen_post_thumbnail')):function twentyfifteen_post_thumbnail(){if(post_password_required()||is_attachment()||!has_post_thumbnail()){return;}if(is_singular()):?><div class="post-thumbnail"><?php the_post_thumbnail();?></div><?php else:?><a class="post-thumbnail" href="<?php the_permalink();?>" aria-hidden="true"><?php the_post_thumbnail('post-thumbnail',array('alt'=>get_the_title()));?></a><?php endif;}endif;
 function get_first_post_year(){$year=null;query_posts('posts_per_page=1&order=ASC');if(have_posts()):while(have_posts()):the_post();$year=intval(get_the_time('Y'));endwhile;endif;wp_reset_query();return $year;}
-//サムネサイズ追加&Alt属性がないIMGタグにalt=""を追加する&サムネ自動設定
+//Alt属性がないIMGタグにalt=""を追加する&サムネ自動設定
+function add_lity_property($content){
+  if(is_feed()||is_preview()||wp_is_mobile())return $content;
+  if(false!==strpos($content,'data-lity=""'))return $content;
+  $content=preg_replace('/<a([^>]+?(\.jpe?g|\.png|\.gif|\.gif|\/\/www\.youtube\.com\/watch\?v=[^"]+|\/\/vimeo\.com\/[^"]+|\\/\/[mapsw]+\.google\.[^\/]+?\/maps\?q=[^"]+s)[\'\"][^>]*?)>\s*(.+?)\s*<\/a>/i','<a${1} data-lity="">${3}</a>',$content);
+  return $content;
+}
+add_filter('the_content','add_lity_property',10);
 add_filter('the_content',function($content){return preg_replace('/<img((?![^>]*alt=)[^>]*)>/i','<img alt=""${1}>',$content);});
 require_once(ABSPATH . '/wp-admin/includes/image.php');
 function fetch_thumbnail_image($matches,$key,$post_content,$post_id){
@@ -324,6 +328,11 @@ function post_filter_categories(){ ?>
 	jQuery(function($){function catFilter(header,list){var form =$('<form>').attr({'class':'filterform','action':'#'}).css({'position':'absolute','top':'38px'}),input=$('<input>').attr({'class':'filterinput','type':'text','placeholder':'カテゴリー検索'});$(form).append(input).appendTo(header);$(header).css({'padding-top':'42px'});$(input).change(function(){var filter=$(this).val();if(filter){$(list).find('label:not(:contains('+filter+'))').parent().hide();$(list).find('label:contains('+filter+')').parent().show();}else{$(list).find('li').show();}return false;}).keyup(function(){$(this).change();});}$(function(){catFilter($('#category-all'),$('#categorychecklist'));});});
 </script>
 <?php }
+function excerpt_count(){ ?>
+<script>
+	jQuery(function($){var count=100;$('#postexcerpt .hndle span').after('<span style=\"padding-left:1em; color:#888; font-size:12px;\">現在の文字数： <span id=\"excerpt-count\"></span> / '+ count +'</span>');$('#excerpt-count').text($('#excerpt').val().length);$('#excerpt').keyup(function(){$('#excerpt-count').text($('#excerpt').val().length);if($(this).val().length>count){$('#excerpt-count, #postexcerpt .inside p').css('color','#f00');}else{$('#excerpt-count, #postexcerpt .inside p').css('color','#888');}});$('#postexcerpt .inside p').html('※ここに入力した内容は一覧画面で <strong>"'+ count +'文字"</strong> までは表示されますが、それ以降は省略表示されます。').css('color', '#888');});
+</script>
+<?php }
 function appthemes_add_quicktags(){
     if(wp_script_is('quicktags')){ ?>
     <script type="text/javascript">
@@ -345,6 +354,9 @@ function appthemes_add_quicktags(){
 add_action('admin_head-post-new.php','post_filter_categories');
 add_action('admin_head-post.php','post_filter_categories');
 add_action('admin_print_footer_scripts','appthemes_add_quicktags');
+add_action('admin_footer-post-new.php','excerpt_count');
+add_action('admin_footer-post.php','excerpt_count');
+add_action('admin_head',function(){echo'<style>.categorydiv div.tabs-panel{max-height:none;}</style>';});
 //カスタマイザー弄り&投稿記事一覧に諸々表示
 function add_posts_columns($columns){$columns['thumbnail']='サムネイル';$columns['postid']='ID';$columns['slug']='スラッグ';$columns['count']='文字数';echo '<style type="text/css">.fixed .column-thumbnail{width:120px;}.fixed .column-postid{width:2%;}.fixed .column-slug, .fixed .column-count{width:5%;}</style>';return $columns;}
 function add_posts_columns_row($column_name,$post_id){if('thumbnail'==$column_name){$thumb=get_the_post_thumbnail($post_id,array(100,100),'thumbnail');echo($thumb)?$thumb:'－';}elseif('postid'===$column_name){echo $post_id;}elseif('slug'===$column_name){$slug=get_post($post_id)->post_name;echo $slug;}elseif('count'===$column_name){$count=mb_strlen(strip_tags(get_post_field('post_content',$post_id)));echo $count;}}
@@ -387,16 +399,6 @@ function theme_customize($wp_customize){
 function is_adminnav_dsp(){return get_theme_mod('Adminnav_Dsp','false');}
 function how_referrer_setting(){return get_theme_mod('referrer_setting','value1');}
 function get_the_logo_image_url(){return esc_url(get_theme_mod('ms_icon'));}
-function excerpt_count(){ ?>
-<script>
-	(function($){var count=100;$('#postexcerpt .hndle span').after('<span style=\"padding-left:1em; color:#888; font-size:12px;\">現在の文字数： <span id=\"excerpt-count\"></span> / '+ count +'</span>');$('#excerpt-count').text($('#excerpt').val().length);
-		$('#excerpt').keyup(function(){$('#excerpt-count').text($('#excerpt').val().length);if($(this).val().length>count){$('#excerpt-count, #postexcerpt .inside p').css('color','#f00');}else{$('#excerpt-count, #postexcerpt .inside p').css('color','#888');}});
-		$('#postexcerpt .inside p').html('※ここに入力した内容は一覧画面で <strong>"'+ count +'文字"</strong> までは表示されますが、それ以降は省略表示されます。').css('color', '#888');
-	}(jQuery));
-</script>
-<?php }
-add_action('admin_footer-post-new.php','excerpt_count');
-add_action('admin_footer-post.php','excerpt_count');
 //プロフィール欄追加(the_author_meta('twitter')で表示)
 function my_new_contactmethods($contactmethods){
   $contactmethods['TEL']='TEL';
