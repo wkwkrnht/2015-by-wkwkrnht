@@ -422,10 +422,10 @@ input[type="checkbox"],input[type="radio"]{padding:0;}
 	position:fixed;
 	bottom:20%;
 	right:50%;
-	text-align: center;
+	text-align:center;
 	-webkit-transform:translateY(-50%);
 	-ms-transform:translateY(-50%);
-	transform:translateY(-50%);	
+	transform:translateY(-50%);
 }
 .secondary-toggle::before{line-height:40px;width:40px;content:"\f0c9";border:none;color:#333;}
 .secondary-toggle:hover,.secondary-toggle:focus{background-color:transparent;border:1px solid #c1c1c1;border:1px solid rgba(51,51,51,0.3);outline:0;}
