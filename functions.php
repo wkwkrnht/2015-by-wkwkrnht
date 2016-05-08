@@ -150,6 +150,11 @@ function twentyfifteen_entry_meta(){if(is_sticky()&&is_home()&&!is_paged()):prin
 }
 if(!function_exists('twentyfifteen_post_thumbnail')):function twentyfifteen_post_thumbnail(){if(post_password_required()||is_attachment()||!has_post_thumbnail()){return;}if(is_singular()):?><div class="post-thumbnail"><?php the_post_thumbnail();?></div><?php else:?><a class="post-thumbnail" href="<?php the_permalink();?>" aria-hidden="true"><?php the_post_thumbnail('post-thumbnail',array('alt'=>get_the_title()));?></a><?php endif;}endif;
 function get_first_post_year(){$year=null;query_posts('posts_per_page=1&order=ASC');if(have_posts()):while(have_posts()):the_post();$year=intval(get_the_time('Y'));endwhile;endif;wp_reset_query();return $year;}
+if(!function_exists('twentyfifteen_excerpt_more')&&!is_admin()):
+function twentyfifteen_excerpt_more($more){$link=sprintf('<a href="%1$s" class="more-link">%2$s</a>',esc_url(get_permalink(get_the_ID())),sprintf(__('Continue reading %s','twentyfifteen'),'<span class="screen-reader-text">' . get_the_title( get_the_ID() ) . '</span>'));return' &hellip; ' . $link;}
+add_filter('excerpt_more', 'twentyfifteen_excerpt_more' );
+endif;
+if(!function_exists('twentyfifteen_get_link_url')):function twentyfifteen_get_link_url(){$has_url=get_url_in_content(get_the_content());return $has_url?$has_url:apply_filters('the_permalink',get_permalink());}endif;
 //Alt属性がないIMGタグにalt=""を追加する&サムネ自動設定
 function add_lity_property($content){
   if(is_feed()||is_preview()||wp_is_mobile())return $content;

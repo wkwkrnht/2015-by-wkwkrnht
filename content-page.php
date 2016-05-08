@@ -10,6 +10,4 @@
 		<?php wp_link_pages(array('before'=>'<div class="page-links"><span class="page-links-title">' . __('Pages:','twentyfifteen' ) . '</span>','after'=>'</div>','link_before'=>'<span>','link_after'=>'</span>','pagelink'=>'<span class="screen-reader-text">' . __('Page','twentyfifteen' ) . ' </span>%','separator'=>'<span class="screen-reader-text">,</span>',));?>
 	</div>
 	<?php get_sidebar('entry-footer');?>
-	<div id="movetop">∧</div>
-	<script>jQuery('#movetop').click(function(){jQuery('body,html').animate({scrollTop:0},500);});</script>
 </article>

@@ -10,6 +10,4 @@
 			if(is_single()&&get_the_author_meta('description')):get_template_part('parts/author-bio');endif;?>
 	</div>
 	<?php get_sidebar('entry-footer');?>
-	<div id="movetop">∧</div>
-	<script>jQuery('#movetop').click(function(){jQuery('body,html').animate({scrollTop:0},500);});</script>
 </article>
