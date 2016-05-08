@@ -50,7 +50,6 @@
             <File name="inc\back-compat.php" />
             <File name="inc\custom-header.php" />
             <File name="inc\customizer.php" />
-            <File name="inc\template-tags.php" />
         </Folder>
         <Folder name="js">
             <File name="js\color-scheme-control.js" />

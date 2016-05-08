@@ -112,6 +112,24 @@ function twentyfifteen_post_nav_background(){if(!is_single()){return;}
 }
 add_action('wp_enqueue_scripts','twentyfifteen_post_nav_background');
 
+if(!function_exists('twentyfifteen_comment_nav')):
+function twentyfifteen_comment_nav(){
+	if(get_comment_pages_count()>1&&get_option('page_comments')):
+	?>
+	<nav class="navigation comment-navigation" role="navigation">
+		<h2 class="screen-reader-text"><?php _e( 'Comment navigation', 'twentyfifteen' ); ?></h2>
+		<div class="nav-links">
+			<?php
+				if($prev_link=get_previous_comments_link(__('Older Comments','twentyfifteen'))):printf('<div class="nav-previous">%s</div>',$prev_link);endif;
+				if($next_link=get_next_comments_link(__('Newer Comments','twentyfifteen')):printf('<div class="nav-next">%s</div>',$next_link);endif;	
+			?>
+		</div>
+	</nav>
+	<?php
+	endif;
+}
+endif;
+
 function twentyfifteen_nav_description($item_output,$item,$depth,$args){
 	if('primary'==$args->theme_location&&$item->description){$item_output=str_replace( $args->link_after . '</a>','<div class="menu-item-description">' . $item->description . '</div>' . $args->link_after . '</a>',$item_output);}
 	return $item_output;
@@ -119,9 +137,10 @@ function twentyfifteen_nav_description($item_output,$item,$depth,$args){
 add_filter('walker_nav_menu_start_el','twentyfifteen_nav_description',10,4);
 function twentyfifteen_search_form_modify($html){return str_replace('class="search-submit"','class="search-submit screen-reader-text"',$html);}
 add_filter('get_search_form','twentyfifteen_search_form_modify');
+function twentyfifteen_categorized_blog(){if(false===($all_the_cool_cats=get_transient('twentyfifteen_categories'))){$all_the_cool_cats=get_categories(array('fields'=>'ids','hide_empty'=>1,'number'=>2,));$all_the_cool_cats=count($all_the_cool_cats);set_transient('twentyfifteen_categories',$all_the_cool_cats);}if($all_the_cool_cats>1):return true;else:return false;endif;}
+
 
 include(get_template_directory() . '/inc/custom-header.php');
-include(get_template_directory() . '/inc/template-tags.php');
 include(get_template_directory() . '/inc/customizer.php');
 
 //カスタムロゴ&
