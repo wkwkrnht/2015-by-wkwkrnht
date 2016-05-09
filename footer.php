@@ -1,5 +1,6 @@
 		<?php if(is_user_logged_in()):echo'<div class="sp_list">';$paged=get_query_var('paged');query_posts(array('paged'=>$paged,'post_status'=>array('publish','future','draft')));echo'</div>';wp_reset_query();endif;?>
 	</section>
+	<button class="secondary-toggle"><?php _e('Menu and widgets','twentyfifteen');?></button>
 </div>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
