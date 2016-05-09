@@ -3,6 +3,7 @@
 </div>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+<script src="<?php echo home_url();?>/wp-content/themes/2015-by-wkwkrnht/js/lity.min.js"></script>
 <script>
 	jQuery('#movetop').click(function(){jQuery('body,html').animate({scrollTop:0},500);});
 	jQuery(document.ready(function(){jQuery('code').each(function(i,block){hljs.highlightBlock(block);});}));
