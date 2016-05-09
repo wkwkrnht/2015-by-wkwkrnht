@@ -84,7 +84,6 @@ remove_action('wp_head','jetpack_og_tags');
 remove_action('wp_head','wp_generator');
 remove_action('wp_head','print_emoji_detection_script',7);
 remove_action('wp_print_styles','print_emoji_styles');
-
 function twentyfifteen_post_nav_background(){if(!is_single()){return;}
 	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
 	$next     = get_adjacent_post( false, '', false );
@@ -138,8 +137,6 @@ add_filter('walker_nav_menu_start_el','twentyfifteen_nav_description',10,4);
 function twentyfifteen_search_form_modify($html){return str_replace('class="search-submit"','class="search-submit screen-reader-text"',$html);}
 add_filter('get_search_form','twentyfifteen_search_form_modify');
 function twentyfifteen_categorized_blog(){if(false===($all_the_cool_cats=get_transient('twentyfifteen_categories'))){$all_the_cool_cats=get_categories(array('fields'=>'ids','hide_empty'=>1,'number'=>2,));$all_the_cool_cats=count($all_the_cool_cats);set_transient('twentyfifteen_categories',$all_the_cool_cats);}if($all_the_cool_cats>1):return true;else:return false;endif;}
-
-
 include(get_template_directory() . '/inc/custom-header.php');
 include(get_template_directory() . '/inc/customizer.php');
 
@@ -148,7 +145,6 @@ if(!function_exists('twentyfifteen_the_custom_logo')):function twentyfifteen_the
 function twentyfifteen_category_transient_flusher(){delete_transient('twentyfifteen_categories');}
 add_action('edit_category','twentyfifteen_category_transient_flusher');
 add_action('save_post','twentyfifteen_category_transient_flusher');
-
 //メタとサムネ&コピーライト
 function twentyfifteen_entry_meta(){if(is_sticky()&&is_home()&&!is_paged()):printf('<span class="sticky-post">%s</span>',__('Featured','twentyfifteen'));endif;//投稿を先頭に固定
   //投稿日|更新日|投稿者|カテゴリー|タグ|画像サイズ(横 x 縦)表示|コメントをどうぞ|コメント数(順同)
@@ -175,13 +171,6 @@ add_filter('excerpt_more', 'twentyfifteen_excerpt_more' );
 endif;
 if(!function_exists('twentyfifteen_get_link_url')):function twentyfifteen_get_link_url(){$has_url=get_url_in_content(get_the_content());return $has_url?$has_url:apply_filters('the_permalink',get_permalink());}endif;
 //Alt属性がないIMGタグにalt=""を追加する&サムネ自動設定
-function add_lity_property($content){
-  if(is_feed()||is_preview()||wp_is_mobile())return $content;
-  if(false!==strpos($content,'data-lity=""'))return $content;
-  $content=preg_replace('/<a([^>]+?(\.jpe?g|\.png|\.gif|\.gif|\/\/www\.youtube\.com\/watch\?v=[^"]+|\/\/vimeo\.com\/[^"]+|\\/\/[mapsw]+\.google\.[^\/]+?\/maps\?q=[^"]+s)[\'\"][^>]*?)>\s*(.+?)\s*<\/a>/i','<a${1} data-lity="">${3}</a>',$content);
-  return $content;
-}
-add_filter('the_content','add_lity_property',10);
 add_filter('the_content',function($content){return preg_replace('/<img((?![^>]*alt=)[^>]*)>/i','<img alt=""${1}>',$content);});
 require_once(ABSPATH . '/wp-admin/includes/image.php');
 function fetch_thumbnail_image($matches,$key,$post_content,$post_id){
@@ -393,8 +382,6 @@ function theme_customize($wp_customize){
     $wp_customize->add_section('sns_section',array('title'=>'独自設定','description'=>'このテーマの独自設定','priority'=>1,));
 	$wp_customize->add_setting('Adminnav_Dsp',array('type'=>'theme_mod',));
     $wp_customize->add_control('Adminnav_Dsp',array('section'=>'sns_section','settings'=>'Adminnav_Dsp','label'=>'管理者向けメニューを表示する','type'=>'checkbox'));
-	$wp_customize->add_setting(ms_icon);
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize,array('settings'=>'ms_icon','section'=>'sns_section','settings'=>'ms_icon','label'=>'Windowsタイルの画像')));
 	$wp_customize->add_setting('referrer_setting',array('default'=>'value1','type'=>'theme_mod',));
 	$wp_customize->add_control('referrer_setting',array('settings'=>'referrer_setting','label'=>'メタタグのリファラーの値','section'=>'sns_section','type'=>'radio','choices'=>array('value1'=>'default','value2'=>'unsafe-url','value3'=>'origin-when-crossorigin','value4'=>'none-when-downgrade','value5'=>'none',),));
 	$wp_customize->add_setting('entryfooter_txt',array('type'=>'option',));

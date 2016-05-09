@@ -6,18 +6,16 @@
 	<meta name="viewport" content="width=device-width">
 	<meta name="HandheldFriendly" content="true">
 	<meta name="viewport" content="width=device-width">
-	<meta name="referrer" content="<?php echo get_option('referrer_setting');?>" />
+	<meta name="referrer" content="<?php echo get_option('referrer_setting');?>">
 	<meta name="google-site-verification" content="<?php echo get_option('Google_Webmaster');?>">
 	<meta name="msvalidate.01" content="<?php echo get_option('Bing_Webmaster');?>">
 	<meta name="theme-color" content="<?php echo get_option('GoogleChrome_URLbar');?>">
-	<meta name="msapplication-TileImage" content="<?php echo get_option('ms_icon');?>"/>
-	<meta name="msapplication-TileColor" content="<?php echo get_option('GoogleChrome_URLbar');?>"/>
 	<meta http-equiv="cleartype" content="on">
 	<meta name="renderer" content="webkit">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo('pingback_url');?>">
 	<link rel="fluid-icon" href="<?php echo get_option('icon');?>" title="<?php bloginfo('title');?>">
-	<link rel="image_src" href="<?php echo get_option('icon');?>" />
+	<link rel="image_src" href="<?php echo get_option('icon');?>">
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
 	<link rel="dns-prefetch" href="//ajax.googleapis.com">
@@ -81,7 +79,6 @@
 	<meta name="twitter:image:height" content="510px">
 	<meta name="twitter:creator" content="@<?php if(is_single()){echo the_author_meta('twitter');}else{echo get_option('Twitter_URL');};?>">
 	<meta name="twitter:site" content="@<?php echo get_option('Twitter_URL');?>">
-	<link rel="stylesheet" href="<?php echo home_url();?>/wp-content/themes/2015-by-wkwkrnht/css/lity.min.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<script>
 		(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);

@@ -1,41 +1,4 @@
 <NotepadPlus>
-    <Project name="2015 for wkwkrnht">
-        <Folder name="img">
-            <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\img\line.svg" />
-            <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\img\no-img.png" />
-        </Folder>
-        <Folder name="parts">
-            <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\parts\bread.php" />
-            <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\parts\related.php" />
-            <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\parts\sharebutton.php" />
-            <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\parts\authorbio.php" />
-            <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\parts\comments.php" />
-        </Folder>
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\.gitattributes" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\.gitignore" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\functions.php" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\style.css" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\header.php" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\sidebar.php" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\sidebar-8.php" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\footer.php" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\index.php" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\archive.php" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\single.php" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\page.php" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\content.php" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\content-card.php" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\content-link.php" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\content-none.php" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\404.php" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\content-page.php" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\content-search.php" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\amp.php" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\search.php" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\author.php" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\screenshot.png" />
-        <File name="C:\Users\xudho\Documents\GitHub\2015-for-wkwkrnht\notopad++sys" />
-    </Project>
     <Project name="2015 by wkwkrnht">
         <Folder name="css">
             <File name="css\editor-style.css" />
@@ -95,4 +58,5 @@
         <File name="style.css" />
         <File name="notepad++sys" />
     </Project>
+    <Project name="2016 by wkwkrnht" />
 </NotepadPlus>
