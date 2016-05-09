@@ -63,7 +63,7 @@ function twentyfifteen_scripts(){
 	if(is_singular()&&comments_open()&&get_option('thread_comments')):wp_enqueue_script('comment-reply');endif;
 	if(is_singular()&&wp_attachment_is_image()):wp_enqueue_script('twentyfifteen-keyboard-image-navigation',get_template_directory_uri() . '/js/keyboard-image-navigation.js',array('jquery'),'20141010');endif;
 	if(is_singular(array('post','page'))):wp_enqueue_style('wp-embed-template-ie');wp_enqueue_style('oficial_wp_embed_style',includes_url('css/wp-embed-template.min.css'));wp_enqueue_script('oficial_oembed_script',includes_url('js/wp-embed-template.min.js'),array(),'',true);endif;
-	wp_enqueue_script('twentyfifteen-script',get_template_directory_uri() . '/js/functions.js',array('jquery'),'20150330',true);
+	//wp_enqueue_script('twentyfifteen-script',get_template_directory_uri() . '/js/functions.js',array('jquery'),'20150330',true);
 	wp_localize_script('twentyfifteen-script','screenReaderText',array('expand'=>'<span class="screen-reader-text">' . __('expand child menu','twentyfifteen') . '</span>','collapse'=>'<span class="screen-reader-text">' . __('collapse child menu','twentyfifteen') . '</span>',));
 }
 add_action('wp_enqueue_scripts','twentyfifteen_scripts');
