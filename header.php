@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html <?php language_attributes();?> class="no-js">
 <head>
-	<?php if(is_singular()):echo'<link rel="amphtml" href="' . get_permalink() . '?amp=1">';endif;?>
+	<?php if(is_singular()):echo'<link rel="amphtml" href=" . get_permalink() . ?amp=1">';endif;?>
 	<meta charset="<?php bloginfo('charset');?>">
 	<meta name="viewport" content="width=device-width">
 	<meta name="HandheldFriendly" content="true">
@@ -81,7 +81,7 @@
 	<meta name="twitter:image:height" content="510px">
 	<meta name="twitter:creator" content="@<?php if(is_single()){echo the_author_meta('twitter');}else{echo get_option('Twitter_URL');};?>">
 	<meta name="twitter:site" content="@<?php echo get_option('Twitter_URL');?>">
-	<link rel="stylesheet" href="<?php echo home_url();?>/wp-content/themes/2015-by-wkwkrnht/css/lity.min.css">
+	<link rel="stylesheet" href="<?php echo home_uri();?>/wp-content/themes/2015-by-wkwkrnht/css/lity.min.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<script>
 		(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);
