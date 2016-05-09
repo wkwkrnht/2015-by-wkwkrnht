@@ -94,6 +94,18 @@
 				'<amp-iframe layout="responsive"','<amp-img layout="responsive"','></amp-img>','<a href="$1">$1</a>','<a href="$1">$1</a>','<a href="$1">$1</a>','<a href="$1">$1</a>');
 				echo preg_replace($pattern,$append,get_the_content());?>
 		</section>
+		<footer id="flex">
+			<div class="content">
+				<?php $args=array('numberposts'=>3,'orderby'=>'rand','post_status'=>'publish','offset'=>1);$rand_posts=get_posts($args);
+				foreach($rand_posts as $post):?>
+					<a href="<?php the_permalink();?>?amp=1" title="<?php the_title_attribute();?>"><div class="related">
+						<?php if(has_post_thumbnail()):echo preg_replace(array('/<img/i','/\/>/'),array('<amp-img','></amp-img>'),get_the_post_thumbnail($post->ID,'related',array('class'=>'thumb')));else:echo'<amp-img src="' . esc_url(home_url()) . '/wp-content/themes/2015-for-wkwkrnht/img/no-img.png" class="thumb" alt="no_thumbnail" height="150px" width="150px"></amp-img>';endif;
+						the_title('<div class="title">','</div>');?>
+					</div></a>
+				<?php endforeach;?>
+			</div>
+			<?php wp_reset_postdata();?>
+		</footer>
 	</article>
 	<amp-pixel src="//ssl.google-analytics.com/collect?v=1&amp;tid=<?php echo get_option('Google_Analytics');?>&amp;t=pageview&amp;cid=$RANDOM&amp;dt=$TITLE&amp;dl=$CANONICAL_URL&amp;z=$RANDOM"></amp-pixel>
 </body>
