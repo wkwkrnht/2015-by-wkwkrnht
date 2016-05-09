@@ -410,28 +410,26 @@ input[type="checkbox"],input[type="radio"]{padding:0;}
 .social-navigation a[href*="path.com"]:before{content:"\f219";}
 */
 
-.secondary{background-color:#fff;visibility:hidden;padding:0 7.6923%;}
-.secondary.open{visibility:visible;border-top:1px solid transparent;border-bottom:1px solid transparent;display:block;}
-.widget-area{margin:9.09090% auto 0;}
+
 #secondary-toggle{
 	background-color:transparent;
 	border:1px solid #eaeaea;
 	border:1px solid rgba(51,51,51,0.1);
-	height:20vmin;
-	width:20vmin;
+	height:42px;
+	width:42px;
 	overflow:hidden;
 	padding:0;
 	position:fixed;
 	bottom:20%;
 	right:50%;
-	text-align:center;
+	text-align: center;
 	-webkit-transform:translateY(-50%);
 	-ms-transform:translateY(-50%);
 	transform:translateY(-50%);	
 }
-#secondary-toggle::before{line-height:18vmin;width:18vmin;content:"\f0c9";border:none;color:#333;}
+#secondary-toggle::before{line-height:40px;width:40px;content:"\f0c9";border:none;color:#333;}
 #secondary-toggle:hover,#secondary-toggle:focus{background-color:transparent;border:1px solid #c1c1c1;border:1px solid rgba(51,51,51,0.3);outline:0;}
-#secondary-toggle.open::before{content:"\f00d";font-family:"FontAwesome";border:none;font-size:18vmin;position:relative;top:1px;left:-1px;}
+#secondary-toggle.toggled-on::before{content:"\f00d";font-family:"FontAwesome";border:none;font-size:32px;position:relative;top:1px;left:-1px;}
 
 
 .post-navigation{background-color:#fff;border-top:1px solid #eaeaea;border-top:1px solid rgba(51, 51, 51, 0.1);font-weight:700;}
@@ -859,7 +857,9 @@ blockquote.alignright,.wp-caption.alignright,img.alignright{margin:0.4em 0 1.6em
  * 12.0 Content
  */
 
-
+.secondary{background-color:#fff;display:none;padding:0 7.6923%;}
+.secondary.toggled-on{border-top:1px solid transparent;border-bottom:1px solid transparent;display:block;}
+.widget-area{margin:9.09090% auto 0;}
 
 /**
  * 12.1 Posts and pages
@@ -2017,7 +2017,13 @@ p > embed,p > iframe,p > object,p > video{margin-bottom:0;}
 		width:27vw;
 	}
 
-	.secondary{visibility:visible;background-color:transparent;box-shadow:none;display:block;margin:0;padding:0;}
+	.secondary {
+		background-color: transparent;
+		box-shadow: none;
+		display: block;
+		margin: 0;
+		padding: 0;
+	}
 
 	.site-main{padding:8.3333% 0;}
 
