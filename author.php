@@ -31,7 +31,7 @@
 			<h3 class="section-name">Blog</h3>
 			<p><?php $user_data=get_userdata($author);
 				if($user_data->user_url){echo'<a href="' . $user_data->user_url . '/" target="_blank">' . $user_data->user_url . '</a><br />';};
-				if($user_data->wordpress.com){echo'<a href="' . $user_data->wordpress.com . '" target="_blank">' . $user_data->wordpress.com . '</a><br />';};
+				if($user_data->wordpress.com){echo'<a href="' . $user_data->wordpress.com . '/" target="_blank">' . $user_data->wordpress.com . '</a><br />';};
 				if($user_data->Blogger){echo'<a href="' . $user_data->Blogger . '/" target="_blank">' . $user_data->Blogger . '</a><br />';};
 				if($user_data->ameba){echo'<a href="' . $user_data->ameba . '/" target="_blank">' . $user_data->ameba . '</a><br />';};
 				if($user_data->fc2){echo'<a href="' . $user_data->fc2 . '/" target="_blank">' . $user_data->fc2 . '</a><br />';};
@@ -50,7 +50,7 @@
 				if($user_data->Merukari){echo $user_data->Merukari . "<br />";};?></p>
 			<h3 class="section-name">DEV</h3>
 			<p><?php $user_data=get_userdata($author);
-				if($user_data->Github){echo'<a href="http://github.com/' . $user_data->Github . '/" target="_blank">' . $user_data->Github . '</a><br />';};
+				if($user_data->Github){echo'<a href="http://twitter.com/' . $user_data->Github . '/" target="_blank">' . $user_data->Github . '</a><br />';};
 				if($user_data->Bitbucket){echo $user_data->Bitbucket . "<br />";};
 				if($user_data->Codepen){echo $user_data->Codepen . "<br />";};
 				if($user_data->JSbuddle){echo $user_data->JSbuddle . "<br />";};
@@ -101,6 +101,7 @@
 		<?php endif;?>
 		</ul>
 		<div id="movetop">∧</div>
+		<script>jQuery('#movetop').click(function(){jQuery('body,html').animate({scrollTop:0},500);});</script>
 	</section>
 </div>
 <?php get_footer();?>

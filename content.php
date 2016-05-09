@@ -17,4 +17,6 @@
 				'separator'  =>'<span class="screen-reader-text">,</span>',));?>
 	</section>
 	<?php get_sidebar('entry-footer');?>
+	<div id="movetop">∧</div>
+	<script>jQuery('#movetop').click(function(){jQuery('body,html').animate({scrollTop:0},500);});</script>
 </article>

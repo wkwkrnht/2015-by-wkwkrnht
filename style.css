@@ -422,9 +422,9 @@ input[type="checkbox"],input[type="radio"]{padding:0;}
 	width:42px;
 	overflow:hidden;
 	padding:0;
-	position:absolute;
-	top:50%;
-	right:0;
+	position:fixed;
+	bottom:20%;
+	right:50%;
 	text-align:center;
 	-webkit-transform:translateY(-50%);
 	-ms-transform:translateY(-50%);

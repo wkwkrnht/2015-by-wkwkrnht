@@ -71,3 +71,43 @@ function twentyfifteen_categorized_blog() {
 		return false;
 	}
 }
+
+
+if ( ! function_exists( 'twentyfifteen_get_link_url' ) ) :
+/**
+ * Return the post URL.
+ *
+ * Falls back to the post permalink if no URL is found in the post.
+ *
+ * @since Twenty Fifteen 1.0
+ *
+ * @see get_url_in_content()
+ *
+ * @return string The Link format URL.
+ */
+function twentyfifteen_get_link_url() {
+	$has_url = get_url_in_content( get_the_content() );
+	return $has_url ? $has_url : apply_filters( 'the_permalink', get_permalink() );
+}
+endif;
+
+if ( ! function_exists( 'twentyfifteen_excerpt_more' ) && ! is_admin() ) :
+/**
+ * Replaces "[...]" (appended to automatically generated excerpts) with ... and a 'Continue reading' link.
+ *
+ * @since Twenty Fifteen 1.0
+ *
+ * @return string 'Continue reading' link prepended with an ellipsis.
+ */
+function twentyfifteen_excerpt_more( $more ) {
+	$link = sprintf( '<a href="%1$s" class="more-link">%2$s</a>',
+		esc_url( get_permalink( get_the_ID() ) ),
+		/* translators: %s: Name of current post */
+		sprintf( __( 'Continue reading %s', 'twentyfifteen' ), '<span class="screen-reader-text">' . get_the_title( get_the_ID() ) . '</span>' )
+		);
+	return ' &hellip; ' . $link;
+}
+add_filter( 'excerpt_more', 'twentyfifteen_excerpt_more' );
+endif;
+
+
