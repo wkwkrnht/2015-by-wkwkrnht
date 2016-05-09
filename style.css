@@ -4,7 +4,7 @@ Theme URI:  http://wkwkrnht.wp.xdomain.jp/
 Author:     wkwkrnht
 Author URI: http://wkwkrnht.gegahost.com/
 Description: Our 2015 default theme is clean, blog-focused, and designed for clarity. 2015's simple, straightforward typography is readable on a wide variety of screen sizes, and suitable for multiple languages. We designed it using a mobile-first approach, meaning your content takes center-stage, regardless of whether your visitors arrive by smartphone, tablet, laptop, or desktop computer.
-Version:     0.3.0
+Version:     0.3.4
 Tags: black, blue, gray, pink, purple, white, yellow, dark, light, two-columns, left-sidebar, fixed-layout, responsive-layout, accessibility-ready, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, microformats, post-formats, rtl-language-support, sticky-post, threaded-comments, translation-ready, Orange, SNSButton
 Text Domain: twentyfifteen
 */
@@ -2981,19 +2981,7 @@ p > embed,p > iframe,p > object,p > video{margin-bottom:0;}
 @media print{
 	body{font-size:11.25pt;background:none !important;}
 
-	.secondary-toggle,
-	.navigation,
-	.page-links,
-	.edit-link,
-	#reply-title,
-	button,
-	input,
-	textarea,
-	select,
-	.widecolumn form,
-	.widecolumn .mu_register form {
-		display: none;
-	}
+	.secondary-toggle,.navigation,.page-links,.edit-link,#reply-title,button,input,textarea,select,.widecolumn form,.widecolumn .mu_register form{display:none;}
 
 	.site-header,.site-footer,.hentry,.entry-footer,.page-header,.page-content,.widecolumn{background:none !important;}
 	

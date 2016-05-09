@@ -17,7 +17,7 @@
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo('pingback_url');?>">
 	<link rel="fluid-icon" href="<?php echo get_option('icon');?>" title="<?php bloginfo('title');?>">
-	<link rel="image_src" href="<?php echo get_option('icon');?>s" />
+	<link rel="image_src" href="<?php echo get_option('icon');?>" />
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
 	<link rel="dns-prefetch" href="//ajax.googleapis.com">
