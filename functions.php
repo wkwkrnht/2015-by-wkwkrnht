@@ -67,32 +67,6 @@ function twentyfifteen_scripts(){
 	wp_localize_script('twentyfifteen-script','screenReaderText',array('expand'=>'<span class="screen-reader-text">' . __('expand child menu','twentyfifteen') . '</span>','collapse'=>'<span class="screen-reader-text">' . __('collapse child menu','twentyfifteen') . '</span>',));
 }
 add_action('wp_enqueue_scripts','twentyfifteen_scripts');
-function twentyfifteen_customize_preview_js(){wp_enqueue_script('twentyfifteen-customize-preview',get_template_directory_uri() . '/js/customize-preview.js',array('customize-preview'),'20141216',true);}
-add_action('customize_preview_init','twentyfifteen_customize_preview_js');
-function twentyfifteen_customize_control_js(){wp_enqueue_script('color-scheme-control',get_template_directory_uri() . '/js/color-scheme-control.js',array('customize-controls','iris','underscore','wp-util'),'20141216',true);wp_localize_script('color-scheme-control','colorScheme',twentyfifteen_get_color_schemes());}
-add_action('customize_controls_enqueue_scripts','twentyfifteen_customize_control_js');
-function twentyfifteen_color_scheme_css_template(){
-	$colors = array(
-		'background_color'           =>'{{data.background_color}}',
-		'header_background_color'    =>'{{data.header_background_color}}',
-		'box_background_color'       =>'{{data.box_background_color}}',
-		'textcolor'                  =>'{{data.textcolor}}',
-		'secondary_textcolor'        =>'{{data.secondary_textcolor}}',
-		'border_color'               =>'{{data.border_color}}',
-		'border_focus_color'         =>'{{data.border_focus_color}}',
-		'sidebar_textcolor'          =>'{{data.sidebar_textcolor}}',
-		'sidebar_border_color'       =>'{{data.sidebar_border_color}}',
-		'sidebar_border_focus_color' =>'{{data.sidebar_border_focus_color}}',
-		'secondary_sidebar_textcolor'=>'{{data.secondary_sidebar_textcolor}}',
-		'meta_box_background_color'  =>'{{data.meta_box_background_color}}',
-	);
-	?>
-	<script type="text/html" id="tmpl-twentyfifteen-color-scheme"><?php echo twentyfifteen_get_color_scheme_css( $colors );?></script>
-	<?php
-}
-add_action('customize_controls_print_footer_scripts','twentyfifteen_color_scheme_css_template');
-function twentyfifteen_customize_partial_blogname(){bloginfo('name');}
-function twentyfifteen_customize_partial_blogdescription(){bloginfo('description');}
 function remove_ver_script($src){if(strpos($src,'ver=')):$src=remove_query_arg('ver',$src);return $src;endif;}
 function wkwkrnht_embed_analytics(){ ?>
 <script type="text/javascript">
@@ -110,9 +84,7 @@ remove_action('wp_head','jetpack_og_tags');
 remove_action('wp_head','wp_generator');
 remove_action('wp_head','print_emoji_detection_script',7);
 remove_action('wp_print_styles','print_emoji_styles');
-if (!function_exists('twentyfifteen_sanitize_color_scheme')):
-function twentyfifteen_sanitize_color_scheme($value){$color_schemes=twentyfifteen_get_color_scheme_choices();if(!array_key_exists($value,$color_schemes)){$value='default';}return $value;}
-endif;
+
 function twentyfifteen_post_nav_background(){if(!is_single()){return;}
 	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
 	$next     = get_adjacent_post( false, '', false );
