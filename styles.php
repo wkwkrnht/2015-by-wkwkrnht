@@ -475,10 +475,10 @@
 		body{padding-top:10vh;}
 		main{width:100vw;}
 		.site-header-pc{display:none;}
-		.site-header{height:10vh;position:fixed;top:0;left:0;z-index:100;box-shadow:0 0 3vmin rgba(0,0,0,.3);}
-		#menu-wrap{width:70vw;z-index:111;}
-		#menu-toggle{display:inline-block;height:8vh;width:8vh;padding:1vh;line-height:8vh;font-size:5rem;font-weight:900;text-align:center;vertical-align:middle;border:1px solid <?php echo get_option('site_header_color','#fff');?>;}
-		#menu-wrap.block ~ #menu-toggle{transform:rotate(45deg);}
+		.site-header{height:15vh;position:fixed;top:0;left:0;z-index:111;box-shadow:0 0 3vmin rgba(0,0,0,.3);}
+		.menu-toggle{display:inline-block;height:8vh;width:8vh;padding:1vh;line-height:8vh;font-size:5rem;font-weight:900;text-align:center;vertical-align:middle;border:1px solid <?php echo get_option('site_header_color','#fff');?>;}
+		#menu-wrap.block ~ .menu-toggle{transform:rotate(45deg);}
+		#menu-wrap{top:15vh;width:70vw;z-index:100;}
 		.info-card{min-height:calc(100vw * 0.8 / 16 * 9);width:calc(100vw * 0.8);}
 		.widget.info-card{min-height:45vmin;}
 		.card{font-size:1.6rem;}

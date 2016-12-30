@@ -84,7 +84,7 @@
 			 	. $year . '
 			</span>
 		</span>
-		<a href="javascript:void(0)" tabindex="0" role="button" title="メニューウィンドウの切り替えボタン" id="menu-toggle">
+		<a href="javascript:void(0)" tabindex="0" role="button" title="メニューウィンドウの切り替えボタン" id="menu-toggle" class="menu-toggle">
 			+
 		</a>
 	</header>';
