@@ -85,7 +85,7 @@
 			</span>
 		</span>
 		<a href="javascript:void(0)" tabindex="0" role="button" title="メニューウィンドウの切り替えボタン" id="menu-toggle" class="menu-toggle">
-			+
+			<i class="fa fa-3x fa-bars" aria-hidden="true"></i>
 		</a>
 	</header>';
 	?>
