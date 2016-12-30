@@ -161,6 +161,7 @@
 	.site-header,.site-header a,.site-header a:visited{color:<?php echo get_option('site_header_color','#fff');?>;}
 	.site-title{font-size:2.5rem;}
 	.site-description,.site-header .copyright{font-size:1.8rem;}
+	.menu-toggle{display:inline-block;height:8vh;width:8vh;padding:1vh;line-height:8vh;font-size:5rem;font-weight:900;text-align:center;vertical-align:middle;border:1px solid <?php echo get_option('site_header_color','#fff');?>;}
 
 	.toc{width:90%;padding:4vh 0;margin:4vh auto;box-shadow:0 0 3vmin rgba(0,0,0,.2);}
 	.toc-toggle{display:block;height:3em;width:3em;border-radius:50%;font-size:1.8rem;position:relative;top:-1.5em;left:85vw;text-align:center;color:#fff;background-color:#03a9f4;box-shadow:0 0 3vmin rgba(0,0,0,.3);}
@@ -476,8 +477,7 @@
 		main{width:100vw;}
 		.site-header-pc{display:none;}
 		.site-header{height:15vh;position:fixed;top:0;left:0;z-index:111;box-shadow:0 0 3vmin rgba(0,0,0,.3);}
-		.menu-toggle{padding:1vh;font-size:5rem;font-weight:900;text-align:center;vertical-align:middle;border:1px solid <?php echo get_option('site_header_color','#fff');?>;}
-		#menu-wrap.block ~ .menu-toggle{transform:rotate(45deg);}
+
 		#menu-wrap{top:20vh;width:70vw;z-index:100;}
 		.info-card{min-height:calc(100vw * 0.8 / 16 * 9);width:calc(100vw * 0.8);}
 		.widget.info-card{min-height:45vmin;}
@@ -511,7 +511,7 @@
 		:root{font-size:10pt;}
 		#menu-toggle,#menu-wrap{display:none;}
 	}
-	.night-mode .hide-nav-prev a,.night-mode .hide-nav-next a,body.night-mode,.night-mode #main-menu,.night-mode .card,.night-mode div.card-list,.night-mode div#menu-wrap,.night-mode a#menu-toggle,.night-mode nav.menu-tab,.night-mode a#main-menu-toggle,.night-mode a#share-menu-toggle{color:#fff;background-color:#333;}
+	.night-mode .hide-nav-prev a,.night-mode .hide-nav-next a,body.night-mode,.night-mode .card,.night-mode div#menu-wrap{color:#fff;background-color:#333;}
 	.night-mode ul.page-nation,.night-mode ul.page-nation a,.night-mode ul.page-nation li span.dots,.night-mode ul.page-nation li.current,.night-mode .page-nav,.night-mode .page-nav a:hover{color:#fff;background-color:#333;border-color:#fff;}
 	.night-mode ul.page-nation li span.dots{color:#f1f1f1;}
 	.night-mode ul.page-nation a:hover{color:#333;background-color:#fff;}
