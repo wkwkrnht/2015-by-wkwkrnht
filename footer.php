@@ -13,7 +13,7 @@
     ?>
     <script>
         (function(){
-            var vp = document.viewport.getDimensions();
+            var vp = window.innerWidth;
             var menu = document.getElementById("manu-wrap");
             if(992 >= vp.width){
                 menu.classList.add("none");
