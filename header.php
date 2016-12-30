@@ -48,47 +48,80 @@
 	if($txt!==false){echo $txt;}?>
 </head>
 <body <?php body_class();?>>
-	<aside id="menu-wrap">
-        <?php
-    	$site_url  = site_url();
-    	$year      = get_first_post_year();
-    	$blogname  = get_bloginfo('name');
-    	echo'<header class="site-header" itemscope itemtype="http://schema.org/WPHeader">';
-    		if(is_404()===true){
-    			echo'<a href="' . $site_url . '" tabindex="0" itemprop="url"><h1 class="site-title" itemprop="name headline">404 Not Found｜' . $blogname . '</h1><br><p class="site-description" itemprop="about">このサイトにはお探しのものはございません。お手数を掛けますが、再度お探しください。</p></a>';
-    		}elseif(is_category()===true){
-    			echo'<h1 class="site-title" itemprop="name headline about">「' . single_cat_title('',false) . '」の記事一覧｜' . $blogname . '</h1>';
-    		}elseif(is_tag()===true){
-    			echo'<h1 class="site-title" itemprop="name headline about">「' . single_tag_title('',false) . '」の記事一覧｜' . $blogname . '</h1>';
-    		}elseif(is_search()===true){
-    			global $wp_query;
-    			$serachresult = $wp_query->found_posts;
-    			$maxpage      = $wp_query->max_num_pages;
-    			wp_reset_query();
-    			echo'<h1 class="site-title" itemprop="name headline about">「' . get_search_query() . '」の検索結果｜' . $blogname . '</h1><br><p class="site-description">' . $serachresult . ' 件 / ' . $maxpage . ' ページ</p>';
-    		}else{
-    			echo'<a href="' . $site_url . '" tabindex="0" itemprop="url"><h1 class="site-title" itemprop="name headline">' . $blogname . '</h1></a>';
-    		}
-    		echo'<br>
-    		<span class="copyright"><span itemprop="copyrightHolder" itemscope itemtype="http://schema.org/Organization"><span itemprop="name"><b>' . $blogname . '</b></span></span>&nbsp;&nbsp;&copy;<span itemprop="copyrightYear">' . $year . '</span></span>
-    	</header>';
-    	?>
-        <div id="main-menu" class="block">
-            <?php if(has_nav_menu('social')):?>
-                <nav class="social-nav">
-                    <?php wp_nav_menu(array('theme_location'=>'social','container'=>false,'items_wrap'=>'<ul id="%1$s" class="%2$s" itemscope itemtype="http://schema.org/SiteNavigationElement">%3$s</ul>','walker'=>new add_meta_Social_Menu));?>
-                </nav>
-            <?php endif;?>
-            <?php if(has_nav_menu('main')):?>
-                <nav class="main-nav">
-                    <?php wp_nav_menu(array('theme_location'=>'main','container'=>false,'items_wrap'=>'<ul id="%1$s" class="%2$s" itemscope itemtype="http://schema.org/SiteNavigationElement">%3$s</ul>','walker'=>new add_meta_Nav_Menu));?>
-                </nav>
-            <?php endif;?>
-            <?php if(is_active_sidebar('floatmenu')):?>
-    	        <ul class="widget-area">
-    		        <?php dynamic_sidebar('floatmenu');?>
-                </ul>
-            <?php endif;?>
-        </div>
+	<?php
+	$header_inner = '';
+	$site_url     = site_url();
+	$year         = get_first_post_year();
+	$blogname     = get_bloginfo('name');
+	if(is_404()===true){
+		$header_inner = '<a href="' . $site_url . '" tabindex="0" itemprop="url"><h1 class="site-title" itemprop="name headline">404 Not Found｜' . $blogname . '</h1><br><p class="site-description" itemprop="about">このサイトにはお探しのものはございません。お手数を掛けますが、再度お探しください。</p></a>';
+	}elseif(is_category()===true){
+		$header_inner = '<h1 class="site-title" itemprop="name headline about">「' . single_cat_title('',false) . '」の記事一覧｜' . $blogname . '</h1>';
+	}elseif(is_tag()===true){
+		$header_inner = '<h1 class="site-title" itemprop="name headline about">「' . single_tag_title('',false) . '」の記事一覧｜' . $blogname . '</h1>';
+	}elseif(is_search()===true){
+		global $wp_query;
+		$serachresult = $wp_query->found_posts;
+		$maxpage      = $wp_query->max_num_pages;
+		wp_reset_query();
+		$header_inner = '<h1 class="site-title" itemprop="name headline about">「' . get_search_query() . '」の検索結果｜' . $blogname . '</h1><br><p class="site-description">' . $serachresult . ' 件 / ' . $maxpage . ' ページ</p>';
+	}else{
+		$header_inner = '<a href="' . $site_url . '" tabindex="0" itemprop="url"><h1 class="site-title" itemprop="name headline">' . $blogname . '</h1></a>';
+	}
+	echo
+	'<header class="site-header site-header-mobile" itemscope itemtype="http://schema.org/WPHeader">'
+		 . $header_inner . '<br>
+		<span class="copyright">
+			<span itemprop="copyrightHolder" itemscope itemtype="http://schema.org/Organization">
+				<span itemprop="name">
+					<b>'
+					 	. $blogname . '
+					</b>
+				</span>
+			</span>
+			&nbsp;&nbsp;&copy;
+			<span itemprop="copyrightYear">'
+			 	. $year . '
+			</span>
+		</span>
+		<a href="javascript:void(0)" tabindex="0" role="button" title="メニューウィンドウの切り替えボタン" id="menu-toggle" class="menu-toggle">
+			<i class="fa fa-5x fa-bars" aria-hidden="true"></i>
+		</a>
+	</header>';
+	?>
+	<aside id="menu-wrap" itemscope itemtype="https://schema.org/WPSideBar">
+		<?php
+		echo
+		'<header class="site-header site-header-pc" itemscope itemtype="http://schema.org/WPHeader">'
+			 . $header_inner . '<br>
+			<span class="copyright">
+				<span itemprop="copyrightHolder" itemscope itemtype="http://schema.org/Organization">
+					<span itemprop="name">
+						<b>'
+						 	. $blogname . '
+						</b>
+					</span>
+				</span>
+				&nbsp;&nbsp;&copy;
+				<span itemprop="copyrightYear">'
+				 	. $year . '
+				</span>
+			</span>
+		</header>';
+		if(has_nav_menu('social')):?>
+			<nav class="social-nav">
+				<?php wp_nav_menu(array('theme_location'=>'social','container'=>false,'items_wrap'=>'<ul id="%1$s" class="%2$s" itemscope itemtype="http://schema.org/SiteNavigationElement">%3$s</ul>','walker'=>new add_meta_Social_Menu));?>
+			</nav>
+		<?php endif;?>
+		<?php if(has_nav_menu('main')):?>
+			<nav class="main-nav">
+				<?php wp_nav_menu(array('theme_location'=>'main','container'=>false,'items_wrap'=>'<ul id="%1$s" class="%2$s" itemscope itemtype="http://schema.org/SiteNavigationElement">%3$s</ul>','walker'=>new add_meta_Nav_Menu));?>
+			</nav>
+		<?php endif;?>
+		<?php if(is_active_sidebar('floatmenu')):?>
+			<ul class="widget-area">
+				<?php dynamic_sidebar('floatmenu');?>
+			</ul>
+		<?php endif;?>
     </aside>
 	<main id="site-main">

@@ -1,5 +1,4 @@
     </main>
-    <a href="javascript:void(0)" id="menu-toggle" tabindex="0" role="button" title="メニューウィンドウの切り替えボタン">+</a>
     <?php
     wp_footer();
     $key = false;

@@ -2,7 +2,6 @@
     #share-menu ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:flex-start;align-items:center;padding:0;margin:0;}
     #share-menu ul li{height:calc((70vw / 6) - 1vmin);width:calc((70vw / 6) - 1vmin);text-align:center;}
     #share-menu ul li a{position:relative;top:35%;color:#fff;}
-
     #share-menu .tweet{background-color:#55acee;}
     #share-menu .fb-like{background-color:#3b5998;}
     #share-menu .buffer{background-color:#333;font-size:4rem;font-weight:900;}
