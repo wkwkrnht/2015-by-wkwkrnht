@@ -48,28 +48,65 @@
 	if($txt!==false){echo $txt;}?>
 </head>
 <body <?php body_class();?>>
-	<?php
-	$site_url  = site_url();
-	$year      = get_first_post_year();
-	$blogname  = get_bloginfo('name');
-	echo'<header class="site-header" itemscope itemtype="http://schema.org/WPHeader">';
-		if(is_404()===true){
-			echo'<a href="' . $site_url . '" tabindex="0" itemprop="url"><h1 class="site-title" itemprop="name headline">404 Not Found｜' . $blogname . '</h1><br><p class="site-description" itemprop="about">このサイトにはお探しのものはございません。お手数を掛けますが、再度お探しください。</p></a>';
-		}elseif(is_category()===true){
-			echo'<h1 class="site-title" itemprop="name headline about">「' . single_cat_title('',false) . '」の記事一覧｜' . $blogname . '</h1>';
-		}elseif(is_tag()===true){
-			echo'<h1 class="site-title" itemprop="name headline about">「' . single_tag_title('',false) . '」の記事一覧｜' . $blogname . '</h1>';
-		}elseif(is_search()===true){
-			global $wp_query;
-			$serachresult = $wp_query->found_posts;
-			$maxpage      = $wp_query->max_num_pages;
-			wp_reset_query();
-			echo'<h1 class="site-title" itemprop="name headline about">「' . get_search_query() . '」の検索結果｜' . $blogname . '</h1><br><p class="site-description">' . $serachresult . ' 件 / ' . $maxpage . ' ページ</p>';
-		}else{
-			echo'<a href="' . $site_url . '" tabindex="0" itemprop="url"><h1 class="site-title" itemprop="name headline">' . $blogname . '</h1></a>';
-		}
-		echo'<br>
-		<span class="copyright"><span itemprop="copyrightHolder" itemscope itemtype="http://schema.org/Organization"><span itemprop="name"><b>' . $blogname . '</b></span></span>&nbsp;&nbsp;&copy;<span itemprop="copyrightYear">' . $year . '</span></span>
-	</header>';
-	?>
+	<aside id="menu-wrap">
+        <?php
+    	$site_url  = site_url();
+    	$year      = get_first_post_year();
+    	$blogname  = get_bloginfo('name');
+    	echo'<header class="site-header" itemscope itemtype="http://schema.org/WPHeader">';
+    		if(is_404()===true){
+    			echo'<a href="' . $site_url . '" tabindex="0" itemprop="url"><h1 class="site-title" itemprop="name headline">404 Not Found｜' . $blogname . '</h1><br><p class="site-description" itemprop="about">このサイトにはお探しのものはございません。お手数を掛けますが、再度お探しください。</p></a>';
+    		}elseif(is_category()===true){
+    			echo'<h1 class="site-title" itemprop="name headline about">「' . single_cat_title('',false) . '」の記事一覧｜' . $blogname . '</h1>';
+    		}elseif(is_tag()===true){
+    			echo'<h1 class="site-title" itemprop="name headline about">「' . single_tag_title('',false) . '」の記事一覧｜' . $blogname . '</h1>';
+    		}elseif(is_search()===true){
+    			global $wp_query;
+    			$serachresult = $wp_query->found_posts;
+    			$maxpage      = $wp_query->max_num_pages;
+    			wp_reset_query();
+    			echo'<h1 class="site-title" itemprop="name headline about">「' . get_search_query() . '」の検索結果｜' . $blogname . '</h1><br><p class="site-description">' . $serachresult . ' 件 / ' . $maxpage . ' ページ</p>';
+    		}else{
+    			echo'<a href="' . $site_url . '" tabindex="0" itemprop="url"><h1 class="site-title" itemprop="name headline">' . $blogname . '</h1></a>';
+    		}
+    		echo'<br>
+    		<span class="copyright"><span itemprop="copyrightHolder" itemscope itemtype="http://schema.org/Organization"><span itemprop="name"><b>' . $blogname . '</b></span></span>&nbsp;&nbsp;&copy;<span itemprop="copyrightYear">' . $year . '</span></span>
+    	</header>';
+    	?>
+        <nav id="share-menu" class="block">
+            <ul>
+    		    <li class="tweet"><a href="https://twitter.com/share?url=<?php echo get_meta_url();?>&amp;text=<?php wp_title('');?><?php if(get_twitter_acount()!==null):echo '&amp;via=' . get_twitter_acount();endif;?>" target="_blank" title="Twitterへの共有リンク"><i class="fa fa-twitter fa-5x" aria-hidden="true"></i></a></li>
+                <li class="fb-like"><a href="http://www.facebook.com/share.php?u=<?php echo rawurlencode(get_meta_url());?>" target="_blank" title="Facebookへの共有リンク"><i class="fa fa-thumbs-up fa-5x" aria-hidden="true"></i></a></li>
+                <li class="line"><a href="http://lineit.line.me/share/ui?url=<?php echo get_meta_url();?>" target="_blank" title="LINEへの共有リンク"><i class="fa fa-comments fa-5x" aria-hidden="true"></i></a></li>
+                <li class="g-plus"><a href="https://plus.google.com/share?url=<?php echo get_meta_url();?>" target="_blank" title="Google+への共有リンク"><i class="fa fa-google-plus-official fa-5x" aria-hidden="true"></i></a></li>
+                <li class="linkedin"><a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo get_meta_url();?>&amp;title=<?php wp_title('');?>" target="_blank" title="Linkedinへの共有リンク"><i class="fa fa-linkedin-square fa-5x" aria-hidden="true"></i></a></li>
+                <li class="buffer"><a href="https://bufferapp.com/add?url<?php echo get_meta_url();?>&amp;title=<?php wp_title('');?>" target="_blank" title="Bufferへの共有リンク">Buffer</a></li>
+                <li class="reddit"><a href="https://www.reddit.com/submit?url=<?php echo get_meta_url();?>" target="_blank" title="Redditへの共有リンク"><i class="fa fa-reddit-alien fa-5x" aria-hidden="true"></i></a></li>
+                <li class="vk"><a href="http://vkontakte.ru/share.php?url=<?php echo get_meta_url();?>" target="_blank" title="VKへの共有リンク"><i class="fa fa-vk fa-5x" aria-hidden="true"></i></a></li>
+                <li class="stumbleupon"><a href="http://www.stumbleupon.com/submit?url=<?php echo get_meta_url();?>&amp;title=<?php wp_title('');?>" target="_blank" title="StumbleUponの共有リンク"><i class="fa fa-stumbleupon-circle fa-5x" aria-hidden="true"></i></a></li>
+                <li class="hatebu"><a href="http://b.hatena.ne.jp/add?mode=confirm&url=<?php echo get_meta_url();?>&amp;title=<?php wp_title('');?>" target="_blank" title="はてなブックマークへの共有リンク">B!</a></li>
+                <li class="pocket"><a href="http://getpocket.com/edit?url=<?php echo get_meta_url();?>&amp;title=<?php wp_title('');?>" target="_blank" title="Pocketへの共有リンク"><i class="fa fa-get-pocket fa-5x" aria-hidden="true"></i></a></li>
+                <li class="pinterest"><a href="http://pinterest.com/pin/create/button/?url=<?php echo get_meta_url();?>&amp;media=<?php meta_image();?>" target="_blank" title="Pinterestへの共有リンク"><i class="fa fa-pinterest fa-5x" aria-hidden="true"></i></a></li>
+                <li class="instapaper"><a href="http://www.instapaper.com/text?u=<?php echo get_meta_url();?>" target="_blank" title="Instapaperへの共有リンク">I</a></li>
+                <li class="tumblr"><a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=<?php echo get_meta_url();?>" target="_blank" title="thumblrへの共有リンク"><i class="fa fa-tumblr fa-5x" aria-hidden="true"></i></a></li>
+            </ul>
+        </nav>
+        <div id="main-menu" class="block">
+            <?php if(has_nav_menu('social')):?>
+                <nav class="social-nav">
+                    <?php wp_nav_menu(array('theme_location'=>'social','container'=>false,'items_wrap'=>'<ul id="%1$s" class="%2$s" itemscope itemtype="http://schema.org/SiteNavigationElement">%3$s</ul>','walker'=>new add_meta_Social_Menu));?>
+                </nav>
+            <?php endif;?>
+            <?php if(has_nav_menu('main')):?>
+                <nav class="main-nav">
+                    <?php wp_nav_menu(array('theme_location'=>'main','container'=>false,'items_wrap'=>'<ul id="%1$s" class="%2$s" itemscope itemtype="http://schema.org/SiteNavigationElement">%3$s</ul>','walker'=>new add_meta_Nav_Menu));?>
+                </nav>
+            <?php endif;?>
+            <?php if(is_active_sidebar('floatmenu')):?>
+    	        <ul class="widget-area">
+    		        <?php dynamic_sidebar('floatmenu');?>
+                </ul>
+            <?php endif;?>
+        </div>
+    </aside>
 	<main id="site-main">
