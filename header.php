@@ -69,7 +69,7 @@
 		$header_inner = '<a href="' . $site_url . '" tabindex="0" itemprop="url"><h1 class="site-title" itemprop="name headline">' . $blogname . '</h1></a>';
 	}
 	echo
-	'<header class="site-header" itemscope itemtype="http://schema.org/WPHeader">'
+	'<header class="site-header site-header-mobile" itemscope itemtype="http://schema.org/WPHeader">'
 		 . $header_inner . '<br>
 		<span class="copyright">
 			<span itemprop="copyrightHolder" itemscope itemtype="http://schema.org/Organization">
@@ -90,7 +90,25 @@
 	</header>';
 	?>
 	<aside id="menu-wrap" itemscope itemtype="https://schema.org/WPSideBar">
-		<?php if(has_nav_menu('social')):?>
+		<?php
+		echo
+		'<header class="site-header site-header-pc" itemscope itemtype="http://schema.org/WPHeader">'
+			 . $header_inner . '<br>
+			<span class="copyright">
+				<span itemprop="copyrightHolder" itemscope itemtype="http://schema.org/Organization">
+					<span itemprop="name">
+						<b>'
+						 	. $blogname . '
+						</b>
+					</span>
+				</span>
+				&nbsp;&nbsp;&copy;
+				<span itemprop="copyrightYear">'
+				 	. $year . '
+				</span>
+			</span>
+		</header>';
+		if(has_nav_menu('social')):?>
 			<nav class="social-nav">
 				<?php wp_nav_menu(array('theme_location'=>'social','container'=>false,'items_wrap'=>'<ul id="%1$s" class="%2$s" itemscope itemtype="http://schema.org/SiteNavigationElement">%3$s</ul>','walker'=>new add_meta_Social_Menu));?>
 			</nav>

@@ -461,9 +461,7 @@
 	5.print
 	*/
 	@media screen and (min-width:992px){
-		#menu-toggle{display:none;}
-		.site-header{width:30vw;}
-		#menu-wrap{top:10%;}
+		#menu-toggle,.sitte-header-mobile{display:none;}
 		.widget.info-card{min-height:30vmin;}
 		.card-title{font-size:2.7rem;}
 		.hatenablogcard{max-width:60vw;margin:5vh auto;}
@@ -475,6 +473,7 @@
 	}
 	@media screen and (max-width:992px){
 		main{width:100vw;}
+		.site-header-pc{display:none;}
 		#menu-wrap{width:70vw;z-index:100;}
 		#menu-toggle{display:inline-block;height:8vh;width:8vh;padding:1vh;line-height:8vh;font-size:5rem;font-weight:900;text-align:center;vertical-align:middle;border:1px solid <?php echo get_option('site_header_color','#fff');?>;}
 		#menu-wrap.block ~ #menu-toggle{transform:rotate(45deg);}
