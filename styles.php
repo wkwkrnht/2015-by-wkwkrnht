@@ -3,7 +3,7 @@
 	html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}
 	:root{font:400 62.5%/1.9 -apple-system,"Lucida Grande","Helvetica Neue","Hiragino Kaku Gothic ProN","游ゴシック","メイリオ",'Meiryo',sans-serif;font-feature-settings:"pkna" on;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;color:<?php echo get_option('root_color','#333');?>;}
 	body{width:100%;margin:0;overflow-y:scroll;scroll-behavior:smooth;}
-	main{width:70vw;}
+	main{width:70vw;position:absolute;top:0;right:0;}
 	article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary,.block{display:block}
 	audio,canvas,progress,video,.inline-block{display:inline-block}
 	audio:not([controls]){display:none;height:0}
@@ -174,13 +174,13 @@
 	7.area for notice
 	8.move to search
 	*/
-	.card{min-height:40.5vmin;width:72vmin;margin:4vh 3vmin;padding:2vmin 3vmin;border-radius:3vmin;font-size:1.8rem;text-align:center;background-color:#fff;box-shadow:0 0 3vmin rgba(0,0,0,.2);}
-	.card-eyecatch{display:block;float:left;height:100%;width:calc(72vmin / 2 - 1vmin);vertical-align:middle;}
-	.card-info{max-width:calc(72vmin / 2);float:right;}
-	.card-title{display:inline-block;height:calc(40.5vmin / 10 * 3);margin:0 1em;}
-	.card-meta{display:inline-block;height:calc(40.5vmin / 10 * 7);margin:0 1em;}
+	.card{min-height:calc(70vw * 0.8 / 16 * 9);width:calc(70vw * 0.8);margin:4vh auto;padding:2vh 4vh;border-radius:3vmin;font-size:1.8rem;text-align:center;background-color:#fff;box-shadow:0 0 3vmin rgba(0,0,0,.2);}
+	.card-eyecatch{display:block;float:left;height:100%;width:calc((70vw * 0.8) / 2 - 1vmin);vertical-align:middle;}
+	.card-info{max-width:calc((70vw * 0.8) / 2);float:right;}
+	.card-title{display:inline-block;height:calc((70vw * 0.8 / 16 * 9) / 10 * 3);margin:0 1em;}
+	.card-meta{display:inline-block;height:calc((70vw * 0.8 / 16 * 9) / 10 * 7);margin:0 1em;}
 	.site-info{text-align:center;}
-	.card-list{background-color:<?php echo get_option('card_list_background','#fff');?>;display:-webkit-flex;display:flex;justify-content:space-around;align-items:baseline;-webkit-flex-flow:row wrap;flex-flow:row wrap;-webkit-align-content:space-around;align-content:space-around;}
+	.card-list{background-color:<?php echo get_option('card_list_background','#fff');?>;}
 
 	.site-header{height:10%;width:100%;padding:3vh 0 5vh;margin:0 0 5vh 0;text-align:center;box-shadow:0 0 3vmin rgba(0,0,0,.1);<?php if(get_header_image()){echo'background-image:url(' . get_header_image() . ');';}else{echo'background-color:' . get_option('site_header_background','#03a9f4') . ';';}?>}
 	.site-header,.site-header a{color:<?php echo get_option('site_header_color','#fff');?>;}
