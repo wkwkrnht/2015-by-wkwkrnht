@@ -58,7 +58,7 @@
 	6.social-nav
 	7.page-nation
 	*/
-	#menu-wrap{width:30vw;padding-top:6vh;margin:0;position:absolute;left:0;background-color:<?php echo get_option('sidebar_background_color','#fff');?>;box-shadow:0 0 3vmin rgba(0,0,0,.3);}
+	#menu-wrap{width:30vw;margin:0;position:absolute;left:0;background-color:<?php echo get_option('sidebar_background_color','#fff');?>;box-shadow:0 0 3vmin rgba(0,0,0,.3);}
 	#share-menu,#main-menu{width:30vw;overflow-x:hidden;overflow-y:auto;}
 	#share-menu ul,#main-menu > ul{width:calc(30vw * 0.8);}
 
@@ -472,10 +472,11 @@
 		<?php endif;?>
 	}
 	@media screen and (max-width:992px){
+		body{padding-top:10vh;}
 		main{width:100vw;}
 		.site-header-pc{display:none;}
-		.site-header{position:fixed;top:0;left:0;box-shadow:0 0 3vmin rgba(0,0,0,.3);}
-		#menu-wrap{width:70vw;z-index:100;}
+		.site-header{height:10vh;position:fixed;top:0;left:0;z-index:100;box-shadow:0 0 3vmin rgba(0,0,0,.3);}
+		#menu-wrap{width:70vw;z-index:111;}
 		#menu-toggle{display:inline-block;height:8vh;width:8vh;padding:1vh;line-height:8vh;font-size:5rem;font-weight:900;text-align:center;vertical-align:middle;border:1px solid <?php echo get_option('site_header_color','#fff');?>;}
 		#menu-wrap.block ~ #menu-toggle{transform:rotate(45deg);}
 		.info-card{min-height:calc(100vw * 0.8 / 16 * 9);width:calc(100vw * 0.8);}
