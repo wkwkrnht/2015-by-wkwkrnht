@@ -180,7 +180,6 @@
 	.card-title{display:inline-block;height:calc((70vw * 0.8 / 16 * 9) / 10 * 3);margin:0 1em;}
 	.card-meta{display:inline-block;height:calc((70vw * 0.8 / 16 * 9) / 10 * 7);margin:0 1em;}
 	.site-info{text-align:center;}
-	.card-list{background-color:<?php echo get_option('card_list_background','#fff');?>;}
 
 	.site-header{height:10%;width:100%;padding:3vh 0 5vh;margin:0 0 5vh 0;text-align:center;box-shadow:0 0 3vmin rgba(0,0,0,.1);<?php if(get_header_image()){echo'background-image:url(' . get_header_image() . ');';}else{echo'background-color:' . get_option('site_header_background','#03a9f4') . ';';}?>}
 	.site-header,.site-header a{color:<?php echo get_option('site_header_color','#fff');?>;}

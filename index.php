@@ -64,49 +64,46 @@ elseif(is_singular()===true):
 	<?php get_footer();?>
 <?php else:?>
 	<?php get_header();?>
-	<div class="card-list">
-		<?php
-		if(is_author()===true){include_once(get_template_directory() . '/widget/author-bio.php');}
-		if(is_active_sidebar('listabove')){dynamic_sidebar('listabove');}
-		if(is_404()===true){
-				if(is_active_sidebar('404')){dynamic_sidebar('404');}
-		}else{
-			if(is_active_sidebar('listheader')){dynamic_sidebar('listheader');}
-			if(have_posts()):while(have_posts()):the_post();
-				$link       = get_permalink();
-				$title      = the_title_attribute(array('echo'=>false));
-				$txt        = mb_strimwidth(get_the_title(),0,32,'…');
-				$categories = get_the_category();
-				$category   = $categories[0];
-				?>
-				<section class="card">
-					<a href="<?php echo $link;?>" title="<?php echo $title;?>" tabindex="0">
-						<img src="<?php wkwkrnht_eyecatch($size_full);?>" sizes="30vw" srcset="<?php wkwkrnht_eyecatch($size_128);?> 320w,<?php wkwkrnht_eyecatch($size_256);?> 1270w,<?php wkwkrnht_eyecatch($size_512);?> 1920w,<?php wkwkrnht_eyecatch($size_1024);?> 2560w" alt="eyecatch" class="card-eyecatch">
-					</a>
-					<div class="card-info">
-						<h2 class="card-title"><a href="<?php echo $link;?>" title="<?php echo $title;?>" tabindex="0"><?php echo $txt;?></a></h2><br>
-						<span class="card-meta">
-							<span class="card-date">公開日：<time class="entry-date updated" datetime="<?php the_time('Y-m-d');?>"><?php the_time('Y/n/j');?></time></span><br>
-							<span class="card-author">著者 ：
-								<span itemscope itemtype="http://schema.org/Person" style="margin:0;">
-								<?php echo'
-									<a href="' . site_url() . '?author=' . get_the_author_meta('ID') . '" tabindex="0" itemprop="url" style="margin:0;">
-										<span class="vcard author" style="margin:0;">
-											<span class="fn" itemprop="name" style="margin:0;">'
-											. get_the_author() .
-											'</span>
-										</span>
-									</a>';?>
-								</span><br>
-								<?php echo'<span class="card-cat">カテゴリー : <a href="' . get_category_link($category->term_id) . '" title="' . $category->name . '">' . $category->cat_name . '</a></span>';?>
-						</span>
-					</div>
-				</section>
-			<?php endwhile;endif;
-			if(is_active_sidebar('listfooter')){dynamic_sidebar('listfooter');}
-		}?>
-	</div>
 	<?php
+	if(is_author()===true){include_once(get_template_directory() . '/widget/author-bio.php');}
+	if(is_active_sidebar('listabove')){dynamic_sidebar('listabove');}
+	if(is_404()===true){
+			if(is_active_sidebar('404')){dynamic_sidebar('404');}
+	}else{
+		if(is_active_sidebar('listheader')){dynamic_sidebar('listheader');}
+		if(have_posts()):while(have_posts()):the_post();
+			$link       = get_permalink();
+			$title      = the_title_attribute(array('echo'=>false));
+			$txt        = mb_strimwidth(get_the_title(),0,32,'…');
+			$categories = get_the_category();
+			$category   = $categories[0];
+			?>
+			<section class="card">
+				<a href="<?php echo $link;?>" title="<?php echo $title;?>" tabindex="0">
+					<img src="<?php wkwkrnht_eyecatch($size_full);?>" sizes="30vw" srcset="<?php wkwkrnht_eyecatch($size_128);?> 320w,<?php wkwkrnht_eyecatch($size_256);?> 1270w,<?php wkwkrnht_eyecatch($size_512);?> 1920w,<?php wkwkrnht_eyecatch($size_1024);?> 2560w" alt="eyecatch" class="card-eyecatch">
+				</a>
+				<div class="card-info">
+					<h2 class="card-title"><a href="<?php echo $link;?>" title="<?php echo $title;?>" tabindex="0"><?php echo $txt;?></a></h2><br>
+					<span class="card-meta">
+						<span class="card-date">公開日：<time class="entry-date updated" datetime="<?php the_time('Y-m-d');?>"><?php the_time('Y/n/j');?></time></span><br>
+						<span class="card-author">著者 ：
+							<span itemscope itemtype="http://schema.org/Person" style="margin:0;">
+							<?php echo'
+								<a href="' . site_url() . '?author=' . get_the_author_meta('ID') . '" tabindex="0" itemprop="url" style="margin:0;">
+									<span class="vcard author" style="margin:0;">
+										<span class="fn" itemprop="name" style="margin:0;">'
+										. get_the_author() .
+										'</span>
+									</span>
+								</a>';?>
+							</span><br>
+							<?php echo'<span class="card-cat">カテゴリー : <a href="' . get_category_link($category->term_id) . '" title="' . $category->name . '">' . $category->cat_name . '</a></span>';?>
+					</span>
+				</div>
+			</section>
+		<?php endwhile;endif;
+		if(is_active_sidebar('listfooter')){dynamic_sidebar('listfooter');}
+	}
 	global $wp_query;
 	$big = 999999999;
 	$page_format = paginate_links(array(
