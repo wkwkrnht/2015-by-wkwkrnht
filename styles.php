@@ -463,6 +463,7 @@
 	5.print
 	*/
 	@media screen and (min-width:992px){
+		#menu-toggle{display:none;}
 		.info-card{min-height:30vmin;width:160vmin;margin:3vmin auto;}
 		.widget.info-card{min-height:30vmin;}
 		.card-title{font-size:2.7rem;}
@@ -474,6 +475,11 @@
 		<?php endif;?>
 	}
 	@media screen and (max-width:992px){
+		main{width:100vw;}
+		#menu-wrap{width:70vw;z-index:111;}
+		#menu-toggle{display:inline-block;height:15vh;width:15vh;border-radius:50%;position:fixed;bottom:4vh;left:calc(50% - 7.5vh);z-index:100;text-align:center;opacity:.7;box-shadow:0 0 3vmin rgba(0,0,0,.2);line-height:15vh;vertical-align:middle;font-size:5rem;font-weight:900;background-color:<?php echo get_option('footer_background','#03a9f4');?>;}
+		#menu-toggle,#menu-toggle:visited{color:<?php echo get_option('footer_color','#fff');?>;}
+		#menu-wrap.block ~ #menu-toggle{right:15vh;transform:rotate(45deg);}
 		.info-card{min-height:45vmin;width:80vmin;}
 		.widget.info-card{min-height:45vmin;}
 		.card{font-size:1.6rem;margin:3vmin auto;}

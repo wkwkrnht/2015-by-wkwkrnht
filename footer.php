@@ -1,4 +1,5 @@
     </main>
+    <a href="javascript:void(0)" id="menu-toggle" tabindex="0" role="button" title="メニューウィンドウの切り替えボタン">+</a>
     <?php
     wp_footer();
     $key = false;
@@ -11,6 +12,17 @@
     }
     ?>
     <script>
+        (function(){
+            var vp = document.viewport.getDimensions();
+            var menu = document.getElementById("manu-wrap");
+            if(992 >= vp.width){
+                menu.classList.add("none");
+                document.getElementById("menu-toggle").onclick = function(){
+                    menu.classList.toggle("none");
+                    menu.classList.toggle("block");
+                };
+            }
+        })();
         (function(){
             if((new Date()).getHours() >= 21 || (new Date()).getHours() < 6 ){
                 document.body.className += " night-mode";
