@@ -13,17 +13,14 @@
     ?>
     <script>
         (function(){
-            var vp = window.innerWidth;
-            var menu = document.getElementById("manu-wrap");
-            if(992 >= vp.width){
+            if(992 >= window.innerWidth){
+                var menu = document.getElementById("menu-wrap");
                 menu.classList.add("none");
                 document.getElementById("menu-toggle").onclick = function(){
                     menu.classList.toggle("none");
                     menu.classList.toggle("block");
                 };
             }
-        })();
-        (function(){
             if((new Date()).getHours() >= 21 || (new Date()).getHours() < 6 ){
                 document.body.className += " night-mode";
             }
