@@ -477,8 +477,7 @@
 		main{width:100vw;}
 		.site-header-pc{display:none;}
 		.site-header{height:15vh;position:fixed;top:0;left:0;z-index:111;box-shadow:0 0 3vmin rgba(0,0,0,.3);}
-
-		#menu-wrap{top:20vh;width:70vw;z-index:100;}
+		#menu-wrap{top:30vh;width:70vw;z-index:100;}
 		.info-card{min-height:calc(100vw * 0.8 / 16 * 9);width:calc(100vw * 0.8);}
 		.widget.info-card{min-height:45vmin;}
 		.card{font-size:1.6rem;}
