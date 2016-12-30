@@ -461,7 +461,7 @@
 	5.print
 	*/
 	@media screen and (min-width:992px){
-		#menu-toggle,.sitte-header-mobile{display:none;}
+		#menu-toggle,.site-header-mobile{display:none;}
 		.widget.info-card{min-height:30vmin;}
 		.card-title{font-size:2.7rem;}
 		.hatenablogcard{max-width:60vw;margin:5vh auto;}
