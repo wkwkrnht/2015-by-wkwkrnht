@@ -62,28 +62,6 @@
 	#share-menu,#main-menu{width:30vw;overflow-x:hidden;overflow-y:auto;}
 	#share-menu ul,#main-menu > ul{width:calc(30vw * 0.8);}
 
-	#share-menu ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:flex-start;align-items:center;padding:0;margin:0;}
-	#share-menu ul li{width:calc((30vw / 2) - 1vmin);height:calc(30vw / 3);text-align:center;}
-	#share-menu ul li a{position:relative;top:35%;color:#fff;}
-	#share-menu .close-button{background-color:#fff;}
-	#share-menu .tweet{background-color:#55acee;}
-	#share-menu .fb-like{background-color:#3b5998;}
-	#share-menu .buffer{background-color:#333;font-size:4rem;font-weight:900;}
-	#share-menu .buffer > a{top:28%;}
-	#share-menu .line{background-color:#6cc655;}
-	#share-menu .g-plus{background-color:#dc4e41;}
-	#share-menu .linkedin{background-color:#36465d;}
-	#share-menu .reddit{background-color:#ff5700;}
-	#share-menu .vk{background-color:#83bad6;}
-	#share-menu .stumbleupon{background-color:#ffcc00;}
-	#share-menu .hatebu{background-color:#00a5de;font-size:5rem;font-weight:900;}
-	#share-menu .hatebu > a{top:25%;}
-	#share-menu li.instapaper{background-color:#fff;}
-	#share-menu li.instapaper > a{color:#333;font:900 5rem/1.9 serif;top:25%;}
-	#share-menu .pinterest{background-color:#bd081c;}
-	#share-menu .pocket{background-color:#ef3f56;}
-	#share-menu .tumblr{background-color:#36465d;}
-
 	#main-menu{box-sizing:border-box;padding-top:2vh;background-color:<?php echo get_option('menu_background','#fff');?>;}
 
 	.main-nav ul{list-style-type:none;}

@@ -89,6 +89,7 @@ function wkwkrnht_widgets_init(){
     register_sidebar(array('name'=>'List Footer','id'=>'listfooter','before_widget'=>'<section class="card" role="widget"><div id="%1$s" class="widget %2$s">','after_widget'=>'</div></section>','before_title'=>'<h2 class="widget-title">','after_title' =>'</h2>',));
     register_sidebar(array('name'=>'List Under','id'=>'listunder','before_widget'=>'<aside id="%1$s" class="widget info-card %2$s" role="widget">','after_widget'=>'</aside>','before_title'=>'<h2 class="widget-title">','after_title' =>'</h2>',));
     register_sidebar(array('name'=>'404 Page','id'=>'404','before_widget'=>'<section class="card"><div id="%1$s" class="widget %2$s" role="widget">','after_widget'=>'</div></section>','before_title'=>'<h2 class="widget-title">','after_title' =>'</h2>',));
+    register_widget('sns_share');
     register_widget('wkwkrnht_manth_archive');
     register_widget('related_posts');
     register_widget('related_posts_img');
@@ -102,6 +103,11 @@ function wkwkrnht_widgets_init(){
     register_widget('google_two_ads_widget');
     register_widget('google_translate_widget');
     register_widget('move_top');
+}
+
+class sns_share_hover extends WP_Widget{
+    function __construct(){parent::__construct('sns_share','SNS シェア',array());}
+    public function widget($args,$instance){echo $args['before_widget'];include_once(get_template_directory() . '/widget/sns-share.php');echo $args['after_widget'];}
 }
 
 class wkwkrnht_manth_archive extends WP_Widget{
