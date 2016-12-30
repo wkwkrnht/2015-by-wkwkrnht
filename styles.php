@@ -388,7 +388,7 @@
 		10.original
 		11.codex
 		*/
-		article{width:calc(70vw * 0.7);}
+		article{width:calc(70vw * 0.7);margin:0 auto;}
 		article > *{max-width:calc(70vw * 0.7);}
 
 		.article-header{height:0;width:100%;padding-top:85%;position:relative;margin:20% 0 6vh;}
