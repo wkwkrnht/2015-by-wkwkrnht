@@ -50,6 +50,7 @@
     ┗post-nav-hover.php (画像なし前後ナビ)
     ┗related-post-img.php (画像付関連記事)
     ┗related-post.php (画像なし関連記事)
+    ┗sns-share.php (SNS シェア)
 ・amp.php (ampテンプレート)
 ・composer.json (composer向け情報)
 ・footer.php (フッターテンプレート)

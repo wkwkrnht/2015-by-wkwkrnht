@@ -105,7 +105,7 @@ function wkwkrnht_widgets_init(){
     register_widget('move_top');
 }
 
-class sns_share_hover extends WP_Widget{
+class sns_share extends WP_Widget{
     function __construct(){parent::__construct('sns_share','SNS シェア',array());}
     public function widget($args,$instance){echo $args['before_widget'];include_once(get_template_directory() . '/widget/sns-share.php');echo $args['after_widget'];}
 }
